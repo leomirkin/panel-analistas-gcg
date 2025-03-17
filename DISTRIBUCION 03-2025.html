@@ -617,15 +617,15 @@
                 const card = document.createElement('div');
                 card.className = 'analyst-card';
 
-                if (absentAnalysts.has(analyst.name)) {
-                    card.classList.add('absent');
+                if (absentAnalysts.has(analyst.name) || analyst.schedule === "00:00-00:00") {
+                        card.classList.add('absent');
                 }
 
                 const schedule = parseSchedule(analyst.schedule);
                 const isActive = isAnalystActive(schedule);
 
-                if (isActive && !absentAnalysts.has(analyst.name)) {
-                    card.classList.add('active-card');
+                if (isActive && !absentAnalysts.has(analyst.name) && analyst.schedule !== "00:00-00:00") {
+                     card.classList.add('active-card');
                 }
 
                 card.innerHTML = `

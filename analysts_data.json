@@ -317,7 +317,7 @@
     },
     {
         "name": "JULIÁN HERNÁN",
-        "schedule": "08:30-17:30",
+        "schedule": "00:00-00:00",
         "clients": [
             "Coordinación - YPF"
         ],
@@ -371,7 +371,7 @@
     },
     {
         "name": "MABEL FRIAS",
-        "schedule": "08:00-17:00",
+        "schedule": "00:00-00:00",
         "clients": [
             "YPF - PERMANENTES"
         ],
@@ -434,7 +434,7 @@
     },
     {
         "name": "LAURA GERBALDO",
-        "schedule": "00:00-00:00",
+        "schedule": "23:00-00:00",
         "clients": [
             "YPF - MENSUALES"
         ],
