@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Analistas GCG</title>
+    <script>
+        // Variables globales
+        let bubblesPopped = 0;
+        let currentBubble = null;
+        let popSound;
+        let analysts = [];
+        let processedAnalysts = [];
+        let absentAnalysts = new Set();
+
+        // Función para cargar los datos de los analistas
+        async function loadAnalystsData() {
+            try {
+                const response = await fetch('analysts_data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                analysts = await response.json();
+                processedAnalysts = processExcelData(analysts);
+                generateAnalystCards();
+            } catch (error) {
+                console.error('Error al cargar los datos de analistas:', error);
+            }
+        }
+
+        // Cargar los datos cuando se inicia la página
+        document.addEventListener('DOMContentLoaded', loadAnalystsData);
+    </script>
+</head>
+<body>
+</body>
+</html> 

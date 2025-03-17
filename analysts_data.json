@@ -1,0 +1,535 @@
+[
+    {
+        "name": "MAURO GUAJARDO",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Aceitera General Deheza S.A.",
+            "Dos Anclas S.A.",
+            "Evonik Argentina S.A.",
+            "Evonik Metilatos S.A.",
+            "Sancor Cooperativas Unidas Limitada",
+            "Sancor RMP"
+        ],
+        "extension": "164",
+        "whatsapp": "5492984593432"
+    },
+    {
+        "name": "OCTAVIO ROLDAN (HYS)",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Andina Empaques Argentina S.A. (COCA)",
+            "Coca-Cola Andina Argentina",
+            "Reginald Lee S.A.",
+            "Embotelladora del Atlantico S.A."
+        ],
+        "extension": "126",
+        "whatsapp": "5493524402182"
+    },
+    {
+        "name": "LILIA BAJU",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Andina Empaques Argentina S.A. (COCA)",
+            "Coca-Cola Andina Argentina",
+            "Reginald Lee S.A.",
+            "Embotelladora del Atlantico S.A."
+        ],
+        "extension": "114",
+        "whatsapp": "5493794734704"
+    },
+    {
+        "name": "ANDREA CASAS",
+        "schedule": "07:00-16:00",
+        "clients": [
+            "Arcor S.A.I.C.",
+            "Cartocor Sociedad Anónima"
+        ],
+        "extension": "117",
+        "whatsapp": "5493513479033"
+    },
+    {
+        "name": "MARIANA PERALES",
+        "schedule": "06:00-15:00",
+        "clients": [
+            "Arcor S.A.I.C.",
+            "Cartocor Sociedad Anónima"
+        ],
+        "extension": "101",
+        "whatsapp": "5493513052793"
+    },
+    {
+        "name": "ZULAY TOSCANO",
+        "schedule": "07:00-15:00",
+        "clients": [
+            "Arcor S.A.I.C.",
+            "Cartocor Sociedad Anónima",
+            "Scrapservice S.A."
+        ],
+        "extension": "115",
+        "whatsapp": "5493518767516"
+    },
+    {
+        "name": "RODRIGO ZAVALEY",
+        "schedule": "13:00-21:00",
+        "clients": [
+            "Arcor S.A.I.C.",
+            "Cartocor Sociedad Anónima",
+            "Tarjeta Naranja S.A.U",
+            "YPF - MODULO SALARIAL"
+        ],
+        "extension": "169",
+        "whatsapp": "5493576478617"
+    },
+    {
+        "name": "MELINA NUÑEZ",
+        "schedule": "08:00-17:00",
+        "clients": [
+            "Arcor S.A.I.C.",
+            "Cartocor Sociedad Anónima"
+        ],
+        "extension": "130",
+        "whatsapp": "5491122820738"
+    },
+    {
+        "name": "SOPHIA SARAVIA",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Arcor S.A.I.C.",
+            "Cartocor Sociedad Anónima"
+        ],
+        "extension": "170",
+        "whatsapp": "5493574457249"
+    },
+    {
+        "name": "LUCIANA GEREZ",
+        "schedule": "06:00-14:00",
+        "clients": [
+            "Arcor S.A.I.C.",
+            "Cartocor Sociedad Anónima"
+        ],
+        "extension": "140",
+        "whatsapp": "5493489220917"
+    },
+    {
+        "name": "ROCIO BARRIONUEVO",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Arcor S.A.I.C. Proveedores",
+            "Arcor S.A.I.C. Transporte de Personas",
+            "Arla Foods Ingredients SA",
+            "Danisco Argentina SA",
+            "FV SA",
+            "Las Taperitas SA",
+            "Rosenarg S.R.L."
+        ],
+        "extension": "165",
+        "whatsapp": "5493515996465"
+    },
+    {
+        "name": "VALENTINA GIL",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Assist Cargo SA",
+            "Bebidas y Alimentos de Uraba S.A.",
+            "Bombas Grundfos de Argentina S.A.U.",
+            "La Compañia Gaseosas Leticia S.A.S",
+            "Paraguay Refrescos S.A. (PARESA)",
+            "Porta Hnos SA",
+            "Punta del Agua SA"
+        ],
+        "extension": "122",
+        "whatsapp": "5493585138065"
+    },
+    {
+        "name": "ESTEFANIA SALMINI",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Ceibos Group",
+            "MAHLE Argentina S.A. Guarderia",
+            "Ortiz y Cia. S.A.",
+            "PB Leiner Argentina SA",
+            "PB Leiner - Guarderías",
+            "Syngenta Agro S.A.- Servicios Agro",
+            "Syngenta Agro S.A.- Parentales",
+            "Veronica S.A.C.I.A.F.E.I."
+        ],
+        "extension": "162",
+        "whatsapp": "5493513473103"
+    },
+    {
+        "name": "STEFANIA WERLEN",
+        "schedule": "06:00-15:00",
+        "clients": [
+            "Constructora Calchaqui S.A.",
+            "Helacor S.A.",
+            "Newsan Sociedad Anónima",
+            "Pro De Man S.A",
+            "QX Logistica SA"
+        ],
+        "extension": "166",
+        "whatsapp": "5493564650621"
+    },
+    {
+        "name": "BELEN ROSA",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Cosufi S.A.",
+            "Piedra Grande S.A.M.I.C.A. Y F.",
+            "Stratton Argentina S.A. (Konecta)",
+            "Vitopel Argentina SA"
+        ],
+        "extension": "167",
+        "whatsapp": "5493512407695"
+    },
+    {
+        "name": "GRISELDA QUIROGA",
+        "schedule": "07:00-16:00",
+        "clients": [
+            "Cotagro Cooperativa Agropecuaria Limitada",
+            "Establecimiento Las Marias S.A.C.I.F.A.",
+            "Petroquímica Rio Tercero S.A.",
+            "Seaboard Energías Renovables y Alimentos SRL"
+        ],
+        "extension": "125",
+        "whatsapp": "5493515464041"
+    },
+    {
+        "name": "ELIZABETH MAZZOTTA",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Distribuidora de Gas Cuyana S.A.",
+            "Distribuidora de Gas del Centro S.A.",
+            "MAHLE Argentina S.A.",
+            "Palmar S.A.",
+            "Parque Eólico Arauco S.A.P.E.M.",
+            "Vientos de Arauco Renovables SAU"
+        ],
+        "extension": "161",
+        "whatsapp": "5493541370038"
+    },
+    {
+        "name": "ELISEO MAMANI",
+        "schedule": "06:00-15:00",
+        "clients": [
+            "FCA Automobiles Argentina S.A. (FIAT)",
+            "Parque Eólico Arauco S.A.P.E.M."
+        ],
+        "extension": "124",
+        "whatsapp": "5493517011523"
+    },
+    {
+        "name": "MICAELA MIRANDA",
+        "schedule": "06:00-15:00",
+        "clients": [
+            "Ferrum",
+            "Tarjeta Naranja S.A.U",
+            "Porta Hnos SA",
+            "Punta del Agua SA"
+        ],
+        "extension": "138",
+        "whatsapp": "5493518089464"
+    },
+    {
+        "name": "BELEN KUCHUMPOS",
+        "schedule": "06:00-15:00",
+        "clients": [
+            "Johnson y Johnson de Argentina (Kenvue)",
+            "Coordinación - Implementaciones y Gestión de Personal"
+        ],
+        "extension": "113",
+        "whatsapp": "5493512269657"
+    },
+    {
+        "name": "GABRIEL YOLES",
+        "schedule": "06:00-12:00",
+        "clients": [
+            "G P V Sociedad Anonima (PIERO)"
+        ],
+        "extension": "120",
+        "whatsapp": "5493513965119"
+    },
+    {
+        "name": "CINDY RIVADENEIRA",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Industrias Guidi SACIF",
+            "Multicliente"
+        ],
+        "extension": "112",
+        "whatsapp": "5493513970197"
+    },
+    {
+        "name": "EUGENIA TOSCANO",
+        "schedule": "13:00-21:00",
+        "clients": [
+            "Newsan Sociedad Anónima",
+            "QX Logistica SA",
+            "Sucesores de Alfredo Williner S.A.",
+            "Tenaris Guarderia"
+        ],
+        "extension": "133",
+        "whatsapp": "5493513649879"
+    },
+    {
+        "name": "MARIQUENA FROLA",
+        "schedule": "14:00-18:00",
+        "clients": [
+            "Siderca S.A.I.C. (SIAT/SCRAP)"
+        ],
+        "extension": "264",
+        "whatsapp": "5493517717664"
+    },
+    {
+        "name": "BELÉN MARTINEZ",
+        "schedule": "06:00-15:00",
+        "clients": [
+            "Sodexo México S.A. De C.V"
+        ],
+        "extension": "275",
+        "whatsapp": "5493512318191"
+    },
+    {
+        "name": "CATIA BRANDOLIN",
+        "schedule": "08:00-17:00",
+        "clients": [
+            "Ternium Argentina S.A."
+        ],
+        "extension": "135",
+        "whatsapp": "5493482314430"
+    },
+    {
+        "name": "EDUARDO FECK",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Multicliente"
+        ],
+        "extension": "119",
+        "whatsapp": "5493482600648"
+    },
+    {
+        "name": "FLORENCIA QUIROGA",
+        "schedule": "06:00-14:00",
+        "clients": [
+            "Coordinación - Jefe de Equipo"
+        ],
+        "extension": "121",
+        "whatsapp": "5493513465227"
+    },
+    {
+        "name": "JULIÁN HERNÁN",
+        "schedule": "08:30-17:30",
+        "clients": [
+            "Coordinación - YPF"
+        ],
+        "extension": "144",
+        "whatsapp": "5492215419198"
+    },
+    {
+        "name": "LEONARDO MIRKIN",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Coordinación - Facilitador y Revisión de Procesos"
+        ],
+        "extension": "105",
+        "whatsapp": "61472566122"
+    },
+    {
+        "name": "YANINA DIAZ",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Analista Funcional"
+        ],
+        "extension": "123",
+        "whatsapp": "5493513649879"
+    },
+    {
+        "name": "CHRISTIAN GONZALEZ",
+        "schedule": "13:00-21:00",
+        "clients": [
+            "YPF - PERMANENTES"
+        ],
+        "extension": "116",
+        "whatsapp": "5493794022165"
+    },
+    {
+        "name": "KAREN TISSERA",
+        "schedule": "07:00-16:00",
+        "clients": [
+            "YPF - PERMANENTES"
+        ],
+        "extension": "265",
+        "whatsapp": "5493517598173"
+    },
+    {
+        "name": "MARIA JOSÉ CHOQUE",
+        "schedule": "06:00-14:00",
+        "clients": [
+            "YPF - PERMANENTES"
+        ],
+        "extension": "139",
+        "whatsapp": "5493885043497"
+    },
+    {
+        "name": "MABEL FRIAS",
+        "schedule": "08:00-17:00",
+        "clients": [
+            "YPF - PERMANENTES"
+        ],
+        "extension": "141",
+        "whatsapp": "5493794723472"
+    },
+    {
+        "name": "IRINA LAZCANO",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "SUPERVISORA YPF"
+        ],
+        "extension": "136",
+        "whatsapp": "5493492256877"
+    },
+    {
+        "name": "ROMINA MONTES DE OCA",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "YPF - PERMANENTES"
+        ],
+        "extension": "163",
+        "whatsapp": "5492915344145"
+    },
+    {
+        "name": "ALEJANDRO BRYS",
+        "schedule": "06:00-14:00",
+        "clients": [
+            "YPF - PERMANENTES"
+        ],
+        "extension": "145",
+        "whatsapp": "5493764202600"
+    },
+    {
+        "name": "BELEN HERRERA",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "YPF - PERMANENTES"
+        ],
+        "extension": "142",
+        "whatsapp": "5493512346131"
+    },
+    {
+        "name": "MARISEL MATUCHESKY",
+        "schedule": "06:00-14:00",
+        "clients": [
+            "YPF - MENSUALES"
+        ],
+        "extension": "131",
+        "whatsapp": "5493758524169"
+    },
+    {
+        "name": "NATALIA GOVERNATORI",
+        "schedule": "06:30-15:30",
+        "clients": [
+            "SUPERVISORA YPF"
+        ],
+        "extension": "118",
+        "whatsapp": "5493571664647"
+    },
+    {
+        "name": "LAURA GERBALDO",
+        "schedule": "00:00-00:00",
+        "clients": [
+            "YPF - MENSUALES"
+        ],
+        "extension": "412",
+        "whatsapp": "nan"
+    },
+    {
+        "name": "ARACELLI GALLARDO",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "YPF - EMPRESA"
+        ],
+        "extension": "172",
+        "whatsapp": "5493704819376"
+    },
+    {
+        "name": "VALENTIN MANSILLA",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "YPF - EMPRESA"
+        ],
+        "extension": "174",
+        "whatsapp": "5493512490933"
+    },
+    {
+        "name": "AGUSTINA ZOCCHI",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "YPF - EMPRESA"
+        ],
+        "extension": "171",
+        "whatsapp": "5493513933506"
+    },
+    {
+        "name": "SOL FUNES",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "YPF - CORREOS"
+        ],
+        "extension": "143",
+        "whatsapp": "5493512426156"
+    },
+    {
+        "name": "VICTORIA DENOT",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "YPF - MODULO SALARIAL"
+        ],
+        "extension": "0",
+        "whatsapp": "5492215794546"
+    },
+    {
+        "name": "MARIANA LEDESMA",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "YPF - MODULO SALARIAL"
+        ],
+        "extension": "168",
+        "whatsapp": "5493574400034"
+    },
+    {
+        "name": "CAROLINA BRANDOLIN",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "YPF - MODULO SALARIAL"
+        ],
+        "extension": "173",
+        "whatsapp": "5493482236627"
+    },
+    {
+        "name": "ADRIAN BENITEZ",
+        "schedule": "06:00-14:00",
+        "clients": [
+            "SUPERVISOR YPF"
+        ],
+        "extension": "0",
+        "whatsapp": "5492213040432"
+    },
+    {
+        "name": "MILAGROS SCOPEL",
+        "schedule": "06:00-14:00",
+        "clients": [
+            "YPF - MODULO SALARIAL"
+        ],
+        "extension": "0",
+        "whatsapp": "5493515206984"
+    },
+    {
+        "name": "EJEMPLO ANALISTA",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Cliente Ejemplo 1",
+            "Cliente Ejemplo 2"
+        ],
+        "extension": "999",
+        "whatsapp": "5491112345678"
+    }
+]
