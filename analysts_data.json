@@ -253,7 +253,8 @@
         "schedule": "09:00-18:00",
         "clients": [
             "Industrias Guidi SACIF (32)",
-            "GERDAU (Sipar Aceros) (55)"
+            "GERDAU (Sipar Aceros) (55)",
+            "Licencias"
                  
         ],
         "extension": "112",
@@ -304,7 +305,7 @@
         "name": "EDUARDO FECK",
         "schedule": "09:00-18:00",
         "clients": [
-            "Multicliente"
+            "Licencias"
         ],
         "extension": "119",
         "whatsapp": "5493482600648"
