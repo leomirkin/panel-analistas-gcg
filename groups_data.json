@@ -23,15 +23,16 @@
         "extension": "140"
       },
       {
-        "name": "MAURO GUAJARDO",
-        "schedule": "09:00-18:00",
-        "extension": "164"
-      },
-      {
         "name": "GABRIEL YOLES",
         "schedule": "09:00-18:00",
         "extension": "144"
+      },
+      {
+        "name": "MAURO GUAJARDO (BACKUP)",
+        "schedule": "09:00-18:00",
+        "extension": "164"
       }
+      
     ]
   },
   {
@@ -183,7 +184,7 @@
   {
     "group_name": "Otras Plataformas",
     "supervisor": {
-      "name": "CATIA BRANDOLIN (LEGACY)",
+      "name": "CATIA BRANDOLIN (TERNIUM)",
       "schedule": "08:00-17:00",
       "extension": "135"
     },
@@ -192,6 +193,11 @@
         "name": "ELIZABETH MAZZOTTA (ECOGAS)",
         "schedule": "09:00-18:00",
         "extension": "161"
+      },
+      {
+        "name": "MAURO GUAJARDO (AGD - PALMAR)",
+        "schedule": "09:00-18:00",
+        "extension": "164"
       },
       {
         "name": "MARIQUENA FROLA (EXACTIAN)",
