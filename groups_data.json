@@ -170,9 +170,14 @@
       "extension": "166"
     },
     "members": [{
-        "name": "VACANTE",
+        "name": "OCTAVIO ROLDAN (COCA)",
         "schedule": "09:00-18:00",
-        "extension": "0"
+        "extension": "126"
+      },
+      {
+        "name": "MARIANA PERALES (ARCOR)",
+        "schedule": "06:00-15:00",
+        "extension": "101"
       }]
   },
   {
