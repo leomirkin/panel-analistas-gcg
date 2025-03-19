@@ -1,0 +1,203 @@
+[
+  {
+    "group_name": "Seguros",
+    "supervisor": {
+      "name": "MICAELA MIRANDA",
+      "schedule": "06:00-15:00",
+      "extension": "138"
+    },
+    "members": [
+      {
+        "name": "MELINA NUÑEZ",
+        "schedule": "08:00-17:00",
+        "extension": "130"
+      },
+      {
+        "name": "ZULAY TOSCANO",
+        "schedule": "09:00-18:00",
+        "extension": "143"
+      },
+      {
+        "name": "LUCIANA GEREZ",
+        "schedule": "06:00-14:00",
+        "extension": "140"
+      },
+      {
+        "name": "MAURO GUAJARDO",
+        "schedule": "09:00-18:00",
+        "extension": "164"
+      },
+      {
+        "name": "GABRIEL YOLES",
+        "schedule": "09:00-18:00",
+        "extension": "144"
+      }
+    ]
+  },
+  {
+    "group_name": "Mensual",
+    "supervisor": {
+      "name": "ELIZABETH MAZZOTTA",
+      "schedule": "09:00-18:00",
+      "extension": "161"
+    },
+    "members": [
+      {
+        "name": "VALENTINA GIL",
+        "schedule": "09:00-18:00",
+        "extension": "122"
+      },
+      {
+        "name": "ANDREA CASAS",
+        "schedule": "07:00-16:00",
+        "extension": "117"
+      },
+      {
+        "name": "MILAGROS ANDRADA",
+        "schedule": "09:00-18:00",
+        "extension": "123"
+      },
+      {
+        "name": "LILIA BAJU",
+        "schedule": "09:00-18:00",
+        "extension": "114"
+      },
+      {
+        "name": "RODRIGO ZAVALEY",
+        "schedule": "13:00-21:00",
+        "extension": "169"
+      }
+    ]
+  },
+  {
+    "group_name": "Vehículos",
+    "supervisor": {
+      "name": "VACANTE",
+      "schedule": "06:00-15:00",
+      "extension": "0"
+    },
+    "members": [
+      {
+        "name": "BELEN ROSA",
+        "schedule": "09:00-18:00",
+        "extension": "167"
+      },
+      {
+        "name": "GRISELDA QUIROGA",
+        "schedule": "07:00-16:00",
+        "extension": "125"
+      }
+    ]
+  },
+  {
+    "group_name": "Trabajadores",
+    "supervisor": {
+      "name": "CINDY RIVADENEIRA",
+      "schedule": "09:00-18:00",
+      "extension": "112"
+    },
+    "members": [
+      {
+        "name": "EUGENIA TOSCANO",
+        "schedule": "13:00-21:00",
+        "extension": "133"
+      }
+    ]
+  },
+  {
+    "group_name": "Empresa/Varios",
+    "supervisor": {
+      "name": "ROCIO BARRIONUEVO",
+      "schedule": "09:00-18:00",
+      "extension": "165"
+    },
+    "members": [
+      {
+        "name": "VACANTE",
+        "schedule": "06:00-15:00",
+        "extension": "0"
+      }
+    ]
+  },
+  {
+    "group_name": "HYS",
+    "supervisor": {
+      "name": "OCTAVIO ROLDAN",
+      "schedule": "09:00-18:00",
+      "extension": "126"
+    },
+    "members": [
+      {
+        "name": "ELISEO MAMANI",
+        "schedule": "06:00-15:00",
+        "extension": "124"
+      }
+    ]
+  },
+  {
+    "group_name": "Licencias",
+    "supervisor": {
+      "name": "EDUARDO FECK",
+      "schedule": "09:00-18:00",
+      "extension": "119"
+    },
+    "members": [
+      {
+        "name": "CINDY RIVADENEIRA",
+        "schedule": "09:00-18:00",
+        "extension": "112"
+      }
+    ]
+  },
+  {
+    "group_name": "Comunicación",
+    "supervisor": {
+      "name": "SOPHIA SARAVIA",
+      "schedule": "09:00-18:00",
+      "extension": "170"
+    },
+    "members": [{
+        "name": "VACANTE",
+        "schedule": "06:00-15:00",
+        "extension": "0"
+      }]
+  },
+  {
+    "group_name": "Altas",
+    "supervisor": {
+      "name": "STEFANIA WERLEN",
+      "schedule": "06:00-15:00",
+      "extension": "166"
+    },
+    "members": [{
+        "name": "VACANTE",
+        "schedule": "09:00-18:00",
+        "extension": "0"
+      }]
+  },
+  {
+    "group_name": "Otras Plataformas",
+    "supervisor": {
+      "name": "CATIA BRANDOLIN (LEGACY)",
+      "schedule": "08:00-17:00",
+      "extension": "135"
+    },
+    "members": [
+      {
+        "name": "ELIZABETH MAZZOTTA (ECOGAS)",
+        "schedule": "09:00-18:00",
+        "extension": "161"
+      },
+      {
+        "name": "MARIQUENA FROLA (EXACTIAN)",
+        "schedule": "14:00-18:00",
+        "extension": "264"
+      },
+      {
+        "name": "EUGENIA TOSCANO (WEB TERNIUM - GUARDERIAS)",
+        "schedule": "13:00-21:00",
+        "extension": "133"
+      }
+    ]
+  }
+]
