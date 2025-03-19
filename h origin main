@@ -1,0 +1,5 @@
+[33mcommit 09df68acabfba49531861b271516e50b31aaa617[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: leomirkin <leonardomirkin@gmail.com>
+Date:   Wed Mar 19 11:47:32 2025 -0300
+
+    Agregar funcionalidad de vista de grupos y mejorar la interfaz

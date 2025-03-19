@@ -1,0 +1,242 @@
+[
+  {
+    "name": "Seguros",
+    "supervisor": {
+      "name": "ADRIAN BENITEZ",
+      "schedule": "06:00-14:00",
+      "extension": "0",
+      "whatsapp": "5492213040432"
+    },
+    "members": [
+      {
+        "name": "MABEL FRIAS",
+        "schedule": "00:00-00:00",
+        "extension": "141"
+      },
+      {
+        "name": "MARIA JOSÉ CHOQUE",
+        "schedule": "06:00-14:00",
+        "extension": "139"
+      },
+      {
+        "name": "ALEJANDRO BRYS",
+        "schedule": "06:00-14:00",
+        "extension": "145"
+      }
+    ]
+  },
+  {
+    "name": "Mensual",
+    "supervisor": {
+      "name": "IRINA LAZCANO",
+      "schedule": "09:00-18:00",
+      "extension": "136",
+      "whatsapp": "5493492256877"
+    },
+    "members": [
+      {
+        "name": "CHRISTIAN GONZALEZ",
+        "schedule": "13:00-21:00",
+        "extension": "116"
+      },
+      {
+        "name": "MARI MATUCHESKY (HYS)",
+        "schedule": "06:00-14:00",
+        "extension": "131"
+      },
+      {
+        "name": "LAURA GERBALDO",
+        "schedule": "23:55-23:56",
+        "extension": "412"
+      }
+    ]
+  },
+  {
+    "name": "Vehículos",
+    "supervisor": {
+      "name": "NATALIA GOVERNATORI",
+      "schedule": "06:30-15:30",
+      "extension": "118",
+      "whatsapp": "5493571664647"
+    },
+    "members": [
+      {
+        "name": "KAREN TISSERA",
+        "schedule": "07:00-16:00",
+        "extension": "265"
+      },
+      {
+        "name": "ROMINA MONTES DE OCA",
+        "schedule": "09:00-18:00",
+        "extension": "163"
+      },
+      {
+        "name": "BELEN HERRERA",
+        "schedule": "09:00-18:00",
+        "extension": "142"
+      },
+      {
+        "name": "ELIANA BRANDOLIN",
+        "schedule": "09:00-18:00",
+        "extension": "134"
+      }
+    ]
+  },
+  {
+    "name": "Trabajadores",
+    "supervisor": {
+      "name": "JULIÁN HERNÁN",
+      "schedule": "00:00-00:00",
+      "extension": "144",
+      "whatsapp": "5492215419198"
+    },
+    "members": [
+      {
+        "name": "MARIQUENA FROLA",
+        "schedule": "14:00-18:00",
+        "extension": "264"
+      },
+      {
+        "name": "CINDY RIVADENEIRA",
+        "schedule": "09:00-18:00",
+        "extension": "112"
+      }
+    ]
+  },
+  {
+    "name": "Empresa/Varios",
+    "supervisor": {
+      "name": "VALENTIN MANSILLA",
+      "schedule": "09:00-18:00",
+      "extension": "174",
+      "whatsapp": "5493512490933"
+    },
+    "members": [
+      {
+        "name": "ARACELLI GALLARDO",
+        "schedule": "09:00-18:00",
+        "extension": "172"
+      },
+      {
+        "name": "AGUSTINA ZOCCHI",
+        "schedule": "09:00-18:00",
+        "extension": "171"
+      },
+      {
+        "name": "SOL FUNES",
+        "schedule": "09:00-18:00",
+        "extension": "143"
+      }
+    ]
+  },
+  {
+    "name": "HYS",
+    "supervisor": {
+      "name": "OCTAVIO ROLDAN (HYS)",
+      "schedule": "09:00-18:00",
+      "extension": "126",
+      "whatsapp": "5493524402182"
+    },
+    "members": [
+      {
+        "name": "ELISEO MAMANI (HYS)",
+        "schedule": "06:00-15:00",
+        "extension": "124"
+      },
+      {
+        "name": "LILIA BAJU",
+        "schedule": "09:00-18:00",
+        "extension": "114"
+      }
+    ]
+  },
+  {
+    "name": "Licencias",
+    "supervisor": {
+      "name": "EDUARDO FECK",
+      "schedule": "09:00-18:00",
+      "extension": "119",
+      "whatsapp": "5493482600648"
+    },
+    "members": [
+      {
+        "name": "BELEN KUCHUMPOS",
+        "schedule": "06:00-14:00",
+        "extension": "113"
+      }
+    ]
+  },
+  {
+    "name": "Comunicación",
+    "supervisor": {
+      "name": "VICTORIA DENOT",
+      "schedule": "09:00-18:00",
+      "extension": "0",
+      "whatsapp": "5492215794546"
+    },
+    "members": [
+      {
+        "name": "MARIANA LEDESMA",
+        "schedule": "09:00-18:00",
+        "extension": "168"
+      },
+      {
+        "name": "CAROLINA BRANDOLIN",
+        "schedule": "09:00-18:00",
+        "extension": "173"
+      },
+      {
+        "name": "MILAGROS SCOPEL",
+        "schedule": "06:00-14:00",
+        "extension": "0"
+      }
+    ]
+  },
+  {
+    "name": "Altas",
+    "supervisor": {
+      "name": "FLORENCIA QUIROGA",
+      "schedule": "06:00-14:00",
+      "extension": "121",
+      "whatsapp": "5493513465227"
+    },
+    "members": [
+      {
+        "name": "RODRIGO ZAVALEY",
+        "schedule": "13:00-21:00",
+        "extension": "169"
+      },
+      {
+        "name": "MICAELA MIRANDA",
+        "schedule": "06:00-15:00",
+        "extension": "138"
+      }
+    ]
+  },
+  {
+    "name": "Otras Plataformas",
+    "supervisor": {
+      "name": "LEONARDO MIRKIN",
+      "schedule": "09:00-18:00",
+      "extension": "105",
+      "whatsapp": "61472566122"
+    },
+    "members": [
+      {
+        "name": "YANINA DIAZ",
+        "schedule": "09:00-18:00",
+        "extension": "123"
+      },
+      {
+        "name": "BELÉN MARTINEZ",
+        "schedule": "06:00-15:00",
+        "extension": "275"
+      },
+      {
+        "name": "EUGENIA TOSCANO",
+        "schedule": "13:00-21:00",
+        "extension": "133"
+      }
+    ]
+  }
+]
