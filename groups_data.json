@@ -82,11 +82,6 @@
         "name": "BELEN ROSA",
         "schedule": "09:00-18:00",
         "extension": "167"
-      },
-      {
-        "name": "GRISELDA QUIROGA",
-        "schedule": "07:00-16:00",
-        "extension": "125"
       }
     ]
   },
@@ -147,6 +142,11 @@
         "name": "CINDY RIVADENEIRA",
         "schedule": "09:00-18:00",
         "extension": "112"
+      },
+      {
+        "name": "GRISELDA QUIROGA",
+        "schedule": "07:00-16:00",
+        "extension": "125"
       }
     ]
   },
