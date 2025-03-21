@@ -133,15 +133,15 @@
   {
     "group_name": "Licencias",
     "supervisor": {
-      "name": "EDUARDO FECK",
-      "schedule": "09:00-18:00",
-      "extension": "119"
+      "name": "CINDY RIVADENEIRA",
+        "schedule": "09:00-18:00",
+        "extension": "112"
     },
     "members": [
       {
-        "name": "CINDY RIVADENEIRA",
+        "name": "EDUARDO FECK",
         "schedule": "09:00-18:00",
-        "extension": "112"
+        "extension": "119"
       },
       {
         "name": "GRISELDA QUIROGA",
