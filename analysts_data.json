@@ -138,7 +138,7 @@
     },
     {
         "name": "VALENTINA GIL",
-        "schedule": "00:00-00:00",
+        "schedule": "09:00-18:00",
         "clients": [
             "Assist Cargo SA (30)",
             "Bebidas y Alimentos de Uraba S.A. (52)",
@@ -322,7 +322,7 @@
     },
     {
         "name": "JULIÁN HERNÁN",
-        "schedule": "00:00-00:00",
+        "schedule": "08:30-17:30",
         "clients": [
             "Coordinación - YPF (53)"    
         ],
@@ -377,7 +377,7 @@
     },
     {
         "name": "MABEL FRIAS",
-        "schedule": "00:00-00:00",
+        "schedule": "08:00-17:00",
         "clients": [
             "YPF - PERMANENTES (53)"
         ],
@@ -486,7 +486,7 @@
     },
     {
         "name": "VICTORIA DENOT",
-        "schedule": "09:00-18:00",
+        "schedule": "00:00-00:00",
         "clients": [
             "YPF - MODULO SALARIAL (53)"
         ],
