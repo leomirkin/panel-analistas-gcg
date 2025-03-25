@@ -189,15 +189,16 @@
   {
     "group_name": "Otras Plataformas",
     "supervisor": {
-      "name": "CATIA BRANDOLIN (TERNIUM)",
-      "schedule": "08:00-17:00",
-      "extension": "135"
+      "name": "ELIZABETH MAZZOTTA (ECOGAS)",
+      "schedule": "09:00-18:00",
+      "extension": "161"
     },
+    
     "members": [
       {
-        "name": "ELIZABETH MAZZOTTA (ECOGAS)",
-        "schedule": "09:00-18:00",
-        "extension": "161"
+        "name": "CATIA BRANDOLIN (TERNIUM)",
+        "schedule": "08:00-17:00",
+        "extension": "135"
       },
       {
         "name": "MAURO GUAJARDO (AGD - PALMAR)",
