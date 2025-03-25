@@ -73,9 +73,9 @@
   {
     "group_name": "Vehículos",
     "supervisor": {
-      "name": "VACANTE",
-      "schedule": "06:00-15:00",
-      "extension": "0"
+      "name": "ROCIO BARRIONUEVO",
+      "schedule": "09:00-18:00",
+      "extension": "165"
     },
     "members": [
       {
@@ -171,9 +171,14 @@
       "extension": "166"
     },
     "members": [{
-        "name": "OCTAVIO ROLDAN (COCA)",
+        "name": "OCTAVIO ROLDAN (COCA - COMPRAS)",
         "schedule": "09:00-18:00",
         "extension": "126"
+      },
+      {
+        "name": "LILIA BAJU (COCA - LOGÍSTICA)",
+        "schedule": "09:00-18:00",
+        "extension": "114"
       },
       {
         "name": "MARIANA PERALES (ARCOR)",
