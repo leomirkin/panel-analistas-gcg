@@ -8,27 +8,27 @@
     },
     "members": [
       {
-        "name": "MELINA NUÑEZ",
+        "name": "MELINA NUÑEZ (BACKUP MENSUALES)",
         "schedule": "08:00-17:00",
         "extension": "130"
       },
       {
-        "name": "ZULAY TOSCANO",
+        "name": "ZULAY TOSCANO (BACKUP MENSUALES)",
         "schedule": "07:00-15:00",
         "extension": "143"
       },
       {
-        "name": "LUCIANA GEREZ",
+        "name": "LUCIANA GEREZ (BACKUP VEHICULOS)",
         "schedule": "06:00-14:00",
         "extension": "140"
       },
       {
-        "name": "GABRIEL YOLES",
+        "name": "GABRIEL YOLES (BACKUP TRABAJADORES)",
         "schedule": "06:00-12:00",
         "extension": "144"
       },
       {
-        "name": "MAURO GUAJARDO (BACKUP)",
+        "name": "MAURO GUAJARDO (BACKUP SEGUROS)",
         "schedule": "09:00-18:00",
         "extension": "164"
       }
@@ -158,9 +158,9 @@
       "extension": "170"
     },
     "members": [{
-        "name": "VACANTE",
+        "name": "MICAELA MIRANDA (BACKUP DE 06 A 09 H)",
         "schedule": "06:00-15:00",
-        "extension": "0"
+        "extension": "138"
       }]
   },
   {
