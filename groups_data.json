@@ -18,9 +18,9 @@
         "extension": "143"
       },
       {
-        "name": "LUCIANA GEREZ",
-        "schedule": "06:00-14:00",
-        "extension": "140"
+        "name": "GRISELDA QUIROGA",
+        "schedule": "07:00-16:00",
+        "extension": "125"      
       },
       {
         "name": "GABRIEL YOLES",
@@ -28,7 +28,7 @@
         "extension": "144"
       },
       {
-        "name": "MAURO GUAJARDO (BACKUP SEGUROS)",
+        "name": "MAURO GUAJARDO (BACKUP)",
         "schedule": "09:00-18:00",
         "extension": "164"
       }
@@ -144,9 +144,9 @@
         "extension": "119"
       },
       {
-        "name": "GRISELDA QUIROGA",
-        "schedule": "07:00-16:00",
-        "extension": "125"
+        "name": "LUCIANA GEREZ",
+        "schedule": "06:00-14:00",
+        "extension": "140"
       }
     ]
   },
