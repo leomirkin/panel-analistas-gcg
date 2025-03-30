@@ -313,7 +313,7 @@
     },
     {
         "name": "FLORENCIA QUIROGA",
-        "schedule": "06:00-14:00",
+        "schedule": "00:00-00:00",
         "clients": [
             "Coordinación - Jefe de Equipo"
         ],
@@ -331,7 +331,7 @@
     },
     {
         "name": "LEONARDO MIRKIN",
-        "schedule": "00:00-00:00",
+        "schedule": "09:00-18:00",
         "clients": [
             "Coordinación - Facilitador y Revisión de Procesos"
         ],
@@ -486,7 +486,7 @@
     },
     {
         "name": "VICTORIA DENOT",
-        "schedule": "00:00-00:00",
+        "schedule": "09:00-18:00",
         "clients": [
             "YPF - MODULO SALARIAL (53)"
         ],
