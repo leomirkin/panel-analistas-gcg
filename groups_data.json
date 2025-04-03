@@ -8,11 +8,6 @@
     },
     "members": [
       {
-        "name": "MELINA NUÑEZ",
-        "schedule": "08:00-17:00",
-        "extension": "130"
-      },
-      {
         "name": "ZULAY TOSCANO",
         "schedule": "07:00-15:00",
         "extension": "143"
@@ -28,9 +23,9 @@
         "extension": "144"
       },
       {
-        "name": "MAURO GUAJARDO (BACKUP)",
+        "name": "LILIA BAJU",
         "schedule": "09:00-18:00",
-        "extension": "164"
+        "extension": "114"
       }
       
     ]
@@ -59,9 +54,9 @@
         "extension": "123"
       },
       {
-        "name": "LILIA BAJU",
-        "schedule": "09:00-18:00",
-        "extension": "114"
+        "name": "MELINA NUÑEZ",
+        "schedule": "08:00-17:00",
+        "extension": "130"
       },
       {
         "name": "RODRIGO ZAVALEY",
