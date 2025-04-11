@@ -295,7 +295,7 @@
     },
     {
         "name": "CATIA BRANDOLIN",
-        "schedule": "00:00-00:00",
+        "schedule": "08:00-17:00",
         "clients": [
             "Ternium Argentina S.A. (15)"
         ],
@@ -421,8 +421,8 @@
         "whatsapp": "5493512346131"
     },
     {
-        "name": "MARI MATUCHESKY (HYS)",
-        "schedule": "06:00-14:00",
+        "name": "MARISEL MATUCHESKY (HYS)",
+        "schedule": "00:00-00:00",
         "clients": [
             "YPF - MENSUALES (53)",  
             "[BACKUP] Paraguay Refrescos S.A. (PARESA) (11)"
@@ -504,7 +504,7 @@
     },
     {
         "name": "CAROLINA BRANDOLIN",
-        "schedule": "00:00-00:00",
+        "schedule": "09:00-18:00",
         "clients": [
             "YPF - MODULO SALARIAL (53)"
         ],
