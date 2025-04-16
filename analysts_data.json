@@ -295,7 +295,7 @@
     },
     {
         "name": "CATIA BRANDOLIN",
-        "schedule": "00:00-00:00",
+        "schedule": "08:00-17:00",
         "clients": [
             "Ternium Argentina S.A. (15)"
         ],
@@ -450,7 +450,7 @@
     },
     {
         "name": "ARACELLI GALLARDO",
-        "schedule": "09:00-18:00",
+        "schedule": "00:00-00:00",
         "clients": [
             "YPF - EMPRESA (53)"
         ],
