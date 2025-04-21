@@ -142,9 +142,6 @@
             top: 10px;
             right: 10px;
             z-index: 1000;
-            display: flex;
-            gap: 10px;
-            align-items: center;
         }
 
         .switch {
@@ -220,34 +217,6 @@
 
         .group-icon {
             right: 10px;
-        }
-
-        .dashboard-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 15px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: var(--card-shadow);
-            text-decoration: none;
-            height: 34px;
-        }
-
-        .dashboard-btn:hover {
-            background-color: #34495e;
-            transform: translateY(-2px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .dashboard-btn:active {
-            transform: translateY(0);
         }
 
         .search-container {
@@ -555,83 +524,6 @@
             width: 325px;
             height: 578px;
         }
-
-        .bubble-container {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
-        }
-
-        .bubble {
-            position: absolute;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
-            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.8),
-                       2px 2px 4px rgba(255, 255, 255, 0.5),
-                       4px 4px 12px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            pointer-events: auto;
-            display: none;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-        }
-
-        .bubble:hover {
-            transform: scale(1.1);
-            background: linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
-            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.9),
-                       2px 2px 6px rgba(255, 255, 255, 0.6),
-                       6px 6px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .bubble:active, .bubble.pop {
-            transform: scale(0.9);
-            background: linear-gradient(145deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
-            border-color: rgba(0, 0, 0, 0.1);
-        }
-
-        @keyframes pop {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            30% {
-                transform: scale(1.2);
-                opacity: 0.7;
-            }
-            100% {
-                transform: scale(0);
-                opacity: 0;
-            }
-        }
-
-        .bubble.pop {
-            pointer-events: none;
-            animation: pop 0.3s forwards ease-out;
-        }
-
-        @keyframes appear {
-            from {
-                transform: scale(0);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .bubble.show {
-            display: block;
-            animation: appear 0.4s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
     </style>
 </head>
 <body>
@@ -653,3 +545,24 @@
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="Buscar por analista o cliente...">
     </div>
+
+    <div id="phoneView">
+    <div class="analyst-grid" id="analystContainer">
+        <!-- Las tarjetas de analistas se generarán aquí -->
+        </div>
+    </div>
+    
+    <div id="groupView" style="display: none;">
+        <div class="groups-container">
+            <!-- Los grupos se generarán dinámicamente aquí -->
+        </div>
+    </div>
+
+    <div class="no-results" id="noResults">
+        <button class="close-btn" onclick="closeNoResults()">×</button>
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@maebellakaa/video/7170261831922044165">
+            <iframe src="https://www.tiktok.com/embed/v2/7170261831922044165"></iframe>
+        </blockquote>
+    </div>
+</body>
+</html>
