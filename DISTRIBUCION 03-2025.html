@@ -522,11 +522,11 @@
             }
         }
 
-        /* --- Estilos para el Switch de Tres Estados --- */
+        /* --- Estilos Actualizados para el Switch de Tres Estados --- */
         .three-state-switch-container {
             position: fixed;
-            top: 20px; /* Ajusta según necesites */
-            right: 20px; /* Ajusta según necesites */
+            top: 20px; /* O ajusta */
+            right: 20px; /* O ajusta */
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -535,55 +535,64 @@
         .switch-track {
             position: relative;
             display: flex;
-            width: 120px; /* Ancho total para 3 estados */
-            height: 40px; /* Alto */
-            background-color: #e0e0e0; /* Color de fondo del riel */
-            border-radius: 20px; /* Bordes redondeados */
-            padding: 4px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+            width: 96px; /* Más pequeño: 32px * 3 */
+            height: 34px; /* Alto estándar */
+            background-color: #e9e9eb; /* Gris claro iOS */
+            border-radius: 17px; /* Redondeado */
+            padding: 2px; /* Padding pequeño */
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+            cursor: pointer; /* Cursor sobre todo el track */
         }
 
-        /* Ocultar los inputs de radio reales */
         .switch-track input[type="radio"] {
             display: none;
         }
 
-        /* Estilo de las etiquetas (forman el fondo clickeable) */
         .switch-track label {
-            flex: 1; /* Ocupa 1/3 del espacio */
+            flex: 1;
             height: 100%;
-            cursor: pointer;
             position: relative;
-            z-index: 1; /* Encima del knob visualmente, pero debajo para clicks */
+            z-index: 1;
+             /* Hacemos las etiquetas transparentes a clicks para que lleguen al track o knob si es necesario, aunque el cambio se basa en el radio */
+            pointer-events: none;
         }
 
-        /* Estilo del Knob (la parte que se mueve) */
         .switch-knob {
             position: absolute;
-            top: 4px;
-            left: 4px; /* Posición inicial (estado 1) */
-            width: 32px; /* Ancho del knob (ajustado para el padding) */
-            height: 32px; /* Alto del knob */
+            top: 2px; /* Alineado con el padding */
+            left: 2px; /* Posición inicial */
+            width: 30px; /* Ancho del knob */
+            height: 30px; /* Alto del knob */
             background-color: white;
-            border-radius: 50%; /* Círculo */
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-            transition: left 0.3s ease; /* Animación suave */
-            z-index: 2; /* Encima de las etiquetas */
+            border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: left 0.25s ease-in-out; /* Animación más rápida */
+            z-index: 2;
+            pointer-events: none; /* El knob no intercepta clicks, van al track/radios */
         }
 
-        /* Mover el Knob según el estado seleccionado */
+        /* Mover el Knob */
         #viewPhone:checked ~ .switch-knob {
-            left: 4px; /* Posición estado 1 */
+            left: 2px; /* (padding) */
         }
 
         #viewGroup:checked ~ .switch-knob {
-            left: calc(4px + 40px); /* Posición estado 2 (40px = ancho de 1/3) */
+            left: calc(2px + 32px); /* (padding + 1/3 ancho track) */
         }
 
         #viewDashboard:checked ~ .switch-knob {
-            left: calc(4px + 80px); /* Posición estado 3 (80px = ancho de 2/3) */
+            left: calc(2px + 64px); /* (padding + 2/3 ancho track) */
         }
-        /* --- Fin Estilos Switch Tres Estados --- */
+        /* --- Fin Estilos Switch --- */
+
+        #dashboardView {
+            padding: 20px; /* O el padding que prefieras */
+            max-width: 1200px; /* O el ancho que prefieras */
+            margin: 20px auto;
+            background-color: white; /* Opcional */
+            border-radius: 12px; /* Opcional */
+            box-shadow: var(--card-shadow); /* Opcional */
+        }
 
     </style>
 </head>
@@ -617,6 +626,11 @@
         <div class="groups-container">
             <!-- Los grupos se generarán dinámicamente aquí -->
         </div>
+    </div>
+
+    <!-- NUEVO CONTENEDOR PARA EL DASHBOARD -->
+    <div id="dashboardView" style="display: none;">
+        <!-- El contenido de dashboard_final.html se cargará aquí -->
     </div>
 
     <div class="no-results" id="noResults">
@@ -941,46 +955,82 @@
             radio.addEventListener('change', function() {
                 const phoneView = document.getElementById('phoneView');
                 const groupView = document.getElementById('groupView');
+                const dashboardView = document.getElementById('dashboardView'); // Obtener el nuevo div
                 const selectedValue = this.value;
 
-                // Ocultar todas las vistas primero (excepto si es dashboard)
-                if (selectedValue !== 'dashboard') {
-                     phoneView.style.display = 'none';
-                     groupView.style.display = 'none';
-                }
+                // Ocultar todas las vistas primero
+                phoneView.style.display = 'none';
+                groupView.style.display = 'none';
+                dashboardView.style.display = 'none'; // Ocultar también la del dashboard
 
-                // Mostrar la vista seleccionada o redirigir
+                // Mostrar la vista seleccionada o cargar el dashboard
                 if (selectedValue === 'phone') {
                     phoneView.style.display = 'block';
                 } else if (selectedValue === 'group') {
                     groupView.style.display = 'block';
-                    // Cargar datos de grupos si no se han cargado antes
+                    // Cargar datos de grupos si es necesario
                     if (document.querySelector('.groups-container').children.length === 0) {
                         loadGroupsData();
                     }
                 } else if (selectedValue === 'dashboard') {
-                    // Redirigir a la otra página HTML
-                    window.location.href = 'dashboard_final.html';
-                    // Opcional: Prevenir que el switch se quede visualmente en el estado 3
-                    // Si al volver atrás quieres que esté en el estado anterior,
-                    // necesitarías guardar el estado previo (más complejo).
-                    // Por ahora, simplemente redirige.
+                    dashboardView.style.display = 'block'; // Mostrar el contenedor
+                    // Cargar contenido del dashboard si es necesario
+                    if (dashboardView.children.length === 0) {
+                        loadDashboardContent();
+                    }
                 }
             });
         });
 
-        // Asegurar que la vista inicial sea la correcta al cargar la página
-        document.addEventListener('DOMContentLoaded', () => {
-            const initialView = document.querySelector('input[name="viewMode"]:checked').value;
-            if (initialView === 'phone') {
-                 document.getElementById('phoneView').style.display = 'block';
-                 document.getElementById('groupView').style.display = 'none';
-            } else if (initialView === 'group') {
-                 document.getElementById('phoneView').style.display = 'none';
-                 document.getElementById('groupView').style.display = 'block';
-                 loadGroupsData(); // Cargar grupos si empieza en esa vista
+        // NUEVA FUNCIÓN para cargar el contenido del dashboard
+        async function loadDashboardContent() {
+            const dashboardContainer = document.getElementById('dashboardView');
+            try {
+                console.log('Cargando contenido del dashboard...');
+                const response = await fetch('./dashboard_final.html'); // Asegúrate que la ruta es correcta
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const htmlText = await response.text();
+                // Extraer solo el contenido del body del HTML cargado
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+                const bodyContent = doc.body.innerHTML; // Obtener innerHTML del body
+                dashboardContainer.innerHTML = bodyContent; // Insertar en el div
+                console.log('Contenido del dashboard cargado.');
+                 // Opcional: Ejecutar scripts si el dashboard los tiene (más complejo)
+                // const scripts = doc.body.querySelectorAll('script');
+                // scripts.forEach(s => { eval(s.innerText); }); // ¡CUIDADO CON EVAL!
+            } catch (error) {
+                console.error('Error al cargar el contenido del dashboard:', error);
+                dashboardContainer.innerHTML = '<p style="color: red;">Error al cargar el dashboard.</p>';
             }
-            // No es necesario manejar 'dashboard' al cargar, ya que redirigiría inmediatamente.
+        }
+
+        // Modificar el listener DOMContentLoaded para ocultar dashboardView también
+        document.addEventListener('DOMContentLoaded', () => {
+            const phoneView = document.getElementById('phoneView');
+            const groupView = document.getElementById('groupView');
+            const dashboardView = document.getElementById('dashboardView');
+            const initialView = document.querySelector('input[name="viewMode"]:checked').value;
+
+            phoneView.style.display = 'none';
+            groupView.style.display = 'none';
+            dashboardView.style.display = 'none';
+
+            if (initialView === 'phone') {
+                 phoneView.style.display = 'block';
+            } else if (initialView === 'group') {
+                 groupView.style.display = 'block';
+                 // Cargar datos de grupos si es necesario
+                 if (document.querySelector('.groups-container').children.length === 0) {
+                     loadGroupsData();
+                 }
+            } else if (initialView === 'dashboard') {
+                // Aunque empieza en dashboard, cargaremos dinámicamente
+                dashboardView.style.display = 'block';
+                loadDashboardContent();
+            }
         });
 
         // Función para cargar los datos de grupos
