@@ -712,7 +712,7 @@
         </div>
     </div>
 
-    <div class="search-container">
+    <div class="search-container" id="searchContainer">
         <input type="text" id="searchInput" placeholder="Buscar por analista o cliente...">
     </div>
     
@@ -1084,6 +1084,7 @@
             
             function updateView() {
                 const state = parseInt(switchTrack.getAttribute('data-state'));
+                const searchContainer = document.getElementById('searchContainer');
                 
                 // Ocultar todas las vistas primero
                 phoneView.style.display = 'none';
@@ -1093,9 +1094,11 @@
                 // Mostrar la vista según el estado
                 if (state === 1) {
                     phoneView.style.display = 'block';
+                    searchContainer.style.display = 'block'; // Mostrar buscador en vista de analistas
                     currentView = 'phone';
                 } else if (state === 2) {
                     groupView.style.display = 'block';
+                    searchContainer.style.display = 'none'; // Ocultar buscador en vista de grupos
                     currentView = 'group';
                     // Cargar datos de grupos si es necesario
                     if (document.querySelector('.groups-container').children.length === 0) {
@@ -1112,6 +1115,7 @@
                         dashboardView.appendChild(iframe);
                     }
                     dashboardView.style.display = 'block';
+                    searchContainer.style.display = 'none'; // Ocultar buscador en vista dashboard
                     currentView = 'dashboard';
                 }
             }
