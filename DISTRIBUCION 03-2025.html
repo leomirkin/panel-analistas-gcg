@@ -578,8 +578,19 @@
     </div>
 
     <script>
-        
+        // Variables globales
+        let analysts = [];
+        let processedAnalysts = [];
+        const absentAnalysts = new Set();
 
+        // Función para verificar si una posición está visible en el viewport
+        function isInViewport(x, y) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const viewportHeight = window.innerHeight;
+            return y >= scrollTop && y <= scrollTop + viewportHeight;
+        }
+
+        
         // Función para cargar los datos de los analistas
         async function loadAnalystsData() {
             try {
