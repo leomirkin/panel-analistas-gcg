@@ -729,66 +729,7 @@
     </div>
     
     <div id="dashboardView" style="display: none;">
-        <!-- El contenido del dashboard se cargará dinámicamente -->
-        <h2 style="text-align: center; margin-bottom: 20px; color: var(--primary-color);">Resumen General</h2>
-        <div class="dashboard-container">
-            <div class="dashboard-card">
-                <h3>Resumen de Analistas</h3>
-                <div class="dashboard-stat">
-                    <div class="stat-icon">👤</div>
-                    <div>
-                        <div class="stat-value" id="totalAnalysts">0</div>
-                        <div class="stat-label">Total de Analistas</div>
-                    </div>
-                </div>
-                <div class="dashboard-stat">
-                    <div class="stat-icon">🏠</div>
-                    <div>
-                        <div class="stat-value" id="absentCount">0</div>
-                        <div class="stat-label">Analistas Ausentes</div>
-                    </div>
-                </div>
-                <div class="dashboard-stat">
-                    <div class="stat-icon">✅</div>
-                    <div>
-                        <div class="stat-value" id="activeCount">0</div>
-                        <div class="stat-label">Analistas Activos</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="dashboard-card">
-                <h3>Horarios</h3>
-                <div class="dashboard-stat">
-                    <div class="stat-icon">🕗</div>
-                    <div>
-                        <div class="stat-value" id="morningCount">0</div>
-                        <div class="stat-label">Turno Mañana</div>
-                    </div>
-                </div>
-                <div class="dashboard-stat">
-                    <div class="stat-icon">🕑</div>
-                    <div>
-                        <div class="stat-value" id="afternoonCount">0</div>
-                        <div class="stat-label">Turno Tarde</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="dashboard-card">
-                <h3>Distribución de Clientes</h3>
-                <div id="clientDistribution">
-                    <div id="topClients" style="margin-top: 15px;"></div>
-                </div>
-            </div>
-            
-            <div class="dashboard-card">
-                <h3>Acciones Rápidas</h3>
-                <button id="exportData" class="dashboard-action">Exportar Datos CSV</button>
-                <button id="refreshData" class="dashboard-action">Actualizar Datos</button>
-                <button id="markAllPresent" class="dashboard-action">Marcar Todos Presentes</button>
-            </div>
-        </div>
+        <!-- Se cargará el contenido del dashboard_final.html aquí -->
     </div>
 
     <div class="no-results" id="noResults">
@@ -1161,121 +1102,39 @@
                         loadGroupsData();
                     }
                 } else {
+                    // Cargar dashboard_final.html en un iframe
+                    if (dashboardView.children.length === 0) {
+                        const iframe = document.createElement('iframe');
+                        iframe.src = 'dashboard_final.html';
+                        iframe.style.width = '100%';
+                        iframe.style.height = '100vh';
+                        iframe.style.border = 'none';
+                        dashboardView.appendChild(iframe);
+                    }
                     dashboardView.style.display = 'block';
                     currentView = 'dashboard';
-                    // Cargar contenido del dashboard si es necesario
-                    if (dashboardView.children.length === 0) {
-                        loadDashboardContent();
-                    }
                 }
             }
         });
 
-        // Función para cargar el contenido del dashboard
-        function loadDashboardContent() {
-            const dashboardView = document.getElementById('dashboardView');
-            
-            // Crear el contenedor principal del dashboard
-            const dashboardContainer = document.createElement('div');
-            dashboardContainer.className = 'dashboard-container';
-            
-            // Añadir tarjetas con estadísticas
-            dashboardContainer.innerHTML = `
-                <div class="dashboard-card">
-                    <h3>Resumen de Analistas</h3>
-                    <div class="dashboard-stat">
-                        <div class="stat-icon">👤</div>
-                        <div>
-                            <div class="stat-value" id="totalAnalysts">0</div>
-                            <div class="stat-label">Total de Analistas</div>
-                        </div>
-                    </div>
-                    <div class="dashboard-stat">
-                        <div class="stat-icon">🏠</div>
-                        <div>
-                            <div class="stat-value" id="absentCount">0</div>
-                            <div class="stat-label">Analistas Ausentes</div>
-                        </div>
-                    </div>
-                    <div class="dashboard-stat">
-                        <div class="stat-icon">✅</div>
-                        <div>
-                            <div class="stat-value" id="activeCount">0</div>
-                            <div class="stat-label">Analistas Activos</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="dashboard-card">
-                    <h3>Horarios</h3>
-                    <div class="dashboard-stat">
-                        <div class="stat-icon">🕗</div>
-                        <div>
-                            <div class="stat-value" id="morningCount">0</div>
-                            <div class="stat-label">Turno Mañana</div>
-                        </div>
-                    </div>
-                    <div class="dashboard-stat">
-                        <div class="stat-icon">🕑</div>
-                        <div>
-                            <div class="stat-value" id="afternoonCount">0</div>
-                            <div class="stat-label">Turno Tarde</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="dashboard-card">
-                    <h3>Distribución de Clientes</h3>
-                    <div id="clientDistribution">
-                        <div id="topClients" style="margin-top: 15px;"></div>
-                    </div>
-                </div>
-                
-                <div class="dashboard-card">
-                    <h3>Acciones Rápidas</h3>
-                    <button id="exportData" class="dashboard-action">Exportar Datos CSV</button>
-                    <button id="refreshData" class="dashboard-action">Actualizar Datos</button>
-                    <button id="markAllPresent" class="dashboard-action">Marcar Todos Presentes</button>
-                </div>
-            `;
-            
-            dashboardView.appendChild(dashboardContainer);
-            
-            // Actualizar estadísticas básicas
-            document.getElementById('totalAnalysts').textContent = analysts.length;
-            document.getElementById('absentCount').textContent = absentAnalysts.size;
-            
-            // Implementar acciones de los botones
-            document.getElementById('exportData').addEventListener('click', exportAnalystsData);
-            document.getElementById('refreshData').addEventListener('click', () => {
-                fetchData(); // Recargar datos
-            });
-            
-            // En una implementación completa, aquí se añadirían gráficos con Chart.js u otra biblioteca
-        }
-        
-        // Función para exportar datos en formato CSV
-        function exportAnalystsData() {
-            // Crear encabezados CSV
-            let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "Nombre,Cliente,Extensión,WhatsApp,Horario,Ausente\n";
-            
-            // Añadir datos de cada analista
-            analysts.forEach(analyst => {
-                const isAbsent = absentAnalysts.has(analyst.name) ? "Sí" : "No";
-                csvContent += `"${analyst.name}","${analyst.clients.join(', ')}","${analyst.extension}","${analyst.whatsapp}","${analyst.schedule}","${isAbsent}"\n`;
-            });
-            
-            // Crear elemento de descarga
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "analistas_datos.csv");
-            document.body.appendChild(link);
-            
-            // Disparar clic y eliminar el elemento
-            link.click();
-            document.body.removeChild(link);
+        // Función para cargar los datos de grupos
+        async function loadGroupsData() {
+            try {
+                console.log('Cargando datos de grupos...');
+                const response = await fetch('./groups_data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const groupsData = await response.json();
+                console.log('Datos de grupos cargados:', groupsData);
+                generateGroupsView(groupsData);
+            } catch (error) {
+                console.error('Error al cargar los datos de grupos:', error);
+                document.querySelector('.groups-container').innerHTML = 
+                    '<div style="color: red; text-align: center; width: 100%; padding: 20px;">' +
+                    'Error al cargar los datos de los grupos. Por favor, recarga la página.' +
+                    '</div>';
+            }
         }
 
         // Función para obtener los datos del archivo JSON
@@ -1295,26 +1154,6 @@
                 document.getElementById('analystContainer').innerHTML = 
                     '<div style="color: red; text-align: center; width: 100%; padding: 20px;">' +
                     'Error al cargar los datos de los analistas. Por favor, recarga la página.' +
-                    '</div>';
-            }
-        }
-
-        // Función para cargar los datos de grupos
-        async function loadGroupsData() {
-            try {
-                console.log('Cargando datos de grupos...');
-                const response = await fetch('./groups_data.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const groupsData = await response.json();
-                console.log('Datos de grupos cargados:', groupsData);
-                generateGroupsView(groupsData);
-            } catch (error) {
-                console.error('Error al cargar los datos de grupos:', error);
-                document.querySelector('.groups-container').innerHTML = 
-                    '<div style="color: red; text-align: center; width: 100%; padding: 20px;">' +
-                    'Error al cargar los datos de los grupos. Por favor, recarga la página.' +
                     '</div>';
             }
         }
