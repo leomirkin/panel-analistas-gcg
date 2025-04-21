@@ -19,7 +19,7 @@
       },
       {
         "name": "GABRIEL YOLES",
-        "schedule": "06:00-12:00",
+        "schedule": "06:00-14:00",
         "extension": "144"
       },
       {
@@ -69,9 +69,9 @@
     },
     "members": [
       {
-        "name": "BELEN ROSA",
-        "schedule": "09:00-18:00",
-        "extension": "167"
+        "name": "",
+        "schedule": "",
+        "extension": ""
       }
     ]
   },
@@ -99,9 +99,9 @@
     },
     "members": [
       {
-        "name": "VACANTE",
-        "schedule": "06:00-15:00",
-        "extension": "0"
+        "name": "",
+        "schedule": "",
+        "extension": ""
       }
     ]
   },
@@ -137,6 +137,11 @@
         "name": "LUCIANA GEREZ",
         "schedule": "06:00-14:00",
         "extension": "140"
+      },
+      {
+        "name": "BELEN ROSA",
+        "schedule": "09:00-18:00",
+        "extension": "167"
       }
     ]
   },
@@ -147,11 +152,18 @@
       "schedule": "09:00-18:00",
       "extension": "170"
     },
-    "members": [{
+    "members": [
+      {
+        "name": "ELISEO MAMANI",
+        "schedule": "06:00-15:00",
+        "extension": "124"
+      },
+      {
         "name": "MICAELA MIRANDA (BACKUP DE 06 A 09 H)",
         "schedule": "06:00-15:00",
         "extension": "138"
-      }]
+      }
+    ]
   },
   {
     "group_name": "Altas",
