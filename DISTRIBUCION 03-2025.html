@@ -7,235 +7,156 @@
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTQgNEgyMFY2SDRWNFpNNCAxMEgyMFYxMkg0VjEwWk00IDE2SDIwVjE4SDRWMTZaIi8+PC9zdmc+" type="image/svg+xml">
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary-color: #2c3e50;
+            --active-green: #2ecc71;
+            --inactive-grey: #95a5a6;
+            --background: #f0f2f5;
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            --search-background: rgba(255, 255, 255, 0.9);
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .container {
+
+        body {
+            background-color: var(--background);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .groups-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 0 15px;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
         }
-        .header {
+
+        .group-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+        }
+
+        .group-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            margin: -15px -15px 15px -15px;
+            border-radius: 12px 12px 0 0;
+            font-weight: 600;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .supervisor-card {
+            background: #34495e;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 10px 0;
-            border-bottom: 2px solid #ddd;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            margin: 0;
-        }
-        .search-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        .search-input {
-            padding: 10px 10px 10px 40px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            width: 300px;
-            font-size: 14px;
-            background-color: #f5f5f5;
-            transition: all 0.3s ease;
-        }
-        .search-input:focus {
-            outline: none;
-            background-color: white;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        .search-icon {
-            position: absolute;
-            left: 12px;
-            width: 20px;
-            height: 20px;
-            pointer-events: none;
-        }
-        .no-results {
-            display: none;
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-            position: relative;
-        }
-        .close-btn {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            border: none;
-            background: transparent;
-            color: #721c24;
-        }
-        .analyst-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
-            overflow-y: auto;
-            max-height: calc(100vh - 120px);
-            padding: 5px;
-        }
-        .analyst-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            overflow: hidden;
-            position: relative;
-        }
-        .analyst-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        .card-header {
-            position: relative;
-            z-index: 1;
-        }
-        .analyst-name {
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0;
-            padding-right: 28px; /* Espacio para el botón de WhatsApp */
-        }
-        .info-row {
-            display: flex;
-            align-items: center;
-            margin-top: 5px;
-            font-size: 14px;
-            color: #666;
-        }
-        .info-line {
-            height: 1px;
-            background-color: #eee;
-            margin: 10px 0;
-        }
-        .separator {
-            margin: 0 8px;
-            color: #ddd;
-        }
-        .schedule-time {
-            font-weight: 500;
-        }
-        .active {
-            color: #28a745;
-        }
-        .inactive {
-            color: #dc3545;
-        }
-        .clients-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-top: 10px;
-        }
-        .client-chip {
-            background-color: #f1f1f1;
-            border: none;
-            border-radius: 15px;
-            padding: 5px 10px;
-            font-size: 12px;
-            color: #333;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .client-chip:hover {
-            background-color: #e1e1e1;
-        }
-        .client-chip.active {
-            background-color: #007bff;
+
+        .supervisor-name {
+            font-weight: 600;
             color: white;
         }
-        .backup {
-            background-color: #ffe8d9;
-            color: #d35400;
+
+        .supervisor-schedule {
+            font-size: 0.9em;
+            color: #ecf0f1;
         }
-        .backup:hover {
-            background-color: #ffdbc7;
-        }
-        .whatsapp-btn {
-            position: absolute;
-            top: 2px;
-            right: 0;
-            text-decoration: none;
-            display: inline-flex;
-            width: 24px;
-            height: 24px;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-        .whatsapp-icon {
-            width: 100%;
-            height: 100%;
-        }
-        /* Estilos para analistas ausentes */
-        .absent {
-            background-color: #f9f9f9;
-            opacity: 0.7;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-        }
-        .absent .analyst-name,
-        .absent .info-row {
-            color: #999;
-        }
-        .absent .client-chip {
-            background-color: #f1f1f1;
-            color: #999;
-        }
-        .absent .backup {
-            background-color: #fffbf7;
-        }
-        /* Estilos para analistas activos */
-        .active-card {
-            background-color: #f4fff4;
-            border-left: 3px solid #28a745;
-        }
-        /* Estilo para las barras de desplazamiento */
-        .analyst-grid::-webkit-scrollbar {
-            width: 8px;
-        }
-        .analyst-grid::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        .analyst-grid::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 4px;
-        }
-        .analyst-grid::-webkit-scrollbar-thumb:hover {
-            background: #bbb;
-        }
-        
-        /* Switch para cambiar entre vistas */
-        .view-switch-container {
-            margin-left: 15px;
+
+        .group-members {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
+
+        .group-members::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .group-members::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .group-members::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+
+        .member-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: #f0f6fc;
+            border-radius: 6px;
+            font-size: 0.95em;
+            transition: all 0.2s;
+            margin-bottom: 5px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .member-card:hover {
+            background: #e3f2fd;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .member-name {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .member-schedule {
+            color: #555;
+            font-size: 0.9em;
+            font-weight: 400;
+        }
+
+        @media (max-width: 1000px) {
+            .groups-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .view-toggle-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+
         .switch {
             position: relative;
             display: inline-block;
-            width: 50px;
-            height: 24px;
-            margin-right: 10px;
+            width: 60px;
+            height: 34px;
         }
+
         .switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
+
         .slider {
             position: absolute;
             cursor: pointer;
@@ -244,142 +165,619 @@
             right: 0;
             bottom: 0;
             background-color: #ccc;
+            -webkit-transition: .4s;
             transition: .4s;
-            border-radius: 34px;
         }
+
         .slider:before {
             position: absolute;
             content: "";
-            height: 16px;
-            width: 16px;
+            height: 26px;
+            width: 26px;
             left: 4px;
             bottom: 4px;
             background-color: white;
+            -webkit-transition: .4s;
             transition: .4s;
-            border-radius: 50%;
         }
+
         input:checked + .slider {
             background-color: #2196F3;
         }
+
         input:focus + .slider {
             box-shadow: 0 0 1px #2196F3;
         }
+
         input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
             transform: translateX(26px);
         }
-        .view-label {
-            font-size: 14px;
-            color: #666;
+
+        .slider.round {
+            border-radius: 34px;
         }
-        
-        /* Estilos para la vista de grupos */
-        #groupView {
-            display: none;
+
+        .slider.round:before {
+            border-radius: 50%;
         }
-        .groups-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
-            overflow-y: auto;
-            max-height: calc(100vh - 120px);
-            padding: 5px;
+
+        .phone-icon, .group-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
         }
-        .group-card {
+
+        .phone-icon {
+            left: 10px;
+        }
+
+        .group-icon {
+            right: 10px;
+        }
+
+        .search-container {
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 16px 25px;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
             background-color: white;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            color: #1a1a1a;
         }
-        .group-header {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
-        }
-        .supervisor-card {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px;
-            margin-bottom: 10px;
-            background-color: #f5f5f5;
-            border-radius: 5px;
-        }
-        .supervisor-name {
-            font-weight: bold;
-        }
-        .supervisor-schedule {
+
+        #searchInput::placeholder {
             color: #666;
+            font-weight: 400;
         }
-        .group-members {
+
+        #searchInput:focus {
+            box-shadow: var(--hover-shadow);
+        }
+
+        .analyst-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .analyst-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            min-height: 180px;
+            position: relative;
+            overflow: visible;
         }
-        .member-card {
+
+        .analyst-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .analyst-card.active-card {
+            background: linear-gradient(145deg, #f8fdf9, #f1f8e9);
+        }
+
+        .card-header {
+            text-align: left;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .analyst-name {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .info-row {
             display: flex;
-            justify-content: space-between;
-            padding: 5px 8px;
-            border-bottom: 1px solid #f5f5f5;
-        }
-        .member-card:last-child {
-            border-bottom: none;
-        }
-        .member-name {
-            font-size: 14px;
-        }
-        .member-schedule {
-            font-size: 14px;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85em;
             color: #666;
+            margin-bottom: 10px;
+        }
+
+        .schedule-time {
+            font-weight: 500;
+            color: inherit;
+        }
+
+        .active {
+            color: var(--active-green);
+            font-weight: 600;
+        }
+
+        .inactive {
+            color: var(--inactive-grey);
+        }
+
+        .separator {
+            color: #ccc;
+        }
+
+        .info-line {
+            height: 1px;
+            background: #eee;
+            margin: 0 -15px 10px;
+        }
+
+        .clients-container {
+            flex-grow: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: flex-start;
+            padding: 0 0 12px 0;
+            max-height: 140px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
+        }
+
+        .clients-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .clients-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .clients-container::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 3px;
+        }
+
+        .client-chip {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            color: #444;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            overflow: hidden;
+            line-height: 1.3;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .client-chip:hover {
+            background-color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .client-chip.backup {
+            background-color: #e8e8e8;
+            color: #666;
+            box-shadow: none;
+            border: 1px solid #ddd;
+        }
+
+        .client-chip.backup:hover {
+            background-color: #f0f0f0;
+            border-color: #ccc;
+        }
+
+        .client-chip.active {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 2px 5px rgba(44, 62, 80, 0.2);
+        }
+
+        .whatsapp-btn {
+            width: 45px;
+            height: 45px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            opacity: 1;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-icon {
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
+            filter: none;
+        }
+
+        .group-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+
+        .group-container h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .absent {
+            background: #fff5f5;
+        }
+
+        .absent .analyst-name {
+            color: #e53e3e;
+        }
+
+        .absent .schedule-time,
+        .absent .info-line {
+            color: #e53e3e;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 1600px) {
+            .analyst-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .analyst-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .analyst-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .analyst-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .search-container {
+                margin: 10px;
+            }
+        }
+
+        .no-results {
+            display: none;
+            position: fixed;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            z-index: 1000;
+        }
+
+        .no-results .close-btn {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .no-results .close-btn:hover {
+            background: #34495e;
+        }
+
+        .no-results iframe {
+            border: none;
+            border-radius: 8px;
+            width: 325px;
+            height: 578px;
+        }
+
+        .bubble-container {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .bubble {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.8),
+                       2px 2px 4px rgba(255, 255, 255, 0.5),
+                       4px 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            pointer-events: auto;
+            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .bubble:hover {
+            transform: scale(1.1);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.9),
+                       2px 2px 6px rgba(255, 255, 255, 0.6),
+                       6px 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .bubble:active, .bubble.pop {
+            transform: scale(0.9);
+            background: linear-gradient(145deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            30% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        .bubble.pop {
+            pointer-events: none;
+            animation: pop 0.3s forwards ease-out;
+        }
+
+        @keyframes appear {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .bubble.show {
+            display: block;
+            animation: appear 0.4s forwards cubic-bezier(0.34, 1.56, 0.64, 1);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="title">Distribución de Analistas</h1>
-            <div style="display: flex; align-items: center;">
-                <div class="search-container">
-                    <input type="text" id="searchInput" class="search-input" placeholder="Buscar analista o cliente...">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#999">
-                        <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+    <div class="view-toggle-container">
+        <label class="switch">
+            <input type="checkbox" id="viewToggle">
+            <span class="slider">
+                <span class="phone-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.314 28.323" style="enable-background:new 0 0 28.314 28.323" xml:space="preserve"><path d="m27.728 20.384-4.242-4.242a1.982 1.982 0 0 0-1.413-.586h-.002c-.534 0-1.036.209-1.413.586L17.83 18.97l-8.485-8.485 2.828-2.828c.78-.78.78-2.05-.001-2.83L7.929.585A1.986 1.986 0 0 0 6.516 0h-.001C5.98 0 5.478.209 5.101.587L.858 4.83C.729 4.958-.389 6.168.142 8.827c.626 3.129 3.246 7.019 7.787 11.56 6.499 6.499 10.598 7.937 12.953 7.937 1.63 0 2.426-.689 2.604-.867l4.242-4.242c.378-.378.587-.881.586-1.416 0-.534-.208-1.037-.586-1.415zm-5.656 5.658c-.028.028-3.409 2.249-12.729-7.07C-.178 9.452 2.276 6.243 2.272 6.244L6.515 2l4.243 4.244-3.535 3.535a.999.999 0 0 0 0 1.414l9.899 9.899a.999.999 0 0 0 1.414 0l3.535-3.536 4.243 4.244-4.242 4.242z"/></svg>
+                </span>
+                <span class="group-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 11a5 5 0 0 1 5 5v6h-2v-6a3 3 0 0 0-2.824-2.995L12 13a3 3 0 0 0-2.995 2.824L9 16v6H7v-6a5 5 0 0 1 5-5zm-6.5 3c.279 0 .55.033.81.094a5.947 5.947 0 0 0-.301 1.575L6 16v.086a1.492 1.492 0 0 0-.356-.08L5.5 16a1.5 1.5 0 0 0-1.493 1.356L4 17.5V22H2v-4.5A3.5 3.5 0 0 1 5.5 14zm13 0a3.5 3.5 0 0 1 3.5 3.5V22h-2v-4.5a1.5 1.5 0 0 0-1.356-1.493L18.5 16c-.175 0-.343.03-.5.085V16c0-.666-.108-1.306-.309-1.904.259-.063.53-.096.809-.096zm-13-6a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm13 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm-13 2a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1zm13 0a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1zM12 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
                     </svg>
-                </div>
-                <div class="view-switch-container">
-                    <label class="switch">
-                        <input type="checkbox" id="viewToggle">
-                        <span class="slider"></span>
-                    </label>
-                    <span class="view-label">Ver Grupos</span>
-                </div>
-            </div>
+                </span>
+        </label>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar por analista o cliente...">
+    </div>
+
+    <!-- Audio para el sonido de pop -->
+    <audio id="popSound" preload="auto">
+        <source src="data:audio/mp3;base64,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N+p9ujZtES8jZ8jVs/0gB++2x2+7X8xbGupFRZIi4SwWTJUJKNCqUlibVUJLAiRYsiaTQspEWERNMlSNKoWkxS5E1LSqJNmIpcREzRE1JpVCk0QrhlQVNRZyOqilgVEyqH01aGNLIk5LNFWfdLIYIkU0Ky4pmKUMBUaITJFBEmhqUvcpRyVxxE6UiJpMKkoiFLiINLoY9aJZohMrE2qorciTJaRIusiehQwInyRaQskRMVJU0PtksTJinUIFDMiIiETako6CqS1qlTWUmWH0mMLDWk3w1JVZqsaszgJZM2GPqkwFG//9jUmbCtRJN/If/5tVjfV1WCjVf/hrAIgwFQEtmWMxqvqoYVS/jVY3+xhVjfw/qkxf/KA0S7J/CoKiK0xBTUUzLjk5LjVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/6smw7EwAP8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAETEFNRTMuOTkuNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMuOTkuNVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==" type="audio/mp3">
+    </audio>
+
+    <div class="bubble-container">
+        <div class="bubble" onclick="popBubble(this)"></div>
+        <div class="bubble" onclick="popBubble(this)"></div>
+        <div class="bubble" onclick="popBubble(this)"></div>
+        <div class="bubble" onclick="popBubble(this)"></div>
+        <div class="bubble" onclick="popBubble(this)"></div>
+    </div>
+
+    <div class="bubble-container">
+        <div class="bubble" onclick="popBubble(this)"></div>
+        <div class="bubble" onclick="popBubble(this)"></div>
+        <div class="bubble" onclick="popBubble(this)"></div>
+        <div class="bubble" onclick="popBubble(this)"></div>
+        <div class="bubble" onclick="popBubble(this)"></div>
+    </div>
+    
+    <div id="phoneView">
+    <div class="analyst-grid" id="analystContainer">
+        <!-- Las tarjetas de analistas se generarán aquí -->
         </div>
-        
-        <div id="noResults" class="no-results">
-            No hay analistas que atiendan este cliente. Contactar a Coordinación de GCG.
-            <button class="close-btn" onclick="closeNoResults()">×</button>
-        </div>
-        
-        <div id="phoneView">
-            <div id="analystContainer" class="analyst-grid">
-                <!-- Las tarjetas de analistas se generarán dinámicamente -->
-            </div>
-        </div>
-        
-        <div id="groupView">
-            <div class="groups-container">
-                <!-- Las tarjetas de grupos se generarán dinámicamente -->
-            </div>
+    </div>
+    
+    <div id="groupView" style="display: none;">
+        <div class="groups-container">
+            <!-- Los grupos se generarán dinámicamente aquí -->
         </div>
     </div>
 
+    <div class="no-results" id="noResults">
+        <button class="close-btn" onclick="closeNoResults()">×</button>
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@maebellakaa/video/7170261831922044165">
+            <iframe src="https://www.tiktok.com/embed/v2/7170261831922044165"></iframe>
+        </blockquote>
+    </div>
+
     <script>
-        // Conjunto para almacenar analistas ausentes, persistente durante la sesión
-        const absentAnalysts = new Set();
+        // Variables globales
+        let bubblesPopped = 0;
+        let currentBubble = null;
+        const popSound = document.getElementById('popSound');
+        let analysts = [];
         let processedAnalysts = [];
-        
+        const absentAnalysts = new Set();
+
+        // Función para obtener una posición aleatoria segura para la burbuja
+        function getRandomPosition() {
+            const margin = 50;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth - margin * 2;
+            
+            // Calcular posición dentro del viewport actual
+            const x = Math.random() * viewportWidth + margin;
+            const y = Math.random() * (viewportHeight - margin * 2) + margin + scrollTop;
+            
+            return { x, y };
+        }
+
+        // Función para verificar si una posición está visible en el viewport
+        function isInViewport(x, y) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const viewportHeight = window.innerHeight;
+            return y >= scrollTop && y <= scrollTop + viewportHeight;
+        }
+
+        // Función para mostrar una nueva burbuja
+        function showNewBubble() {
+            if (bubblesPopped >= 5) return;
+
+            const bubbles = document.querySelectorAll('.bubble');
+            const availableBubbles = Array.from(bubbles).filter(b => !b.classList.contains('show'));
+            
+            if (availableBubbles.length > 0) {
+                currentBubble = availableBubbles[0];
+                let pos;
+                
+                // Intentar encontrar una posición visible
+                do {
+                    pos = getRandomPosition();
+                } while (!isInViewport(pos.x, pos.y));
+                
+                currentBubble.style.left = pos.x + 'px';
+                currentBubble.style.top = pos.y + 'px';
+                
+                setTimeout(() => {
+                    currentBubble.classList.add('show');
+                }, 100);
+            }
+        }
+
+        // Función para explotar una burbuja
+        function popBubble(bubble) {
+            if (bubble.classList.contains('pop')) return;
+            
+            bubble.classList.add('pop');
+            
+            // Intenta reproducir el sonido con una promesa
+            const playPromise = popSound.play();
+            
+            // Si el navegador no devuelve una promesa, intentar reproducir directamente
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // La reproducción se inició correctamente
+                    console.log("Sonido reproducido con éxito");
+                }).catch(error => {
+                    // Error al reproducir el sonido
+                    console.error("Error al reproducir el sonido:", error);
+                    // Reintentar con interacción del usuario
+            popSound.currentTime = 0;
+                });
+            }
+            
+            bubblesPopped++;
+            
+            setTimeout(() => {
+                bubble.classList.remove('show', 'pop');
+                // Solo mostrar nueva burbuja si la posición actual está en el viewport
+                if (isInViewport(parseInt(bubble.style.left), parseInt(bubble.style.top))) {
+                    setTimeout(showNewBubble, Math.random() * 500 + 300);
+                }
+            }, 300);
+        }
+
+        // Mostrar la primera burbuja cuando se carga la página
+        window.addEventListener('load', () => {
+            setTimeout(showNewBubble, 1000);
+        });
+
+        // Manejar el scroll para ocultar/mostrar burbujas según sea necesario
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            
+            // Esperar a que el scroll se detenga
+            scrollTimeout = setTimeout(() => {
+                const bubbles = document.querySelectorAll('.bubble.show');
+                bubbles.forEach(bubble => {
+                    const x = parseInt(bubble.style.left);
+                    const y = parseInt(bubble.style.top);
+                    
+                    if (!isInViewport(x, y)) {
+                        bubble.classList.remove('show');
+                        if (currentBubble === bubble) {
+                            showNewBubble();
+                        }
+                    }
+                });
+            }, 150);
+        });
+
         // Función para cargar los datos de los analistas
         async function loadAnalystsData() {
             try {

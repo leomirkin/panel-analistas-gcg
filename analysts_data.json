@@ -62,7 +62,7 @@
     },
     {
         "name": "ZULAY TOSCANO",
-        "schedule": "07:00-15:00",
+        "schedule": "00:00-00:00",
         "clients": [
             "Arcor S.A.I.C. (1)",
             "Cartocor Sociedad Anónima (13)",
@@ -109,7 +109,7 @@
     },
     {
         "name": "LUCIANA GEREZ",
-        "schedule": "00:00-00:00", 
+        "schedule": "06:00-14:00", 
         "clients": [
             "Arcor S.A.I.C. (1)",
             "Cartocor Sociedad Anónima (13)",
@@ -313,7 +313,7 @@
     },
     {
         "name": "FLORENCIA QUIROGA",
-        "schedule": "00:00-00:00",
+        "schedule": "06:00-14:00",
         "clients": [
             "Coordinación - Jefe de Equipo"
         ],
