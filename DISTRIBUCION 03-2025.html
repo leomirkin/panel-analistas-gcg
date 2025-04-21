@@ -522,93 +522,193 @@
             }
         }
 
-        /* --- Estilos Actualizados para el Switch de Tres Estados --- */
+        /* --- Estilos para el Switch de Tres Estados --- */
         .three-state-switch-container {
             position: fixed;
-            top: 20px; /* O ajusta */
-            right: 20px; /* O ajusta */
+            top: 20px;
+            right: 20px;
             z-index: 1000;
-            display: flex;
-            align-items: center;
         }
 
         .switch-track {
             position: relative;
+            width: 74px;
+            height: 28px;
+            background-color: #e0e0e0;
+            border-radius: 14px;
+            cursor: pointer;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
             display: flex;
-            width: 96px; /* Más pequeño: 32px * 3 */
-            height: 34px; /* Alto estándar */
-            background-color: #e9e9eb; /* Gris claro iOS */
-            border-radius: 17px; /* Redondeado */
-            padding: 2px; /* Padding pequeño */
-            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-            cursor: pointer; /* Cursor sobre todo el track */
         }
 
-        .switch-track input[type="radio"] {
-            display: none;
-        }
-
-        .switch-track label {
-            flex: 1;
+        .switch-labels {
+            position: absolute;
+            display: flex;
+            width: 100%;
             height: 100%;
-            position: relative;
-            z-index: 1;
-             /* Hacemos las etiquetas transparentes a clicks para que lleguen al track o knob si es necesario, aunque el cambio se basa en el radio */
-            pointer-events: none;
+            pointer-events: none; /* Importante: permite que los clics pasen a través */
+        }
+
+        .switch-label {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #777;
+            font-size: 12px;
         }
 
         .switch-knob {
             position: absolute;
-            top: 2px; /* Alineado con el padding */
-            left: 2px; /* Posición inicial */
-            width: 30px; /* Ancho del knob */
-            height: 30px; /* Alto del knob */
-            background-color: white;
+            top: 2px;
+            left: 2px;
+            width: 24px;
+            height: 24px;
+            background-color: #2196F3;
             border-radius: 50%;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.1);
-            transition: left 0.25s ease-in-out; /* Animación más rápida */
+            transition: left 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
             z-index: 2;
-            pointer-events: none; /* El knob no intercepta clicks, van al track/radios */
         }
 
-        /* Mover el Knob */
-        #viewPhone:checked ~ .switch-knob {
-            left: 2px; /* (padding) */
+        /* Estado del knob */
+        .switch-track[data-state="1"] .switch-knob {
+            left: 2px;
         }
 
-        #viewGroup:checked ~ .switch-knob {
-            left: calc(2px + 32px); /* (padding + 1/3 ancho track) */
+        .switch-track[data-state="2"] .switch-knob {
+            left: 25px; /* (width - knob width) / 2 + left margin */
         }
 
-        #viewDashboard:checked ~ .switch-knob {
-            left: calc(2px + 64px); /* (padding + 2/3 ancho track) */
+        .switch-track[data-state="3"] .switch-knob {
+            left: calc(100% - 26px);
+        }
+
+        /* Colores del knob según estado */
+        .switch-track[data-state="1"] .switch-knob {
+            background-color: #2196F3; /* Azul para teléfono */
+        }
+
+        .switch-track[data-state="2"] .switch-knob {
+            background-color: #4CAF50; /* Verde para grupo */
+        }
+
+        .switch-track[data-state="3"] .switch-knob {
+            background-color: #FF9800; /* Naranja para dashboard */
+        }
+
+        /* Íconos dentro del knob */
+        .switch-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+            line-height: 1;
         }
         /* --- Fin Estilos Switch --- */
 
         #dashboardView {
-            padding: 20px; /* O el padding que prefieras */
-            max-width: 1200px; /* O el ancho que prefieras */
+            padding: 20px;
+            max-width: 1200px;
             margin: 20px auto;
-            background-color: white; /* Opcional */
-            border-radius: 12px; /* Opcional */
-            box-shadow: var(--card-shadow); /* Opcional */
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .dashboard-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dashboard-card h3 {
+            margin-top: 0;
+            color: #4a6da7;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .dashboard-stat {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #f0f4fc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #4a6da7;
+            font-size: 20px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .dashboard-action {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            background-color: #4a6da7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .dashboard-action:hover {
+            background-color: #3a5a8f;
+        }
+
+        .dashboard-action:last-child {
+            margin-bottom: 0;
         }
 
     </style>
 </head>
 <body>
     <div class="three-state-switch-container">
-        <div class="switch-track">
-            <input type="radio" id="viewPhone" name="viewMode" value="phone" checked>
-            <label for="viewPhone"></label>
-
-            <input type="radio" id="viewGroup" name="viewMode" value="group">
-            <label for="viewGroup"></label>
-
-            <input type="radio" id="viewDashboard" name="viewMode" value="dashboard">
-            <label for="viewDashboard"></label>
-
-            <div class="switch-knob"></div>
+        <div class="switch-track" data-state="1">
+            <div class="switch-labels">
+                <div class="switch-label">P</div>
+                <div class="switch-label">G</div>
+                <div class="switch-label">D</div>
+            </div>
+            <div class="switch-knob">
+                <div class="switch-icon">P</div>
+            </div>
         </div>
     </div>
 
@@ -616,21 +716,79 @@
         <input type="text" id="searchInput" placeholder="Buscar por analista o cliente...">
     </div>
     
-    <div id="phoneView">
-    <div class="analyst-grid" id="analystContainer">
-        <!-- Las tarjetas de analistas se generarán aquí -->
+    <div id="analystView">
+        <div class="analyst-grid" id="analystContainer">
+            <!-- Las tarjetas de analistas se generarán aquí -->
         </div>
     </div>
-    
+
     <div id="groupView" style="display: none;">
         <div class="groups-container">
             <!-- Los grupos se generarán dinámicamente aquí -->
         </div>
     </div>
-
-    <!-- NUEVO CONTENEDOR PARA EL DASHBOARD -->
+    
     <div id="dashboardView" style="display: none;">
-        <!-- El contenido de dashboard_final.html se cargará aquí -->
+        <!-- El contenido del dashboard se cargará dinámicamente -->
+        <h2 style="text-align: center; margin-bottom: 20px; color: var(--primary-color);">Resumen General</h2>
+        <div class="dashboard-container">
+            <div class="dashboard-card">
+                <h3>Resumen de Analistas</h3>
+                <div class="dashboard-stat">
+                    <div class="stat-icon">👤</div>
+                    <div>
+                        <div class="stat-value" id="totalAnalysts">0</div>
+                        <div class="stat-label">Total de Analistas</div>
+                    </div>
+                </div>
+                <div class="dashboard-stat">
+                    <div class="stat-icon">🏠</div>
+                    <div>
+                        <div class="stat-value" id="absentCount">0</div>
+                        <div class="stat-label">Analistas Ausentes</div>
+                    </div>
+                </div>
+                <div class="dashboard-stat">
+                    <div class="stat-icon">✅</div>
+                    <div>
+                        <div class="stat-value" id="activeCount">0</div>
+                        <div class="stat-label">Analistas Activos</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>Horarios</h3>
+                <div class="dashboard-stat">
+                    <div class="stat-icon">🕗</div>
+                    <div>
+                        <div class="stat-value" id="morningCount">0</div>
+                        <div class="stat-label">Turno Mañana</div>
+                    </div>
+                </div>
+                <div class="dashboard-stat">
+                    <div class="stat-icon">🕑</div>
+                    <div>
+                        <div class="stat-value" id="afternoonCount">0</div>
+                        <div class="stat-label">Turno Tarde</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>Distribución de Clientes</h3>
+                <div id="clientDistribution">
+                    <div id="topClients" style="margin-top: 15px;"></div>
+                </div>
+            </div>
+            
+            <div class="dashboard-card">
+                <h3>Acciones Rápidas</h3>
+                <button id="exportData" class="dashboard-action">Exportar Datos CSV</button>
+                <button id="refreshData" class="dashboard-action">Actualizar Datos</button>
+                <button id="markAllPresent" class="dashboard-action">Marcar Todos Presentes</button>
+            </div>
+        </div>
     </div>
 
     <div class="no-results" id="noResults">
@@ -645,6 +803,7 @@
         let analysts = [];
         let processedAnalysts = [];
         const absentAnalysts = new Set();
+        let currentView = 'phone'; // Nueva variable para rastrear la vista actual
 
         // Función para verificar si una posición está visible en el viewport
         function isInViewport(x, y) {
@@ -951,87 +1110,194 @@
         });
 
         // Manejar el cambio de vista con el switch de tres estados
-        document.querySelectorAll('input[name="viewMode"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const phoneView = document.getElementById('phoneView');
-                const groupView = document.getElementById('groupView');
-                const dashboardView = document.getElementById('dashboardView'); // Obtener el nuevo div
-                const selectedValue = this.value;
-
+        document.addEventListener('DOMContentLoaded', function() {
+            const switchTrack = document.querySelector('.switch-track');
+            const phoneView = document.getElementById('analystView');
+            const groupView = document.getElementById('groupView');
+            const dashboardView = document.getElementById('dashboardView');
+            const switchKnob = document.querySelector('.switch-knob');
+            const switchIcon = document.querySelector('.switch-icon');
+            
+            // Inicializar la vista según el estado del switch
+            updateView();
+            
+            // Manejar clics en el switch
+            switchTrack.addEventListener('click', function() {
+                const currentState = parseInt(switchTrack.getAttribute('data-state'));
+                
+                // Rotar entre estados: 1 -> 2 -> 3 -> 1
+                let newState = currentState < 3 ? currentState + 1 : 1;
+                switchTrack.setAttribute('data-state', newState);
+                
+                // Actualizar el ícono del knob
+                if (newState === 1) {
+                    switchIcon.textContent = 'P';
+                } else if (newState === 2) {
+                    switchIcon.textContent = 'G';
+                } else {
+                    switchIcon.textContent = 'D';
+                }
+                
+                updateView();
+            });
+            
+            function updateView() {
+                const state = parseInt(switchTrack.getAttribute('data-state'));
+                
                 // Ocultar todas las vistas primero
                 phoneView.style.display = 'none';
                 groupView.style.display = 'none';
-                dashboardView.style.display = 'none'; // Ocultar también la del dashboard
-
-                // Mostrar la vista seleccionada o cargar el dashboard
-                if (selectedValue === 'phone') {
+                dashboardView.style.display = 'none';
+                
+                // Mostrar la vista según el estado
+                if (state === 1) {
                     phoneView.style.display = 'block';
-                } else if (selectedValue === 'group') {
+                    currentView = 'phone';
+                } else if (state === 2) {
                     groupView.style.display = 'block';
+                    currentView = 'group';
                     // Cargar datos de grupos si es necesario
                     if (document.querySelector('.groups-container').children.length === 0) {
                         loadGroupsData();
                     }
-                } else if (selectedValue === 'dashboard') {
-                    dashboardView.style.display = 'block'; // Mostrar el contenedor
+                } else {
+                    dashboardView.style.display = 'block';
+                    currentView = 'dashboard';
                     // Cargar contenido del dashboard si es necesario
                     if (dashboardView.children.length === 0) {
                         loadDashboardContent();
                     }
                 }
-            });
+            }
         });
 
-        // NUEVA FUNCIÓN para cargar el contenido del dashboard
-        async function loadDashboardContent() {
-            const dashboardContainer = document.getElementById('dashboardView');
+        // Función para cargar el contenido del dashboard
+        function loadDashboardContent() {
+            const dashboardView = document.getElementById('dashboardView');
+            
+            // Crear el contenedor principal del dashboard
+            const dashboardContainer = document.createElement('div');
+            dashboardContainer.className = 'dashboard-container';
+            
+            // Añadir tarjetas con estadísticas
+            dashboardContainer.innerHTML = `
+                <div class="dashboard-card">
+                    <h3>Resumen de Analistas</h3>
+                    <div class="dashboard-stat">
+                        <div class="stat-icon">👤</div>
+                        <div>
+                            <div class="stat-value" id="totalAnalysts">0</div>
+                            <div class="stat-label">Total de Analistas</div>
+                        </div>
+                    </div>
+                    <div class="dashboard-stat">
+                        <div class="stat-icon">🏠</div>
+                        <div>
+                            <div class="stat-value" id="absentCount">0</div>
+                            <div class="stat-label">Analistas Ausentes</div>
+                        </div>
+                    </div>
+                    <div class="dashboard-stat">
+                        <div class="stat-icon">✅</div>
+                        <div>
+                            <div class="stat-value" id="activeCount">0</div>
+                            <div class="stat-label">Analistas Activos</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Horarios</h3>
+                    <div class="dashboard-stat">
+                        <div class="stat-icon">🕗</div>
+                        <div>
+                            <div class="stat-value" id="morningCount">0</div>
+                            <div class="stat-label">Turno Mañana</div>
+                        </div>
+                    </div>
+                    <div class="dashboard-stat">
+                        <div class="stat-icon">🕑</div>
+                        <div>
+                            <div class="stat-value" id="afternoonCount">0</div>
+                            <div class="stat-label">Turno Tarde</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Distribución de Clientes</h3>
+                    <div id="clientDistribution">
+                        <div id="topClients" style="margin-top: 15px;"></div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3>Acciones Rápidas</h3>
+                    <button id="exportData" class="dashboard-action">Exportar Datos CSV</button>
+                    <button id="refreshData" class="dashboard-action">Actualizar Datos</button>
+                    <button id="markAllPresent" class="dashboard-action">Marcar Todos Presentes</button>
+                </div>
+            `;
+            
+            dashboardView.appendChild(dashboardContainer);
+            
+            // Actualizar estadísticas básicas
+            document.getElementById('totalAnalysts').textContent = analysts.length;
+            document.getElementById('absentCount').textContent = absentAnalysts.size;
+            
+            // Implementar acciones de los botones
+            document.getElementById('exportData').addEventListener('click', exportAnalystsData);
+            document.getElementById('refreshData').addEventListener('click', () => {
+                fetchData(); // Recargar datos
+            });
+            
+            // En una implementación completa, aquí se añadirían gráficos con Chart.js u otra biblioteca
+        }
+        
+        // Función para exportar datos en formato CSV
+        function exportAnalystsData() {
+            // Crear encabezados CSV
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Nombre,Cliente,Extensión,WhatsApp,Horario,Ausente\n";
+            
+            // Añadir datos de cada analista
+            analysts.forEach(analyst => {
+                const isAbsent = absentAnalysts.has(analyst.name) ? "Sí" : "No";
+                csvContent += `"${analyst.name}","${analyst.clients.join(', ')}","${analyst.extension}","${analyst.whatsapp}","${analyst.schedule}","${isAbsent}"\n`;
+            });
+            
+            // Crear elemento de descarga
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "analistas_datos.csv");
+            document.body.appendChild(link);
+            
+            // Disparar clic y eliminar el elemento
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Función para obtener los datos del archivo JSON
+        async function fetchData() {
             try {
-                console.log('Cargando contenido del dashboard...');
-                const response = await fetch('./dashboard_final.html'); // Asegúrate que la ruta es correcta
+                console.log('Cargando datos...');
+                const response = await fetch('./analysts_data.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                const htmlText = await response.text();
-                // Extraer solo el contenido del body del HTML cargado
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(htmlText, 'text/html');
-                const bodyContent = doc.body.innerHTML; // Obtener innerHTML del body
-                dashboardContainer.innerHTML = bodyContent; // Insertar en el div
-                console.log('Contenido del dashboard cargado.');
-                 // Opcional: Ejecutar scripts si el dashboard los tiene (más complejo)
-                // const scripts = doc.body.querySelectorAll('script');
-                // scripts.forEach(s => { eval(s.innerText); }); // ¡CUIDADO CON EVAL!
+                analysts = await response.json();
+                console.log('Datos cargados:', analysts);
+                processedAnalysts = processExcelData(analysts);
+                generateAnalystCards();
             } catch (error) {
-                console.error('Error al cargar el contenido del dashboard:', error);
-                dashboardContainer.innerHTML = '<p style="color: red;">Error al cargar el dashboard.</p>';
+                console.error('Error al cargar los datos:', error);
+                document.getElementById('analystContainer').innerHTML = 
+                    '<div style="color: red; text-align: center; width: 100%; padding: 20px;">' +
+                    'Error al cargar los datos de los analistas. Por favor, recarga la página.' +
+                    '</div>';
             }
         }
-
-        // Modificar el listener DOMContentLoaded para ocultar dashboardView también
-        document.addEventListener('DOMContentLoaded', () => {
-            const phoneView = document.getElementById('phoneView');
-            const groupView = document.getElementById('groupView');
-            const dashboardView = document.getElementById('dashboardView');
-            const initialView = document.querySelector('input[name="viewMode"]:checked').value;
-
-            phoneView.style.display = 'none';
-            groupView.style.display = 'none';
-            dashboardView.style.display = 'none';
-
-            if (initialView === 'phone') {
-                 phoneView.style.display = 'block';
-            } else if (initialView === 'group') {
-                 groupView.style.display = 'block';
-                 // Cargar datos de grupos si es necesario
-                 if (document.querySelector('.groups-container').children.length === 0) {
-                     loadGroupsData();
-                 }
-            } else if (initialView === 'dashboard') {
-                // Aunque empieza en dashboard, cargaremos dinámicamente
-                dashboardView.style.display = 'block';
-                loadDashboardContent();
-            }
-        });
 
         // Función para cargar los datos de grupos
         async function loadGroupsData() {
