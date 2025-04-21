@@ -62,7 +62,7 @@
     },
     {
         "name": "ZULAY TOSCANO",
-        "schedule": "00:00-00:00",
+        "schedule": "07:00-15:00",
         "clients": [
             "Arcor S.A.I.C. (1)",
             "Cartocor Sociedad Anónima (13)",
@@ -109,7 +109,7 @@
     },
     {
         "name": "LUCIANA GEREZ",
-        "schedule": "06:00-14:00",
+        "schedule": "00:00-00:00", 
         "clients": [
             "Arcor S.A.I.C. (1)",
             "Cartocor Sociedad Anónima (13)",
@@ -135,6 +135,21 @@
         ],
         "extension": "165",
         "whatsapp": "5493515996465"
+    },
+    {
+        "name": "VALENTINA GIL",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Assist Cargo SA (30)",
+            "Bebidas y Alimentos de Uraba S.A. (52)",
+            "Bombas Grundfos de Argentina S.A.U. (35)",
+            "La Compañia Gaseosas Leticia S.A.S (51)",
+            "Paraguay Refrescos S.A. (PARESA) (11)",
+            "Porta Hnos SA (24)",
+            "Punta del Agua SA (27)"
+        ],
+        "extension": "122",
+        "whatsapp": "5493585138065"
     },
     {
         "name": "STEFANIA WERLEN",
@@ -226,7 +241,7 @@
     },
     {
         "name": "GABRIEL YOLES",
-        "schedule": "06:00-14:00",
+        "schedule": "06:00-12:00",
         "clients": [
             "G P V Sociedad Anonima (PIERO) (GPV) (5)",
             "[BACKUP] Aceitera General Deheza S.A. (AGD) (18)"
@@ -298,7 +313,7 @@
     },
     {
         "name": "FLORENCIA QUIROGA",
-        "schedule": "06:00-14:00",
+        "schedule": "00:00-00:00",
         "clients": [
             "Coordinación - Jefe de Equipo"
         ],
@@ -406,7 +421,7 @@
         "whatsapp": "5493512346131"
     },
     {
-        "name": "MARISEL MATUCHESKY (HYS)",
+        "name": "MARI MATUCHESKY (HYS)",
         "schedule": "06:00-14:00",
         "clients": [
             "YPF - MENSUALES (53)",  

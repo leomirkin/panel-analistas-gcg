@@ -7,156 +7,235 @@
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTQgNEgyMFY2SDRWNFpNNCAxMEgyMFYxMkg0VjEwWk00IDE2SDIwVjE4SDRWMTZaIi8+PC9zdmc+" type="image/svg+xml">
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --active-green: #2ecc71;
-            --inactive-grey: #95a5a6;
-            --background: #f0f2f5;
-            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            --search-background: rgba(255, 255, 255, 0.9);
-        }
-
-        * {
-            box-sizing: border-box;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
         }
-
-        body {
-            background-color: var(--background);
-            padding: 40px 20px;
-            min-height: 100vh;
-        }
-
-        .groups-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            padding: 0 15px;
+        .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
         }
-
-        .group-card {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: var(--card-shadow);
-            overflow: hidden;
-        }
-
-        .group-header {
-            background: var(--primary-color);
-            color: white;
-            padding: 10px 15px;
-            margin: -15px -15px 15px -15px;
-            border-radius: 12px 12px 0 0;
-            font-weight: 600;
-            text-align: center;
-            font-size: 1.2em;
-        }
-
-        .supervisor-card {
-            background: #34495e;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-bottom: 2px solid #ddd;
         }
-
-        .supervisor-name {
-            font-weight: 600;
-            color: white;
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
         }
-
-        .supervisor-schedule {
-            font-size: 0.9em;
-            color: #ecf0f1;
-        }
-
-        .group-members {
+        .search-container {
+            position: relative;
             display: flex;
-            flex-direction: column;
-            gap: 8px;
-            max-height: 300px;
+            align-items: center;
+        }
+        .search-input {
+            padding: 10px 10px 10px 40px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            width: 300px;
+            font-size: 14px;
+            background-color: #f5f5f5;
+            transition: all 0.3s ease;
+        }
+        .search-input:focus {
+            outline: none;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+        }
+        .no-results {
+            display: none;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            background: transparent;
+            color: #721c24;
+        }
+        .analyst-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
             overflow-y: auto;
-            padding-right: 5px;
+            max-height: calc(100vh - 120px);
+            padding: 5px;
         }
-
-        .group-members::-webkit-scrollbar {
-            width: 5px;
+        .analyst-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            overflow: hidden;
+            position: relative;
         }
-
-        .group-members::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 3px;
+        .analyst-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-
-        .group-members::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 3px;
+        .card-header {
+            position: relative;
+            z-index: 1;
         }
-
-        .member-card {
+        .analyst-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0;
+            padding-right: 28px; /* Espacio para el botón de WhatsApp */
+        }
+        .info-row {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 10px 15px;
-            background: #f0f6fc;
-            border-radius: 6px;
-            font-size: 0.95em;
-            transition: all 0.2s;
-            margin-bottom: 5px;
-            border-left: 3px solid var(--primary-color);
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
         }
-
-        .member-card:hover {
-            background: #e3f2fd;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        .info-line {
+            height: 1px;
+            background-color: #eee;
+            margin: 10px 0;
         }
-
-        .member-name {
-            color: var(--primary-color);
+        .separator {
+            margin: 0 8px;
+            color: #ddd;
+        }
+        .schedule-time {
             font-weight: 500;
         }
-
-        .member-schedule {
-            color: #555;
-            font-size: 0.9em;
-            font-weight: 400;
+        .active {
+            color: #28a745;
         }
-
-        @media (max-width: 1000px) {
-            .groups-container {
-                grid-template-columns: 1fr;
-            }
+        .inactive {
+            color: #dc3545;
         }
-        .view-toggle-container {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 1000;
+        .clients-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
         }
-
+        .client-chip {
+            background-color: #f1f1f1;
+            border: none;
+            border-radius: 15px;
+            padding: 5px 10px;
+            font-size: 12px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .client-chip:hover {
+            background-color: #e1e1e1;
+        }
+        .client-chip.active {
+            background-color: #007bff;
+            color: white;
+        }
+        .backup {
+            background-color: #ffe8d9;
+            color: #d35400;
+        }
+        .backup:hover {
+            background-color: #ffdbc7;
+        }
+        .whatsapp-btn {
+            position: absolute;
+            top: 2px;
+            right: 0;
+            text-decoration: none;
+            display: inline-flex;
+            width: 24px;
+            height: 24px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .whatsapp-icon {
+            width: 100%;
+            height: 100%;
+        }
+        /* Estilos para analistas ausentes */
+        .absent {
+            background-color: #f9f9f9;
+            opacity: 0.7;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        }
+        .absent .analyst-name,
+        .absent .info-row {
+            color: #999;
+        }
+        .absent .client-chip {
+            background-color: #f1f1f1;
+            color: #999;
+        }
+        .absent .backup {
+            background-color: #fffbf7;
+        }
+        /* Estilos para analistas activos */
+        .active-card {
+            background-color: #f4fff4;
+            border-left: 3px solid #28a745;
+        }
+        /* Estilo para las barras de desplazamiento */
+        .analyst-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+        .analyst-grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .analyst-grid::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        .analyst-grid::-webkit-scrollbar-thumb:hover {
+            background: #bbb;
+        }
+        
+        /* Switch para cambiar entre vistas */
+        .view-switch-container {
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+        }
         .switch {
             position: relative;
             display: inline-block;
-            width: 60px;
-            height: 34px;
+            width: 50px;
+            height: 24px;
+            margin-right: 10px;
         }
-
         .switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
-
         .slider {
             position: absolute;
             cursor: pointer;
@@ -165,404 +244,542 @@
             right: 0;
             bottom: 0;
             background-color: #ccc;
-            -webkit-transition: .4s;
             transition: .4s;
+            border-radius: 34px;
         }
-
         .slider:before {
             position: absolute;
             content: "";
-            height: 26px;
-            width: 26px;
+            height: 16px;
+            width: 16px;
             left: 4px;
             bottom: 4px;
             background-color: white;
-            -webkit-transition: .4s;
             transition: .4s;
+            border-radius: 50%;
         }
-
         input:checked + .slider {
             background-color: #2196F3;
         }
-
         input:focus + .slider {
             box-shadow: 0 0 1px #2196F3;
         }
-
         input:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
             transform: translateX(26px);
         }
-
-        .slider.round {
-            border-radius: 34px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-
-        .phone-icon, .group-icon {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-        }
-
-        .phone-icon {
-            left: 10px;
-        }
-
-        .group-icon {
-            right: 10px;
-        }
-
-        .search-container {
-            max-width: 1000px;
-            margin: 0 auto 40px;
-            position: relative;
-        }
-
-        #searchInput {
-            width: 100%;
-            padding: 16px 25px;
-            border: none;
-            border-radius: 15px;
-            font-size: 16px;
-            outline: none;
-            transition: all 0.3s;
-            background-color: white;
-            box-shadow: var(--card-shadow);
-            color: #1a1a1a;
-        }
-
-        #searchInput::placeholder {
+        .view-label {
+            font-size: 14px;
             color: #666;
-            font-weight: 400;
         }
-
-        #searchInput:focus {
-            box-shadow: var(--hover-shadow);
+        
+        /* Estilos para la vista de grupos */
+        #groupView {
+            display: none;
         }
-
-        .analyst-grid {
+        .groups-container {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 15px;
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0 15px;
+            overflow-y: auto;
+            max-height: calc(100vh - 120px);
+            padding: 5px;
         }
-
-        .analyst-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
+        .group-card {
+            background-color: white;
+            border-radius: 8px;
             padding: 15px;
-            box-shadow: var(--card-shadow);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .group-header {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        .supervisor-card {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            margin-bottom: 10px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .supervisor-name {
+            font-weight: bold;
+        }
+        .supervisor-schedule {
+            color: #666;
+        }
+        .group-members {
             display: flex;
             flex-direction: column;
-            min-height: 180px;
-            position: relative;
-            overflow: visible;
+            gap: 5px;
         }
-
-        .analyst-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .analyst-card.active-card {
-            background: linear-gradient(145deg, #f8fdf9, #f1f8e9);
-        }
-
-        .card-header {
-            text-align: left;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .analyst-name {
-            color: var(--primary-color);
-            font-size: 1.1em;
-            font-weight: 600;
-            margin-bottom: 6px;
-            letter-spacing: 0.3px;
-        }
-
-        .info-row {
+        .member-card {
             display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85em;
+            justify-content: space-between;
+            padding: 5px 8px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .member-card:last-child {
+            border-bottom: none;
+        }
+        .member-name {
+            font-size: 14px;
+        }
+        .member-schedule {
+            font-size: 14px;
             color: #666;
-            margin-bottom: 10px;
-        }
-
-        .schedule-time {
-            font-weight: 500;
-            color: inherit;
-        }
-
-        .active {
-            color: var(--active-green);
-            font-weight: 600;
-        }
-
-        .inactive {
-            color: var(--inactive-grey);
-        }
-
-        .separator {
-            color: #ccc;
-        }
-
-        .info-line {
-            height: 1px;
-            background: #eee;
-            margin: 0 -15px 10px;
-        }
-
-        .clients-container {
-            flex-grow: 1;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            align-items: flex-start;
-            padding: 0 0 12px 0;
-            max-height: 140px;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: #ccc transparent;
-        }
-
-        .clients-container::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .clients-container::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .clients-container::-webkit-scrollbar-thumb {
-            background-color: #ccc;
-            border-radius: 3px;
-        }
-
-        .client-chip {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.75em;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-            color: #444;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            max-width: 100%;
-            overflow: hidden;
-            line-height: 1.3;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin: 0;
-            flex-shrink: 0;
-        }
-
-        .client-chip:hover {
-            background-color: rgba(255, 255, 255, 0.95);
-            transform: translateY(-1px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-        }
-
-        .client-chip.backup {
-            background-color: #e8e8e8;
-            color: #666;
-            box-shadow: none;
-            border: 1px solid #ddd;
-        }
-
-        .client-chip.backup:hover {
-            background-color: #f0f0f0;
-            border-color: #ccc;
-        }
-
-        .client-chip.active {
-            background-color: var(--primary-color);
-            color: white;
-            box-shadow: 0 2px 5px rgba(44, 62, 80, 0.2);
-        }
-
-        .whatsapp-btn {
-            width: 45px;
-            height: 45px;
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            opacity: 1;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .whatsapp-icon {
-            width: 75%;
-            height: 75%;
-            object-fit: contain;
-            filter: none;
-        }
-
-        .group-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: var(--card-shadow);
-            text-align: center;
-        }
-
-        .group-container h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .absent {
-            background: #fff5f5;
-        }
-
-        .absent .analyst-name {
-            color: #e53e3e;
-        }
-
-        .absent .schedule-time,
-        .absent .info-line {
-            color: #e53e3e;
-            opacity: 0.8;
-        }
-
-        @media (max-width: 1600px) {
-            .analyst-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 12px;
-            }
-        }
-
-        @media (max-width: 1200px) {
-            .analyst-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .analyst-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .analyst-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            .search-container {
-                margin: 10px;
-            }
-        }
-
-        .no-results {
-            display: none;
-            position: fixed;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: var(--card-shadow);
-            z-index: 1000;
-        }
-
-        .no-results .close-btn {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .no-results .close-btn:hover {
-            background: #34495e;
-        }
-
-        .no-results iframe {
-            border: none;
-            border-radius: 8px;
-            width: 325px;
-            height: 578px;
         }
     </style>
 </head>
 <body>
-    <div class="view-toggle-container">
-        <label class="switch">
-            <input type="checkbox" id="viewToggle">
-            <span class="slider">
-                <span class="phone-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.314 28.323" style="enable-background:new 0 0 28.314 28.323" xml:space="preserve"><path d="m27.728 20.384-4.242-4.242a1.982 1.982 0 0 0-1.413-.586h-.002c-.534 0-1.036.209-1.413.586L17.83 18.97l-8.485-8.485 2.828-2.828c.78-.78.78-2.05-.001-2.83L7.929.585A1.986 1.986 0 0 0 6.516 0h-.001C5.98 0 5.478.209 5.101.587L.858 4.83C.729 4.958-.389 6.168.142 8.827c.626 3.129 3.246 7.019 7.787 11.56 6.499 6.499 10.598 7.937 12.953 7.937 1.63 0 2.426-.689 2.604-.867l4.242-4.242c.378-.378.587-.881.586-1.416 0-.534-.208-1.037-.586-1.415zm-5.656 5.658c-.028.028-3.409 2.249-12.729-7.07C-.178 9.452 2.276 6.243 2.272 6.244L6.515 2l4.243 4.244-3.535 3.535a.999.999 0 0 0 0 1.414l9.899 9.899a.999.999 0 0 0 1.414 0l3.535-3.536 4.243 4.244-4.242 4.242z"/></svg>
-                </span>
-                <span class="group-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 11a5 5 0 0 1 5 5v6h-2v-6a3 3 0 0 0-2.824-2.995L12 13a3 3 0 0 0-2.995 2.824L9 16v6H7v-6a5 5 0 0 1 5-5zm-6.5 3c.279 0 .55.033.81.094a5.947 5.947 0 0 0-.301 1.575L6 16v.086a1.492 1.492 0 0 0-.356-.08L5.5 16a1.5 1.5 0 0 0-1.493 1.356L4 17.5V22H2v-4.5A3.5 3.5 0 0 1 5.5 14zm13 0a3.5 3.5 0 0 1 3.5 3.5V22h-2v-4.5a1.5 1.5 0 0 0-1.356-1.493L18.5 16c-.175 0-.343.03-.5.085V16c0-.666-.108-1.306-.309-1.904.259-.063.53-.096.809-.096zm-13-6a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm13 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm-13 2a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1zm13 0a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1zM12 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Distribución de Analistas</h1>
+            <div style="display: flex; align-items: center;">
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Buscar analista o cliente...">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#999">
+                        <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
                     </svg>
-                </span>
-        </label>
-    </div>
-
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar por analista o cliente...">
-    </div>
-
-    <div id="phoneView">
-    <div class="analyst-grid" id="analystContainer">
-        <!-- Las tarjetas de analistas se generarán aquí -->
+                </div>
+                <div class="view-switch-container">
+                    <label class="switch">
+                        <input type="checkbox" id="viewToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="view-label">Ver Grupos</span>
+                </div>
+            </div>
+        </div>
+        
+        <div id="noResults" class="no-results">
+            No hay analistas que atiendan este cliente. Contactar a Coordinación de GCG.
+            <button class="close-btn" onclick="closeNoResults()">×</button>
+        </div>
+        
+        <div id="phoneView">
+            <div id="analystContainer" class="analyst-grid">
+                <!-- Las tarjetas de analistas se generarán dinámicamente -->
+            </div>
+        </div>
+        
+        <div id="groupView">
+            <div class="groups-container">
+                <!-- Las tarjetas de grupos se generarán dinámicamente -->
+            </div>
         </div>
     </div>
-    
-    <div id="groupView" style="display: none;">
-        <div class="groups-container">
-            <!-- Los grupos se generarán dinámicamente aquí -->
-        </div>
-    </div>
 
-    <div class="no-results" id="noResults">
-        <button class="close-btn" onclick="closeNoResults()">×</button>
-        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@maebellakaa/video/7170261831922044165">
-            <iframe src="https://www.tiktok.com/embed/v2/7170261831922044165"></iframe>
-        </blockquote>
-    </div>
+    <script>
+        // Conjunto para almacenar analistas ausentes, persistente durante la sesión
+        const absentAnalysts = new Set();
+        let processedAnalysts = [];
+        
+        // Función para cargar los datos de los analistas
+        async function loadAnalystsData() {
+            try {
+                console.log('Intentando cargar datos de analistas...');
+                const response = await fetch('./analysts_data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                analysts = await response.json();
+                console.log('Datos cargados:', analysts);
+                processedAnalysts = processExcelData(analysts);
+                generateAnalystCards();
+            } catch (error) {
+                console.error('Error al cargar los datos de analistas:', error);
+                document.getElementById('analystContainer').innerHTML = 
+                    '<div style="color: red; text-align: center; width: 100%; padding: 20px;">' +
+                    'Error al cargar los datos de los analistas. Por favor, recarga la página.' +
+                    '</div>';
+            }
+        }
+
+        // Cargar los datos cuando se inicia la página
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM Cargado, iniciando carga de datos...');
+            loadAnalystsData();
+        });
+
+        // Función para procesar datos del Excel
+        function processExcelData(rawData) {
+            const analystsMap = new Map();
+            
+            rawData.forEach(row => {
+                const analyst = row.name;
+                if (!analystsMap.has(analyst)) {
+                    // Primera vez que vemos este analista
+                    analystsMap.set(analyst, {
+                        name: analyst,
+                        schedule: row.schedule,
+                        clients: new Set([...row.clients]),
+                        extension: row.extension,
+                        whatsapp: row.whatsapp
+                    });
+                } else {
+                    // Analista existente, agregar nuevos clientes
+                    const existingAnalyst = analystsMap.get(analyst);
+                    row.clients.forEach(client => existingAnalyst.clients.add(client));
+                }
+            });
+
+            // Convertir el Map a array y los Sets de clientes a arrays
+            return Array.from(analystsMap.values()).map(analyst => ({
+                ...analyst,
+                clients: Array.from(analyst.clients).sort() // Ordenar clientes alfabéticamente
+            }));
+        }
+
+        function parseSchedule(scheduleStr) {
+            const [entry, exit] = scheduleStr.split('-');
+            return { entry: entry.trim(), exit: exit.trim() };
+        }
+
+        function generateAnalystCards() {
+            const container = document.getElementById('analystContainer');
+            container.innerHTML = '';
+
+            // Ordenar analistas usando processedAnalysts
+            const sortedAnalysts = [...processedAnalysts].sort((a, b) => {
+                // Primero ordenar por ausencia (ausentes al final)
+                const aAbsent = absentAnalysts.has(a.name);
+                const bAbsent = absentAnalysts.has(b.name);
+                if (aAbsent !== bAbsent) return aAbsent ? 1 : -1;
+
+                // Si ninguno está ausente, ordenar por horario
+                const aSchedule = parseSchedule(a.schedule);
+                const bSchedule = parseSchedule(b.schedule);
+                const [aHour, aMin] = aSchedule.entry.split(':').map(Number);
+                const [bHour, bMin] = bSchedule.entry.split(':').map(Number);
+                
+                if (aHour !== bHour) return aHour - bHour;
+                if (aMin !== bMin) return aMin - bMin;
+                
+                return 0;
+            });
+
+            sortedAnalysts.forEach(analyst => {
+                const card = document.createElement('div');
+                card.className = 'analyst-card';
+
+                if (absentAnalysts.has(analyst.name) || analyst.schedule === "00:00-00:00") {
+                    card.classList.add('absent');
+                }
+
+                const schedule = parseSchedule(analyst.schedule);
+                const isActive = isAnalystActive(schedule);
+
+                if (isActive && !absentAnalysts.has(analyst.name) && analyst.schedule !== "00:00-00:00") {
+                    card.classList.add('active-card');
+                }
+
+                card.innerHTML = `
+                    <div class="card-header">
+                        ${analyst.whatsapp ? `
+                            <a href="https://web.whatsapp.com/send?phone=${analyst.whatsapp.replace(/\D/g, '')}" 
+                               target="_blank" 
+                               class="whatsapp-btn" 
+                               title="Contactar por WhatsApp">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIiBmaWxsPSIjMjVEMzY2Ij48cGF0aCBkPSJNMzgwLjkgOTcuMUMzMzkgNTUuMSAyODMuMiAzMiAyMjMuOSAzMmMtMTIyLjQgMC0yMjIgOTkuNi0yMjIgMjIyIDAgMzkuMSAxMC4yIDc3LjMgMjkuNiAxMTFMLjAgNDgwbDExNy43LTMwLjljMzIuNCAxNy43IDY4LjkgMjcgMTA2LjEgMjdoLjEgYzEyMi4zIDAgMjI0LjEtOTkuNiAyMjQuMS0yMjIgMC01OS4zLTI1LjItMTE1LjEtNjcuMS0xNTd6TTIyMy45IDQzNy4xYy0zMy4yIDAtNjUuNy04LjktOTQtMjUuN2wtNi43LTQtNjkuOCAxOC4zTDcyIDM1OWwtNC4zLTYuOWMtMTguNS0yOS40LTI4LjItNjMuMy0yOC4yLTk4LjIgMC0xMDEuNyA4Mi44LTE4NC41IDE4NC42LTE4NC41IDQ5LjMgMCA5NS42IDE5LjIgMTMwLjQgNTQuMSAzNC44IDM0LjkgNTQuMCA4MS4yIDU0LjAgMTMwLjQgMCAxMDEuOC04Mi44IDE4NC43LTE4NC42IDE4NC43eiIvPjwvc3ZnPg==" alt="WhatsApp" class="whatsapp-icon">
+                            </a>
+                        ` : ''}
+                    <h2 class="analyst-name">${analyst.name}</h2>
+                        <div class="info-row">
+                            <span class="schedule-time ${isActive && !absentAnalysts.has(analyst.name) ? 'active' : 'inactive'}">${analyst.schedule}</span>
+                            <span class="separator">|</span>
+                            <span>Interno: ${analyst.extension}</span>
+                        </div>
+                        <div class="info-line"></div>
+                    </div>
+                    <div class="clients-container">
+                        ${analyst.clients.map(client => 
+                            `<button class="client-chip ${client.startsWith('[BACKUP]') ? 'backup' : ''}" onclick="filterByClient('${client}')">${client}</button>`
+                        ).join('')}
+                    </div>
+                `;
+
+                // Agregar evento de doble clic
+                card.addEventListener('dblclick', function() {
+                    if (absentAnalysts.has(analyst.name)) {
+                        absentAnalysts.delete(analyst.name);
+                        card.classList.remove('absent');
+                    } else {
+                        absentAnalysts.add(analyst.name);
+                        card.classList.add('absent');
+                    }
+                    // Reordenar las tarjetas
+                    generateAnalystCards();
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        // Actualizar el estado cada minuto
+        setInterval(generateAnalystCards, 60000);
+
+        function isAnalystActive(schedule) {
+            const now = new Date();
+            const currentHours = now.getHours();
+            const currentMinutes = now.getMinutes();
+            const [entryHour, entryMinute] = schedule.entry.split(':').map(Number);
+            const [exitHour, exitMinute] = schedule.exit.split(':').map(Number);
+
+            return (currentHours > entryHour || 
+                    (currentHours === entryHour && currentMinutes >= entryMinute)) &&
+                   (currentHours < exitHour || 
+                    (currentHours === exitHour && currentMinutes <= exitMinute));
+        }
+
+        // Función para normalizar texto
+        function normalizeText(text) {
+            return text.toLowerCase()
+                      .normalize('NFD')
+                      .replace(/[\u0300-\u036f]/g, '')
+                      .trim()
+                      .replace(/\s+/g, ' ');
+        }
+
+        // Función de debounce para mejorar el rendimiento de la búsqueda
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Search functionality
+        const performSearch = function(e) {
+            const searchTerm = normalizeText(e.target.value);
+            const cards = document.getElementsByClassName('analyst-card');
+            const noResults = document.getElementById('noResults');
+            
+            // Verificar si la búsqueda está relacionada con Coordinación o YPF
+            const isCoordOrYPF = searchTerm.includes('coor') || 
+                                searchTerm.includes('coord') || 
+                                searchTerm.includes('coordinacion') || 
+                                searchTerm.includes('coordinación') || 
+                                searchTerm.includes('ypf');
+            
+            // Recolectar todos los nombres de analistas y clientes una sola vez por búsqueda
+            const allAnalysts = new Set();
+            const allClients = new Set();
+
+            Array.from(cards).forEach(card => {
+                const analystNameElement = card.querySelector('.analyst-name');
+                const clientElements = card.querySelectorAll('.client-chip');
+                
+                if (analystNameElement) {
+                    allAnalysts.add(normalizeText(analystNameElement.textContent));
+                }
+                
+                clientElements.forEach(chip => {
+                    const clientText = normalizeText(chip.textContent);
+                    if (clientText !== 'multicliente') {
+                        allClients.add(clientText);
+                    }
+                });
+            });
+
+            // Variable para contar cuántas tarjetas están visibles
+            let visibleCards = 0;
+
+            // Filtrar las tarjetas
+            Array.from(cards).forEach(card => {
+                const analystNameElement = card.querySelector('.analyst-name');
+                const clientElements = card.querySelectorAll('.client-chip');
+                
+                if (!analystNameElement) return;
+                
+                const analystName = normalizeText(analystNameElement.textContent);
+                const clients = Array.from(clientElements).map(chip => normalizeText(chip.textContent));
+                const hasMulticliente = clients.includes('multicliente');
+                const hasClientMatch = clients.some(client => client.includes(searchTerm));
+                
+                // Mejorar la lógica de coincidencia
+                const match = searchTerm.length === 0 || // Mostrar todo si no hay término de búsqueda
+                            analystName.includes(searchTerm) || 
+                            hasClientMatch ||
+                            (hasMulticliente && !isCoordOrYPF && searchTerm.length > 0 && 
+                             Array.from(allClients).some(client => client.includes(searchTerm))); // Solo mostrar multicliente si hay coincidencias
+                
+                card.style.display = match ? 'block' : 'none';
+                if (match) visibleCards++;
+            });
+
+            // Mostrar mensaje solo si se está buscando un cliente que no existe
+            const isSearchingName = Array.from(allAnalysts).some(name => name.includes(searchTerm));
+            const isSearchingClient = searchTerm.length > 2 && !isSearchingName;
+            const noClientMatch = Array.from(allClients).every(client => !client.includes(searchTerm));
+            
+            if (isSearchingClient && noClientMatch) {
+                noResults.style.display = 'block';
+                // El temporizador se maneja de forma global
+                if (window.noResultsTimeout) {
+                    clearTimeout(window.noResultsTimeout);
+                }
+                window.noResultsTimeout = setTimeout(() => {
+                    if (noResults.style.display === 'block') {
+                        noResults.style.display = 'none';
+                    }
+                }, 10000);
+            } else {
+                noResults.style.display = 'none';
+                if (window.noResultsTimeout) {
+                    clearTimeout(window.noResultsTimeout);
+                }
+            }
+        };
+
+        // Aplicar debounce a la búsqueda
+        const debouncedSearch = debounce(performSearch, 300);
+        document.getElementById('searchInput').addEventListener('input', debouncedSearch);
+
+        // Función para cerrar el mensaje de no resultados
+        function closeNoResults() {
+            document.getElementById('noResults').style.display = 'none';
+        }
+
+        // Función para filtrar por cliente
+        function filterByClient(clientName) {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = clientName;
+            searchInput.dispatchEvent(new Event('input'));
+            
+            // Actualizar estilo de los chips
+            document.querySelectorAll('.client-chip').forEach(chip => {
+                if (chip.textContent === clientName) {
+                    chip.classList.add('active');
+                } else {
+                    chip.classList.remove('active');
+                }
+            });
+        }
+
+        // Limpiar filtro cuando se modifica la búsqueda manualmente
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            if (!e.detail) { // Solo si es un evento real del usuario
+                document.querySelectorAll('.client-chip').forEach(chip => {
+                    chip.classList.remove('active');
+                });
+            }
+        });
+
+        // Manejar el cambio de vista con el switch
+        document.getElementById('viewToggle').addEventListener('change', function() {
+                const phoneView = document.getElementById('phoneView');
+                const groupView = document.getElementById('groupView');
+                
+                if (this.checked) {
+                    // Cambiar a vista de grupos
+                    phoneView.style.display = 'none';
+                    groupView.style.display = 'block';
+                } else {
+                    // Cambiar a vista de teléfono (predeterminada)
+                    phoneView.style.display = 'block';
+                    groupView.style.display = 'none';
+                    }
+                });
+
+                // Función para cargar los datos de grupos
+        async function loadGroupsData() {
+            try {
+                console.log('Cargando datos de grupos...');
+                const response = await fetch('./groups_data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const groupsData = await response.json();
+                console.log('Datos de grupos cargados:', groupsData);
+                generateGroupsView(groupsData);
+            } catch (error) {
+                console.error('Error al cargar los datos de grupos:', error);
+                document.querySelector('.groups-container').innerHTML = 
+                    '<div style="color: red; text-align: center; width: 100%; padding: 20px;">' +
+                    'Error al cargar los datos de los grupos. Por favor, recarga la página.' +
+                    '</div>';
+            }
+        }
+
+        // Función para generar la vista de grupos
+        // Función para generar la vista de grupos
+        function generateGroupsView(groupsData) {
+            const container = document.querySelector('.groups-container');
+            container.innerHTML = ''; // Limpiar el contenedor
+
+            // Crear una tarjeta para cada grupo
+            groupsData.forEach(group => {
+                const groupCard = document.createElement('div');
+                groupCard.className = 'group-card';
+
+                // Encabezado del grupo
+                const header = document.createElement('div');
+                header.className = 'group-header';
+                header.textContent = group.group_name; // Cambio aquí para usar group_name
+                groupCard.appendChild(header);
+
+                // Tarjeta de supervisor si existe
+                if (group.supervisor) {
+                    const supervisorCard = document.createElement('div');
+                    supervisorCard.className = 'supervisor-card';
+                    supervisorCard.innerHTML = `
+                        <span class="supervisor-name">${group.supervisor.name}</span>
+                        <span class="supervisor-schedule">${group.supervisor.schedule}</span>
+                    `;
+                    groupCard.appendChild(supervisorCard);
+                }
+
+                // Contenedor de miembros
+                const membersContainer = document.createElement('div');
+                membersContainer.className = 'group-members';
+
+                // Añadir cada miembro al grupo
+                group.members.forEach(member => {
+                    const memberCard = document.createElement('div');
+                    memberCard.className = 'member-card';
+                    memberCard.innerHTML = `
+                        <span class="member-name">${member.name}</span>
+                        <span class="member-schedule">${member.schedule}</span>
+                    `;
+                    membersContainer.appendChild(memberCard);
+                });
+
+                groupCard.appendChild(membersContainer);
+                container.appendChild(groupCard);
+            });
+        }
+
+        // Cargar los datos de grupos cuando se activa la vista de grupos
+        document.getElementById('viewToggle').addEventListener('change', function() {
+            const phoneView = document.getElementById('phoneView');
+            const groupView = document.getElementById('groupView');
+            
+            if (this.checked) {
+                // Cambiar a vista de grupos
+                phoneView.style.display = 'none';
+                groupView.style.display = 'block';
+                
+                // Cargar datos de grupos si no se han cargado antes
+                if (document.querySelector('.groups-container').children.length === 0) {
+                    loadGroupsData();
+                }
+            } else {
+                // Cambiar a vista de teléfono (predeterminada)
+                phoneView.style.display = 'block';
+                groupView.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
