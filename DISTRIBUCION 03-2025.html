@@ -728,7 +728,7 @@
         </div>
     </div>
     
-    <div id="dashboardView" style="display: none; width: 90%; margin: 0 auto;">
+    <div id="dashboardView" style="display: none; width: 95%; margin: 0 auto; max-width: none;">
         <!-- Se cargará el contenido del dashboard_final.html aquí -->
     </div>
 
@@ -1112,6 +1112,7 @@
                         iframe.style.width = '100%';
                         iframe.style.height = '100vh';
                         iframe.style.border = 'none';
+                        iframe.style.overflow = 'visible';
                         dashboardView.appendChild(iframe);
                     }
                     dashboardView.style.display = 'block';
