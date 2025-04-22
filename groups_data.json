@@ -1,6 +1,6 @@
 [
   {
-    "group_name": "Seguros",
+    "group_name": "Seguros (COLA 851)",
     "supervisor": {
       "name": "MICAELA MIRANDA",
       "schedule": "06:00-15:00",
@@ -31,7 +31,7 @@
     ]
   },
   {
-    "group_name": "Mensual",
+    "group_name": "Mensual (COLA 850)",
     "supervisor": {
       "name": "ELIZABETH MAZZOTTA",
       "schedule": "09:00-18:00",
@@ -61,7 +61,7 @@
     ]
   },
   {
-    "group_name": "Vehículos",
+    "group_name": "Vehículos (COLA 854)",
     "supervisor": {
       "name": "ROCIO BARRIONUEVO",
       "schedule": "09:00-18:00",
@@ -76,7 +76,7 @@
     ]
   },
   {
-    "group_name": "Trabajadores",
+    "group_name": "Trabajadores (COLA 852)",
     "supervisor": {
       "name": "CINDY RIVADENEIRA",
       "schedule": "09:00-18:00",
@@ -91,7 +91,7 @@
     ]
   },
   {
-    "group_name": "Empresa/Varios",
+    "group_name": "Empresa/Varios (COLA 853)",
     "supervisor": {
       "name": "ROCIO BARRIONUEVO",
       "schedule": "09:00-18:00",
@@ -106,7 +106,7 @@
     ]
   },
   {
-    "group_name": "HYS",
+    "group_name": "HYS (COLA 855)",
     "supervisor": {
       "name": "OCTAVIO ROLDAN",
       "schedule": "09:00-18:00",
@@ -121,7 +121,7 @@
     ]
   },
   {
-    "group_name": "Licencias",
+    "group_name": "Licencias (Transferir)",
     "supervisor": {
       "name": "CINDY RIVADENEIRA",
         "schedule": "09:00-18:00",
@@ -146,7 +146,7 @@
     ]
   },
   {
-    "group_name": "Comunicación",
+    "group_name": "Comunicación (Transferir)",
     "supervisor": {
       "name": "SOPHIA SARAVIA",
       "schedule": "09:00-18:00",
@@ -166,7 +166,7 @@
     ]
   },
   {
-    "group_name": "Altas",
+    "group_name": "Altas (COLA 856)",
     "supervisor": {
       "name": "STEFANIA WERLEN",
       "schedule": "06:00-15:00",
@@ -189,7 +189,7 @@
       }]
   },
   {
-    "group_name": "Otras Plataformas",
+    "group_name": "Otras Plataformas (Transferir)",
     "supervisor": {
       "name": "ELIZABETH MAZZOTTA (ECOGAS)",
       "schedule": "09:00-18:00",
