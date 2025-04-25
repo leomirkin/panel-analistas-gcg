@@ -323,22 +323,6 @@
     ]
   },
   { 
-    "group_name": "YPF COMUNICACIÓN / BAJAS",
-    "supervisor": {
-      "name": "SOL MELISA FUNES (COMUNICACIÓN)",
-      "schedule": "09:00-18:30",
-      "extension": ""
-    },
-    
-    "members": [
-      {
-        "name": "MARÍA JOSE CHOQUE (BAJAS)",
-        "schedule": "06:00-14:00",
-        "extension": ""
-      }
-    ]
-  },
-  { 
     "group_name": "YPF MÓDULO SALARIAL",
     "supervisor": {
       "name": "ADRIÁN BENITEZ",
@@ -364,6 +348,22 @@
       },
       {
         "name": "MILAGROS SCOPEL",
+        "schedule": "06:00-14:00",
+        "extension": ""
+      }
+    ]
+  },
+  { 
+    "group_name": "YPF COMUNICACIÓN / BAJAS",
+    "supervisor": {
+      "name": "SOL MELISA FUNES (COMUNICACIÓN)",
+      "schedule": "09:00-18:30",
+      "extension": ""
+    },
+    
+    "members": [
+      {
+        "name": "MARÍA JOSE CHOQUE (BAJAS)",
         "schedule": "06:00-14:00",
         "extension": ""
       }
