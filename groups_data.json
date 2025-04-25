@@ -223,5 +223,150 @@
         "extension": "143"
       }
     ]
+  },
+  {
+    "group_name": "YPF MENSUALES",
+    "supervisor": {
+      "name": "NATALIA GOVERNATORI",
+      "schedule": "06:30-15:30",
+      "extension": "118"
+    },
+    
+    "members": [
+      {
+        "name": "MARISEL MATUCHESKY",
+        "schedule": "06:00-14:00",
+        "extension": ""
+      },
+      {
+        "name": "CHRISTIAN GONZALEZ",
+        "schedule": "13:00-21:00",
+        "extension": ""
+      },
+      {
+        "name": "LAURA GERBALDO",
+        "schedule": "PART-TIME",
+        "extension": ""
+      },
+      {
+        "name": "MARÍA BELÉN HERRERA",
+        "schedule": "09:00-18:00",
+        "extension": ""
+      }
+    ]
+  },
+  { 
+    "group_name": "YPF EMPRESA",
+    "supervisor": {
+      "name": "NATALIA GOVERNATORI",
+      "schedule": "06:30-15:30",
+      "extension": "118"
+    },
+    
+    "members": [
+      {
+        "name": "ARACELI GALLARDO",
+        "schedule": "09:00-18:00",
+        "extension": ""
+      },
+      {
+        "name": "VALENTIN MANSILLA",
+        "schedule": "09:00-18:00",
+        "extension": ""
+      },
+      {
+        "name": "AGUSTINA ZOCCHI",
+        "schedule": "09:00-18:00",
+        "extension": ""
+      }
+    ]
+  },
+  { 
+    "group_name": "YPF PERMANENTES",
+    "supervisor": {
+      "name": "IRINA LAZCANO",
+      "schedule": "08:00-17:30",
+      "extension": "136"
+    },
+    
+    "members": [
+      {
+        "name": "FERNANDO BRITOS",
+        "schedule": "09:00-18:00",
+        "extension": ""
+      },
+      {
+        "name": "KAREN TISSERA",
+        "schedule": "07:00-16:00",
+        "extension": ""
+      },
+      {
+        "name": "ALEJANDRO BRYZ",
+        "schedule": "06:00-14:00",
+        "extension": ""
+      },
+      {
+        "name": "ROMINA MONTES DE OCA",
+        "schedule": "09:00-18:00",
+        "extension": ""
+      },
+      {
+        "name": "MABEL FRIAS",
+        "schedule": "08:00-17:00",
+        "extension": ""
+      },
+      {
+        "name": "ELIANA BRANDOLIN",
+        "schedule": "09:00-18:00",
+        "extension": ""
+      }
+    ]
+  },
+  { 
+    "group_name": "YPF COMUNICACIÓN / BAJAS",
+    "supervisor": {
+      "name": "SOL MELISA FUNES (COMUNICACIÓN)",
+      "schedule": "09:00-18:30",
+      "extension": ""
+    },
+    
+    "members": [
+      {
+        "name": "MARÍA JOSE CHOQUE (BAJAS)",
+        "schedule": "06:00-14:00",
+        "extension": ""
+      }
+    ]
+  },
+  { 
+    "group_name": "YPF MÓDULO SALARIAL",
+    "supervisor": {
+      "name": "ADRIÁN BENITEZ",
+      "schedule": "06:00-14:00",
+      "extension": ""
+    },
+    
+    "members": [
+      {
+        "name": "VICTORIA DENOT",
+        "schedule": "09:00-18:00",
+        "extension": ""
+      },
+      {
+        "name": "MARIANA LEDESMA",
+        "schedule": "09:00-18:00",
+        "extension": ""
+      },
+      {
+        "name": "CAROLINA BRANDOLIN",
+        "schedule": "09:00-18:00",
+        "extension": ""
+      },
+      {
+        "name": "MILAGROS SCOPEL",
+        "schedule": "06:00-14:00",
+        "extension": ""
+      }
+    ]
   }
 ]
