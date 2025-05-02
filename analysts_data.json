@@ -153,18 +153,6 @@
         "whatsapp": "5493564650621"
     },
     {
-        "name": "BELEN ROSA",
-        "schedule": "09:00-18:00",
-        "clients": [
-            "Cosufi S.A. (54)",
-            "Piedra Grande S.A.M.I.C.A. Y F. (17)",
-            "Stratton Argentina S.A. (Konecta) (50)",
-            "Vitopel Argentina SA (16)"
-        ],
-        "extension": "167",
-        "whatsapp": "5493512407695"
-    },
-    {
         "name": "GRISELDA QUIROGA",
         "schedule": "07:00-16:00",
         "clients": [
@@ -178,7 +166,7 @@
     },
     {
         "name": "ELIZABETH MAZZOTTA",
-        "schedule": "09:00-18:00",
+        "schedule": "00:00-00:00",
         "clients": [
             "Distribuidora de Gas Cuyana S.A. (23)",
             "Distribuidora de Gas del Centro S.A. (23)",
