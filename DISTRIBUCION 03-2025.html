@@ -745,6 +745,7 @@
         let processedAnalysts = [];
         const absentAnalysts = new Set();
         let currentView = 'phone'; // Nueva variable para rastrear la vista actual
+        const dashboardFeatureActive = false; // Flag to control dashboard availability
 
         // Función para verificar si una posición está visible en el viewport
         function isInViewport(x, y) {
@@ -1065,47 +1066,70 @@
             // Manejar clics en el switch
             switchTrack.addEventListener('click', function() {
                 const currentState = parseInt(switchTrack.getAttribute('data-state'));
-                
-                // Rotar entre estados: 1 -> 2 -> 3 -> 1
-                let newState = currentState < 3 ? currentState + 1 : 1;
-                switchTrack.setAttribute('data-state', newState);
-                
-                // Actualizar el ícono del knob
-                if (newState === 1) {
-                    switchIcon.textContent = 'P';
-                } else if (newState === 2) {
-                    switchIcon.textContent = 'G';
+                let newState;
+
+                if (!dashboardFeatureActive) {
+                    // Dashboard disabled: Toggle between state 1 (Phone) and state 2 (Group)
+                    newState = currentState === 1 ? 2 : 1;
+                    if (newState === 1) {
+                        switchIcon.textContent = 'P';
+                    } else { // newState === 2
+                        switchIcon.textContent = 'G';
+                    }
                 } else {
-                    switchIcon.textContent = 'D';
+                    // Dashboard enabled: Original three-state toggle
+                    newState = currentState < 3 ? currentState + 1 : 1;
+                    if (newState === 1) {
+                        switchIcon.textContent = 'P';
+                    } else if (newState === 2) {
+                        switchIcon.textContent = 'G';
+                    } else { // newState === 3
+                        switchIcon.textContent = 'D';
+                    }
                 }
-                
+                switchTrack.setAttribute('data-state', newState);
                 updateView();
             });
             
             function updateView() {
-                const state = parseInt(switchTrack.getAttribute('data-state'));
+                let state = parseInt(switchTrack.getAttribute('data-state'));
                 const searchContainer = document.getElementById('searchContainer');
+
+                // If dashboard feature is disabled, and state somehow became 3, reset to 1 (Phone view)
+                // The click handler should prevent this, but this is a safeguard.
+                if (!dashboardFeatureActive && state === 3) {
+                    state = 1;
+                    switchTrack.setAttribute('data-state', '1');
+                }
                 
-                // Ocultar todas las vistas primero
+                // Update icon based on the current state (P, G, or D if active)
+                if (state === 1) {
+                    switchIcon.textContent = 'P';
+                } else if (state === 2) {
+                    switchIcon.textContent = 'G';
+                } else if (state === 3 && dashboardFeatureActive) {
+                    switchIcon.textContent = 'D';
+                }
+                // If state is 3 and dashboard is not active, icon remains P or G from previous valid state
+                // or is set to P by the safeguard above.
+
                 phoneView.style.display = 'none';
                 groupView.style.display = 'none';
                 dashboardView.style.display = 'none';
                 
-                // Mostrar la vista según el estado
                 if (state === 1) {
                     phoneView.style.display = 'block';
-                    searchContainer.style.display = 'block'; // Mostrar buscador en vista de analistas
+                    searchContainer.style.display = 'block';
                     currentView = 'phone';
                 } else if (state === 2) {
                     groupView.style.display = 'block';
-                    searchContainer.style.display = 'none'; // Ocultar buscador en vista de grupos
+                    searchContainer.style.display = 'none';
                     currentView = 'group';
-                    // Cargar datos de grupos si es necesario
                     if (document.querySelector('.groups-container').children.length === 0) {
                         loadGroupsData();
                     }
-                } else {
-                    // Cargar dashboard_final.html en un iframe
+                } else if (state === 3 && dashboardFeatureActive) {
+                    // Only show dashboard if state is 3 AND feature is active
                     if (dashboardView.children.length === 0) {
                         const iframe = document.createElement('iframe');
                         iframe.src = 'dashboard_final.html';
@@ -1116,7 +1140,7 @@
                         dashboardView.appendChild(iframe);
                     }
                     dashboardView.style.display = 'block';
-                    searchContainer.style.display = 'none'; // Ocultar buscador en vista dashboard
+                    searchContainer.style.display = 'none';
                     currentView = 'dashboard';
                 }
             }
