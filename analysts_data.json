@@ -527,5 +527,14 @@
         ],
         "extension": "0",
         "whatsapp": "nan"
+    },
+    {
+        "name": "ROCIO PAGÉS",
+        "schedule": "09:00-18:00",
+        "clients": [
+            "Mensuales"
+        ],
+        "extension": "122",
+        "whatsapp": "5493517342603"
     }
 ]
