@@ -166,7 +166,7 @@
     },
     {
         "name": "ELIZABETH MAZZOTTA",
-        "schedule": "09:00-18:00",
+        "schedule": "00:00-00:00",
         "clients": [
             "Distribuidora de Gas Cuyana S.A. (23)",
             "Distribuidora de Gas del Centro S.A. (23)",
@@ -327,7 +327,7 @@
     },
     {
         "name": "CHRISTIAN GONZALEZ",
-        "schedule": "13:00-21:00",
+        "schedule": "00:00-00:00",
         "clients": [
             "YPF - MENSUALES (53)"
         ],
