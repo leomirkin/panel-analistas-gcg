@@ -9,7 +9,7 @@
     "members": [
       {
         "name": "ZULAY TOSCANO",
-        "schedule": "07:00-15:00",
+        "schedule": "07:00-13:00",
         "extension": "143"
       },
       {
@@ -159,8 +159,18 @@
         "extension": "124"
       },
       {
+        "name": "MAURO GUAJARDO (TICKETS)",
+        "schedule": "09:00-13:00",
+        "extension": "164"
+      },
+      {
+        "name": "ZULAY TOSCANO (ARCOR)",
+        "schedule": "14:00-15:00",
+        "extension": "143"
+      },
+      {
         "name": "MICAELA MIRANDA (BACKUP DE 06 A 09 H)",
-        "schedule": "06:00-15:00",
+        "schedule": "06:00-09:00",
         "extension": "138"
       }
     ]
@@ -219,7 +229,7 @@
       },
       {
         "name": "ZULAY TOSCANO (SCRAP SERVICES)",
-        "schedule": "07:00-15:00",
+        "schedule": "13:00-14:00",
         "extension": "143"
       }
     ]
@@ -313,11 +323,6 @@
       {
         "name": "ROMINA MONTES DE OCA",
         "schedule": "09:00-18:00",
-        "extension": ""
-      },
-      {
-        "name": "MABEL FRIAS",
-        "schedule": "08:00-17:00",
         "extension": ""
       },
       {
