@@ -4127,7 +4127,7 @@
                 "2025-05-12": 1
             },
             "llamadasPorFecha": {
-                "2025-05-19": 249
+                "2025-05-20": 249
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -6155,7 +6155,7 @@
                 "2025-05-19": 12
             },
             "llamadasPorFecha": {
-                "2025-05-19": 153
+                "2025-05-20": 153
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -8122,7 +8122,7 @@
                 "2025-05-19": 9
             },
             "llamadasPorFecha": {
-                "2025-05-19": 180
+                "2025-05-20": 180
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -10579,7 +10579,7 @@
                 "2025-05-19": 27
             },
             "llamadasPorFecha": {
-                "2025-05-19": 121
+                "2025-05-20": 121
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -12224,7 +12224,7 @@
                 "2025-05-19": 1
             },
             "llamadasPorFecha": {
-                "2025-05-19": 146
+                "2025-05-20": 146
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -17835,7 +17835,7 @@
                 "2025-05-17": 9
             },
             "llamadasPorFecha": {
-                "2025-05-19": 169
+                "2025-05-20": 169
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -19885,7 +19885,7 @@
                 "2025-05-19": 1
             },
             "llamadasPorFecha": {
-                "2025-05-19": 166
+                "2025-05-20": 166
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -21920,7 +21920,7 @@
                 "2025-05-08": 1
             },
             "llamadasPorFecha": {
-                "2025-05-19": 161
+                "2025-05-20": 161
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -23077,7 +23077,7 @@
                 "2025-05-19": 10
             },
             "llamadasPorFecha": {
-                "2025-05-19": 66
+                "2025-05-20": 66
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -25522,7 +25522,7 @@
                 "2025-05-19": 4
             },
             "llamadasPorFecha": {
-                "2025-05-19": 258
+                "2025-05-20": 258
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -25986,7 +25986,7 @@
                 "2025-05-19": 1
             },
             "llamadasPorFecha": {
-                "2025-05-19": 16
+                "2025-05-20": 16
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -29426,7 +29426,7 @@
                 "2025-05-08": 23
             },
             "llamadasPorFecha": {
-                "2025-05-19": 164
+                "2025-05-20": 164
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -31722,7 +31722,7 @@
                 "2025-05-15": 1
             },
             "llamadasPorFecha": {
-                "2025-05-19": 84
+                "2025-05-20": 84
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -32981,7 +32981,7 @@
                 "2025-05-07": 1
             },
             "llamadasPorFecha": {
-                "2025-05-19": 174
+                "2025-05-20": 174
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -34885,7 +34885,7 @@
                 "2025-05-19": 2
             },
             "llamadasPorFecha": {
-                "2025-05-19": 190
+                "2025-05-20": 190
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -41123,7 +41123,7 @@
                 "2025-05-13": 46
             },
             "llamadasPorFecha": {
-                "2025-05-19": 198
+                "2025-05-20": 198
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -44944,7 +44944,7 @@
                 "2025-05-15": 1
             },
             "llamadasPorFecha": {
-                "2025-05-19": 139
+                "2025-05-20": 139
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -46291,7 +46291,7 @@
                 "2025-05-19": 12
             },
             "llamadasPorFecha": {
-                "2025-05-19": 209
+                "2025-05-20": 209
             },
             "totalMailReplies": 0,
             "avgTiempoEntreMailReplies": "N/A",
@@ -50764,6 +50764,29 @@
                 }, 0);
             }
 
+            // Calcular totales del grupo si se ha filtrado por un grupo específico
+            let groupTotals = null;
+            const selectedGroupId = groupFilterSelect.value;
+            if (selectedGroupId !== 'all') {
+                groupTotals = {
+                    presentaciones: 0,
+                    solicitudes: 0,
+                    altas: 0,
+                    tickets: 0,
+                    llamadas: 0
+                };
+                filteredAnalystIds.forEach(analystId => {
+                    const d = analystMeta[analystId];
+                    if (d && d.groupId === selectedGroupId) {
+                        groupTotals.presentaciones += sumValuesInDateRange(d.presentacionesPorFecha);
+                        groupTotals.solicitudes += sumValuesInDateRange(d.solicitudesPorFecha);
+                        groupTotals.altas += d.totalAltas || 0;
+                        groupTotals.tickets += sumValuesInDateRange(d.ticketsPorFecha);
+                        groupTotals.llamadas += d.totalLlamadas || 0;
+                    }
+                });
+            }
+
             // Calcular los totales para cada analista y ordenar
             const analystData = filteredAnalystIds.map(analystId => {
                 const d = analystMeta[analystId]; // Use 'd' to avoid conflict with outer 'data'
@@ -50921,11 +50944,11 @@
                 row.innerHTML = `
                     <td>${data.name}</td>
                     <td>${groupName}</td>
-                    <td>${data.presentaciones}</td>
-                    <td>${data.solicitudes}</td>
-                    <td>${data.altas}</td>
-                    <td>${data.tickets}</td>
-                    <td>${data.llamadas}</td>
+                    <td>${data.presentaciones} ${groupTotals && groupTotals.presentaciones > 0 ? `<span style="font-size: 0.85em; color: #555;">(${(data.presentaciones / groupTotals.presentaciones * 100).toFixed(1)}%)</span>` : ''}</td>
+                    <td>${data.solicitudes} ${groupTotals && groupTotals.solicitudes > 0 ? `<span style="font-size: 0.85em; color: #555;">(${(data.solicitudes / groupTotals.solicitudes * 100).toFixed(1)}%)</span>` : ''}</td>
+                    <td>${data.altas} ${groupTotals && groupTotals.altas > 0 ? `<span style="font-size: 0.85em; color: #555;">(${(data.altas / groupTotals.altas * 100).toFixed(1)}%)</span>` : ''}</td>
+                    <td>${data.tickets} ${groupTotals && groupTotals.tickets > 0 ? `<span style="font-size: 0.85em; color: #555;">(${(data.tickets / groupTotals.tickets * 100).toFixed(1)}%)</span>` : ''}</td>
+                    <td>${data.llamadas} ${groupTotals && groupTotals.llamadas > 0 ? `<span style="font-size: 0.85em; color: #555;">(${(data.llamadas / groupTotals.llamadas * 100).toFixed(1)}%)</span>` : ''}</td>
                     <td>${avgTiempoEntreSolicitudes}</td> 
                     <td>${avgTiempoAuditoria}</td>
                 `;
@@ -51482,8 +51505,10 @@
             }
             
             // EJEMPLO CHART 1: Contribución por Analista - Split into two charts
-            createContributionChart_LeftAxis(groupAnalystIds, analystMeta, dateRange);
-            createContributionChart_RightAxis(groupAnalystIds, analystMeta, dateRange);
+            const leftChartLayout = createContributionChart_LeftAxis(groupAnalystIds, analystMeta, dateRange);
+            // Usar el orden de analistas del gráfico izquierdo para el gráfico derecho
+            const orderedAnalystNames = leftChartLayout ? leftChartLayout.xaxis.categoryarray : null;
+            createContributionChart_RightAxis(groupAnalystIds, analystMeta, dateRange, orderedAnalystNames);
             
             // CHART 2: Radar de Eficiencia
             createRadarChart(selectedGroupId, groupAnalystIds, analystMeta, dateRange);
@@ -51532,28 +51557,77 @@
                 solicitudes.push(sumValuesInDateRange(data.solicitudesPorFecha));
             });
             
-            // Crear trazas para el gráfico de barras apiladas (Left Axis)
-            const trace1 = {
+            // Calcular totales del grupo para porcentajes
+            const totalPresentacionesGrupo = presentaciones.reduce((sum, val) => sum + val, 0);
+            const totalSolicitudesGrupo = solicitudes.reduce((sum, val) => sum + val, 0);
+
+            let trace1 = {
                 x: analystNames,
                 y: presentaciones,
                 name: 'Presentaciones',
                 type: 'bar',
                 marker: {
                     color: '#9053d5' // Morado
-                }
+                },
+                // text: presentaciones.map(val => `${val} (${totalPresentacionesGrupo > 0 ? ((val / totalPresentacionesGrupo) * 100).toFixed(1) : '0.0'}%)`),
+                // textposition: 'auto',
+                hoverinfo: 'name+x+y' // Mostrar nombre del analista, métrica y valor en hover
             };
             
-            const trace2 = {
+            let trace2 = {
                 x: analystNames,
                 y: solicitudes,
                 name: 'Solicitudes',
                 type: 'bar',
                 marker: {
                     color: '#8bd5fb' // Celeste
-                }
+                },
+                // text: solicitudes.map(val => `${val} (${totalSolicitudesGrupo > 0 ? ((val / totalSolicitudesGrupo) * 100).toFixed(1) : '0.0'}%)`),
+                // textposition: 'auto',
+                hoverinfo: 'name+x+y'
             };
-            
-            const data = [trace1, trace2]; // Only left-axis traces
+
+            let plotData = [trace1, trace2];
+
+            if (groupAnalystIds.length > 2) {
+                // Calcular promedios del grupo
+                const avgPresentaciones = totalPresentacionesGrupo / groupAnalystIds.length;
+                const avgSolicitudes = totalSolicitudesGrupo / groupAnalystIds.length;
+
+                // Crear datos para el "Analista Promedio"
+                const avgAnalystName = "Promedio Grupo";
+                const avgPresentacionesData = [avgPresentaciones];
+                const avgSolicitudesData = [avgSolicitudes];
+
+                // Ordenar analistas por presentaciones (ascendente) para insertar el promedio
+                let combinedData = analystNames.map((name, i) => ({
+                    name: name,
+                    presentaciones: presentaciones[i],
+                    solicitudes: solicitudes[i]
+                })).sort((a, b) => a.presentaciones - b.presentaciones);
+
+                const midIndex = Math.floor(combinedData.length / 2);
+                combinedData.splice(midIndex, 0, {
+                    name: avgAnalystName,
+                    presentaciones: avgPresentaciones,
+                    solicitudes: avgSolicitudes
+                });
+
+                // Reconstruir arrays para Plotly
+                const finalAnalystNames = combinedData.map(d => d.name);
+                const finalPresentaciones = combinedData.map(d => d.presentaciones);
+                const finalSolicitudes = combinedData.map(d => d.solicitudes);
+
+                trace1.x = finalAnalystNames;
+                trace1.y = finalPresentaciones;
+                trace1.marker.color = finalAnalystNames.map(name => name === avgAnalystName ? '#6c757d' : '#9053d5'); // Gris oscuro para promedio
+
+                trace2.x = finalAnalystNames;
+                trace2.y = finalSolicitudes;
+                trace2.marker.color = finalAnalystNames.map(name => name === avgAnalystName ? '#adb5bd' : '#8bd5fb'); // Gris claro para promedio
+
+                plotData = [trace1, trace2];
+            }
             
             const containerWidth = chartElement.offsetWidth || 600;
             
@@ -51566,7 +51640,9 @@
                     tickangle: -45,
                     automargin: true,
                     tickfont: { size: 10 },
-                    fixedrange: true
+                    fixedrange: true,
+                    categoryorder: 'array',
+                    categoryarray: trace1.x // Usar el orden final de los nombres para el eje X
                 },
                 yaxis: { // Only one Y axis now
                     title: 'Cantidad',
@@ -51592,16 +51668,18 @@
             const config = { responsive: true, displayModeBar: false };
             
             try {
-                Plotly.newPlot(targetDivId, data, layout, config);
+                Plotly.newPlot(targetDivId, plotData, layout, config);
                 console.log("Gráfico de contribución (Izquierda) generado correctamente");
+                return layout; // Devolver el layout para poder acceder al orden del eje X
             } catch (error) {
                 console.error("Error al generar el gráfico de contribución (Izquierda):", error);
                 chartElement.innerHTML = `<p class="no-data-message">Error: ${error.message}</p>`;
+                return null;
             }
         }
 
         // Función NUEVA para crear el gráfico de contribución por analista (EJE DERECHO: Tickets, Llamadas)
-        function createContributionChart_RightAxis(groupAnalystIds, analystMeta, dateRange) {
+        function createContributionChart_RightAxis(groupAnalystIds, analystMeta, dateRange, orderedAnalystNames) {
             const targetDivId = 'group-contribution-chart-right';
             const chartElement = document.getElementById(targetDivId);
             chartElement.innerHTML = ""; // Clear previous chart
@@ -51635,28 +51713,75 @@
                 llamadas.push(data.totalLlamadas || 0); // Llamadas no filtradas por fecha
             });
 
-            // Crear trazas para el gráfico de barras apiladas (Right Axis)
-            const trace1 = {
+            // Calcular totales del grupo para porcentajes
+            const totalTicketsGrupo = tickets.reduce((sum, val) => sum + val, 0);
+            const totalLlamadasGrupo = llamadas.reduce((sum, val) => sum + val, 0);
+
+            let trace1 = {
                 x: analystNames,
                 y: tickets,
                 name: 'Tickets',
                 type: 'bar',
                 marker: {
                     color: '#f8d27c' // Amarillo
-                }
+                },
+                // text: tickets.map(val => `${val} (${totalTicketsGrupo > 0 ? ((val / totalTicketsGrupo) * 100).toFixed(1) : '0.0'}%)`),
+                // textposition: 'auto',
+                hoverinfo: 'name+x+y'
             };
 
-            const trace2 = {
+            let trace2 = {
                 x: analystNames,
                 y: llamadas,
                 name: 'Llamadas',
                 type: 'bar',
                 marker: {
                     color: '#61d2a1' // Verde
-                }
+                },
+                // text: llamadas.map(val => `${val} (${totalLlamadasGrupo > 0 ? ((val / totalLlamadasGrupo) * 100).toFixed(1) : '0.0'}%)`),
+                // textposition: 'auto',
+                hoverinfo: 'name+x+y'
             };
 
-            const data = [trace1, trace2]; // Only right-axis traces
+            let plotData = [trace1, trace2];
+
+            if (groupAnalystIds.length > 2) {
+                const avgTickets = totalTicketsGrupo / groupAnalystIds.length;
+                const avgLlamadas = totalLlamadasGrupo / groupAnalystIds.length;
+
+                const avgAnalystName = "Promedio Grupo";
+
+                // Usar el orden proporcionado o, si no, el orden original de analystNames
+                const finalAnalystNames = orderedAnalystNames ? [...orderedAnalystNames] : [...analystNames];
+                
+                // Crear un mapa para acceder fácilmente a los datos por nombre
+                const dataMap = {};
+                analystNames.forEach((name, i) => {
+                    dataMap[name] = { tickets: tickets[i], llamadas: llamadas[i] };
+                });
+                dataMap[avgAnalystName] = { tickets: avgTickets, llamadas: avgLlamadas }; // Añadir datos del promedio
+
+                // Si orderedAnalystNames no incluye "Promedio Grupo" (porque el grupo izquierdo tenía <=2 analistas),
+                // y este gráfico SÍ debe mostrarlo (grupo derecho >2 analistas), lo insertamos.
+                // Este caso es improbable si la lógica de >2 se aplica a ambos, pero es una salvaguarda.
+                if (orderedAnalystNames && !finalAnalystNames.includes(avgAnalystName) && groupAnalystIds.length > 2) {
+                     const midIndex = Math.floor(finalAnalystNames.length / 2); // Re-calcular midIndex basado en los analistas reales
+                     finalAnalystNames.splice(midIndex, 0, avgAnalystName);
+                }
+
+                const finalTickets = finalAnalystNames.map(name => dataMap[name]?.tickets || 0);
+                const finalLlamadas = finalAnalystNames.map(name => dataMap[name]?.llamadas || 0);
+
+                trace1.x = finalAnalystNames;
+                trace1.y = finalTickets;
+                trace1.marker.color = finalAnalystNames.map(name => name === avgAnalystName ? '#6c757d' : '#f8d27c');
+
+                trace2.x = finalAnalystNames;
+                trace2.y = finalLlamadas;
+                trace2.marker.color = finalAnalystNames.map(name => name === avgAnalystName ? '#adb5bd' : '#61d2a1');
+
+                plotData = [trace1, trace2];
+            }
 
             const containerWidth = chartElement.offsetWidth || 600;
 
@@ -51669,7 +51794,9 @@
                     tickangle: -45,
                     automargin: true,
                     tickfont: { size: 10 },
-                    fixedrange: true
+                    fixedrange: true,
+                    categoryorder: 'array',
+                    categoryarray: trace1.x // Usar el orden final de los nombres para el eje X
                 },
                 yaxis: { // Only one Y axis now
                     title: 'Cantidad',
@@ -51695,7 +51822,7 @@
             const config = { responsive: true, displayModeBar: false };
 
             try {
-                Plotly.newPlot(targetDivId, data, layout, config);
+                Plotly.newPlot(targetDivId, plotData, layout, config);
                 console.log("Gráfico de contribución (Derecha) generado correctamente");
             } catch (error) {
                 console.error("Error al generar el gráfico de contribución (Derecha):", error);
