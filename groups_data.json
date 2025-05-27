@@ -262,6 +262,11 @@
         "name": "MARÍA BELÉN HERRERA",
         "schedule": "09:00-18:00",
         "extension": ""
+      },
+      {
+        "name": "ERICA JUAREZ",
+        "schedule": "09:00-18:00",
+        "extension": ""
       }
     ]
   },
@@ -328,6 +333,11 @@
       {
         "name": "ELIANA BRANDOLIN",
         "schedule": "09:00-18:00",
+        "extension": ""
+      },
+      {
+        "name": "CECILIA BAINOTTI",
+        "schedule": "08:00-17:00",
         "extension": ""
       }
     ]
