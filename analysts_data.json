@@ -418,15 +418,6 @@
         "whatsapp": "5493571664647"
     },
     {
-        "name": "LAURA GERBALDO",
-        "schedule": "23:55-23:56",
-        "clients": [
-            "YPF - MENSUALES (53)"
-        ],
-        "extension": "412",
-        "whatsapp": "nan"
-    },
-    {
         "name": "ARACELLI GALLARDO",
         "schedule": "09:00-18:00",
         "clients": [
@@ -536,5 +527,5 @@
         ],
         "extension": "122",
         "whatsapp": "5493517342603"
-    }
+        }
 ]
