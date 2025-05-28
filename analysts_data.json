@@ -354,15 +354,6 @@
         "whatsapp": "5493885043497"
     },
     {
-        "name": "MABEL FRIAS",
-        "schedule": "08:00-17:00",
-        "clients": [
-            "YPF - PERMANENTES (53)"
-        ],
-        "extension": "141",
-        "whatsapp": "5493794723472"
-    },
-    {
         "name": "IRINA LAZCANO",
         "schedule": "09:00-18:00",
         "clients": [
@@ -527,5 +518,23 @@
         ],
         "extension": "122",
         "whatsapp": "5493517342603"
+        },
+        {
+            "name": "CECILIA BAINOTTI",
+            "schedule": "08:00-17:00",
+            "clients": [
+                "YPF - PERMANENTES"
+            ],
+            "extension": "--",
+            "whatsapp": "5491150603407"
+        },
+        {
+                "name": "ERICA JUAREZ",
+                "schedule": "08:00-17:00",
+                "clients": [
+                    "YPF - MENSUALES"
+                ],
+                "extension": "--",
+                "whatsapp": "54934150091127"
         }
 ]
