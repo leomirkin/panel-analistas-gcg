@@ -215,7 +215,7 @@
     },
     {
         "name": "GABRIEL YOLES",
-        "schedule": "06:00-15:00",
+        "schedule": "00:00-00:00",
         "clients": [
             "G P V Sociedad Anonima (PIERO) (GPV) (5)",
             "[BACKUP] Aceitera General Deheza S.A. (AGD) (18)"
@@ -491,7 +491,7 @@
     },
     {
         "name": "MILAGROS ANDRADA",
-        "schedule": "00:00-00:00",
+        "schedule": "14:00-18:00",
         "clients": [
             "Andina Empaques Argentina S.A. (COCA) (8)",
             "Coca-Cola Andina Argentina (8)",
