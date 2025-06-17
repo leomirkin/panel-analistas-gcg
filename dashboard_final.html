@@ -41013,134 +41013,180 @@
         function updateSummaryKPIs(totals, analystMeta, filteredAnalystIds, dateRange) { // Now receives calculated totals
             console.log("Updating KPI cards with values:", totals);
             
+            // Verificar si hay un grupo específico seleccionado
+            const selectedGroupId = groupFilterSelect.value;
+            const isSpecificGroupSelected = selectedGroupId !== 'all';
+            
             // Calcular los promedios para las métricas de tiempo
             let avgSolicitudesTiempo = 'N/A';
             let avgAuditoriaTiempo = 'N/A';
             
-            // Variables para el cálculo
-            let totalAnalystsWithSolicitudTimes = 0;
-            let totalAnalystsWithAuditoriaTimes = 0;
-            let totalSolicitudMinutes = 0;
-            let totalAuditoriaMinutes = 0;
-            
-            // Para tiempo entre solicitudes, crear promedios por día
-            const solicitudesByAnalystAndDay = {}; // {analystId: {date: [timestamps]}}
-            
-            // Iterar sobre los analistas filtrados para recopilar timestamps
-            filteredAnalystIds.forEach(analystId => {
-                const data = analystMeta[analystId];
-                if (!data || !data.solicitudTimestamps || !Array.isArray(data.solicitudTimestamps)) {
-                    return; // Skip if no data or no timestamps
-                }
+            if (isSpecificGroupSelected) {
+                // NUEVO: Usar promedio simple del grupo para métricas de tiempo
+                let solicitudTimes = [];
+                let auditoriaTimes = [];
                 
-                // Filtrar timestamps por el rango de fechas seleccionado
-                let timestamps = data.solicitudTimestamps;
-                if (dateRange && dateRange.size > 0) {
-                    timestamps = timestamps.filter(tsStr => {
-                        const date = tsStr.split('T')[0];
-                        return dateRange.has(date);
-                    });
-                }
-                
-                if (timestamps.length === 0) return; // Skip if no timestamps after filtering
-                
-                // Agrupar timestamps de solicitudes por fecha
-                solicitudesByAnalystAndDay[analystId] = {};
-                
-                // Convertir a objetos Date y ordenar
-                const dateObjects = timestamps.map(ts => new Date(ts)).sort((a, b) => a - b);
-                
-                // Agrupar por día
-                dateObjects.forEach(ts => {
-                    const dateStr = ts.toISOString().split('T')[0];
-                    if (!solicitudesByAnalystAndDay[analystId][dateStr]) {
-                        solicitudesByAnalystAndDay[analystId][dateStr] = [];
-                    }
-                    solicitudesByAnalystAndDay[analystId][dateStr].push(ts);
-                });
-            });
-            
-            // Calcular tiempo promedio entre solicitudes por día para cada analista
-            const dailyAvgByAnalyst = {}; // {analystId: [daily averages]}
-            
-            Object.entries(solicitudesByAnalystAndDay).forEach(([analystId, dayMap]) => {
-                dailyAvgByAnalyst[analystId] = [];
-                
-                // Para cada día, calcular diferencias de tiempo entre solicitudes consecutivas
-                Object.entries(dayMap).forEach(([dateStr, timestamps]) => {
-                    if (timestamps.length <= 1) return; // Skip if only one timestamp for the day
+                filteredAnalystIds.forEach(analystId => {
+                    const data = analystMeta[analystId];
+                    if (!data) return;
                     
-                    // Calcular diferencias entre timestamps consecutivos
-                    let totalDiffMinutes = 0;
-                    let diffCount = 0;
-                    
-                    for (let i = 0; i < timestamps.length - 1; i++) {
-                        const diff = (timestamps[i+1] - timestamps[i]) / (1000 * 60); // Convert to minutes
-                        if (diff > 0) {
-                            totalDiffMinutes += diff;
-                            diffCount++;
+                    // Solo incluir analistas del grupo seleccionado
+                    if (data.groupId === selectedGroupId) {
+                        // Recopilar tiempos de solicitudes
+                        if (data.avgTiempoEntreSolicitudes && data.avgTiempoEntreSolicitudes !== 'N/A') {
+                            const minutes = parseTimeToMinutes(data.avgTiempoEntreSolicitudes);
+                            if (minutes > 0) {
+                                solicitudTimes.push(minutes);
+                            }
+                        }
+                        
+                        // Recopilar tiempos de auditoría
+                        if (data.avgTiempoAuditoria && data.avgTiempoAuditoria !== 'N/A') {
+                            const minutes = parseTimeToMinutes(data.avgTiempoAuditoria);
+                            if (minutes > 0) {
+                                auditoriaTimes.push(minutes);
+                            }
                         }
                     }
+                });
+                
+                // Calcular promedios simples
+                if (solicitudTimes.length > 0) {
+                    const avgMinutes = solicitudTimes.reduce((sum, val) => sum + val, 0) / solicitudTimes.length;
+                    avgSolicitudesTiempo = formatMinutesToTime(Math.round(avgMinutes));
+                }
+                
+                if (auditoriaTimes.length > 0) {
+                    const avgMinutes = auditoriaTimes.reduce((sum, val) => sum + val, 0) / auditoriaTimes.length;
+                    avgAuditoriaTiempo = formatMinutesToTime(Math.round(avgMinutes));
+                }
+                
+            } else {
+                // EXISTENTE: Usar el cálculo complejo para "Todos" los grupos
+                // Variables para el cálculo
+                let totalAnalystsWithSolicitudTimes = 0;
+                let totalAnalystsWithAuditoriaTimes = 0;
+                let totalSolicitudMinutes = 0;
+                let totalAuditoriaMinutes = 0;
+                
+                // Para tiempo entre solicitudes, crear promedios por día
+                const solicitudesByAnalystAndDay = {}; // {analystId: {date: [timestamps]}}
+                
+                // Iterar sobre los analistas filtrados para recopilar timestamps
+                filteredAnalystIds.forEach(analystId => {
+                    const data = analystMeta[analystId];
+                    if (!data || !data.solicitudTimestamps || !Array.isArray(data.solicitudTimestamps)) {
+                        return; // Skip if no data or no timestamps
+                    }
                     
-                    // Calcular promedio para este día
-                    if (diffCount > 0) {
-                        const avgForDay = totalDiffMinutes / diffCount;
-                        dailyAvgByAnalyst[analystId].push(avgForDay);
+                    // Filtrar timestamps por el rango de fechas seleccionado
+                    let timestamps = data.solicitudTimestamps;
+                    if (dateRange && dateRange.size > 0) {
+                        timestamps = timestamps.filter(tsStr => {
+                            const date = tsStr.split('T')[0];
+                            return dateRange.has(date);
+                        });
+                    }
+                    
+                    if (timestamps.length === 0) return; // Skip if no timestamps after filtering
+                    
+                    // Agrupar timestamps de solicitudes por fecha
+                    solicitudesByAnalystAndDay[analystId] = {};
+                    
+                    // Convertir a objetos Date y ordenar
+                    const dateObjects = timestamps.map(ts => new Date(ts)).sort((a, b) => a - b);
+                    
+                    // Agrupar por día
+                    dateObjects.forEach(ts => {
+                        const dateStr = ts.toISOString().split('T')[0];
+                        if (!solicitudesByAnalystAndDay[analystId][dateStr]) {
+                            solicitudesByAnalystAndDay[analystId][dateStr] = [];
+                        }
+                        solicitudesByAnalystAndDay[analystId][dateStr].push(ts);
+                    });
+                });
+                
+                // Calcular tiempo promedio entre solicitudes por día para cada analista
+                const dailyAvgByAnalyst = {}; // {analystId: [daily averages]}
+                
+                Object.entries(solicitudesByAnalystAndDay).forEach(([analystId, dayMap]) => {
+                    dailyAvgByAnalyst[analystId] = [];
+                    
+                    // Para cada día, calcular diferencias de tiempo entre solicitudes consecutivas
+                    Object.entries(dayMap).forEach(([dateStr, timestamps]) => {
+                        if (timestamps.length <= 1) return; // Skip if only one timestamp for the day
+                        
+                        // Calcular diferencias entre timestamps consecutivos
+                        let totalDiffMinutes = 0;
+                        let diffCount = 0;
+                        
+                        for (let i = 0; i < timestamps.length - 1; i++) {
+                            const diff = (timestamps[i+1] - timestamps[i]) / (1000 * 60); // Convert to minutes
+                            if (diff > 0) {
+                                totalDiffMinutes += diff;
+                                diffCount++;
+                            }
+                        }
+                        
+                        // Calcular promedio para este día
+                        if (diffCount > 0) {
+                            const avgForDay = totalDiffMinutes / diffCount;
+                            dailyAvgByAnalyst[analystId].push(avgForDay);
+                        }
+                    });
+                });
+                
+                // Calcular promedio final (promedio de promedios diarios) por analista
+                const finalAvgByAnalyst = {};
+                
+                Object.entries(dailyAvgByAnalyst).forEach(([analystId, dailyAvgs]) => {
+                    if (dailyAvgs.length > 0) {
+                        const sum = dailyAvgs.reduce((acc, val) => acc + val, 0);
+                        finalAvgByAnalyst[analystId] = sum / dailyAvgs.length;
+                        
+                        // Acumular para el promedio global
+                        totalSolicitudMinutes += finalAvgByAnalyst[analystId];
+                        totalAnalystsWithSolicitudTimes++;
                     }
                 });
-            });
-            
-            // Calcular promedio final (promedio de promedios diarios) por analista
-            const finalAvgByAnalyst = {};
-            
-            Object.entries(dailyAvgByAnalyst).forEach(([analystId, dailyAvgs]) => {
-                if (dailyAvgs.length > 0) {
-                    const sum = dailyAvgs.reduce((acc, val) => acc + val, 0);
-                    finalAvgByAnalyst[analystId] = sum / dailyAvgs.length;
-                    
-                    // Acumular para el promedio global
-                    totalSolicitudMinutes += finalAvgByAnalyst[analystId];
-                    totalAnalystsWithSolicitudTimes++;
-                }
-            });
-            
-            console.log("DEBUG - Daily Averages by Analyst:", dailyAvgByAnalyst);
-            console.log("DEBUG - Final Avg by Analyst:", finalAvgByAnalyst);
-            
-            // Filtrar datos de auditoría por fecha si hay filtros
-            filteredAnalystIds.forEach(analystId => {
-                const data = analystMeta[analystId];
-                if (!data) return;
                 
-                // Procesar tiempo de auditoría - si tenemos datos por fecha, usaremos solo los del rango seleccionado
-                let auditoriaTiempo = data.avgTiempoAuditoria;
+                console.log("DEBUG - Daily Averages by Analyst:", dailyAvgByAnalyst);
+                console.log("DEBUG - Final Avg by Analyst:", finalAvgByAnalyst);
+                
+                // Filtrar datos de auditoría por fecha si hay filtros
+                filteredAnalystIds.forEach(analystId => {
+                    const data = analystMeta[analystId];
+                    if (!data) return;
+                    
+                    // Procesar tiempo de auditoría - si tenemos datos por fecha, usaremos solo los del rango seleccionado
+                    let auditoriaTiempo = data.avgTiempoAuditoria;
 
-                // Si hay un filtro de fecha aplicado y avgTiempoAuditoria es un valor numérico, lo incluiremos
-                if (auditoriaTiempo && auditoriaTiempo !== 'N/A') {
-                    const minutes = parseTimeToMinutes(auditoriaTiempo);
-                    if (minutes > 0) {
-                        totalAuditoriaMinutes += minutes;
-                        totalAnalystsWithAuditoriaTimes++;
+                    // Si hay un filtro de fecha aplicado y avgTiempoAuditoria es un valor numérico, lo incluiremos
+                    if (auditoriaTiempo && auditoriaTiempo !== 'N/A') {
+                        const minutes = parseTimeToMinutes(auditoriaTiempo);
+                        if (minutes > 0) {
+                            totalAuditoriaMinutes += minutes;
+                            totalAnalystsWithAuditoriaTimes++;
+                        }
                     }
+                });
+                
+                // Calcular los promedios finales
+                if (totalAnalystsWithSolicitudTimes > 0) {
+                    const avgMinutes = Math.round(totalSolicitudMinutes / totalAnalystsWithSolicitudTimes);
+                    avgSolicitudesTiempo = formatMinutesToTime(avgMinutes);
                 }
-            });
-            
-            // Calcular los promedios finales
-            if (totalAnalystsWithSolicitudTimes > 0) {
-                const avgMinutes = Math.round(totalSolicitudMinutes / totalAnalystsWithSolicitudTimes);
-                avgSolicitudesTiempo = formatMinutesToTime(avgMinutes);
-            }
-            
-            if (totalAnalystsWithAuditoriaTimes > 0) {
-                const avgMinutes = Math.round(totalAuditoriaMinutes / totalAnalystsWithAuditoriaTimes);
-                avgAuditoriaTiempo = formatMinutesToTime(avgMinutes);
+                
+                if (totalAnalystsWithAuditoriaTimes > 0) {
+                    const avgMinutes = Math.round(totalAuditoriaMinutes / totalAnalystsWithAuditoriaTimes);
+                    avgAuditoriaTiempo = formatMinutesToTime(avgMinutes);
+                }
             }
             
             console.log("Calculated time averages:", {
+                "Group Selected": isSpecificGroupSelected ? selectedGroupId : "All",
                 "Avg Solicitudes Tiempo": avgSolicitudesTiempo,
-                "Analysts with solicitud times": totalAnalystsWithSolicitudTimes,
-                "Avg Auditoria Tiempo": avgAuditoriaTiempo, 
-                "Analysts with auditoria times": totalAnalystsWithAuditoriaTimes
+                "Avg Auditoria Tiempo": avgAuditoriaTiempo
             });
             
             summaryKpisContainer.innerHTML = `
@@ -41154,23 +41200,23 @@
             `;
         }
 
-        // Función para convertir string de tiempo (formato "Xd, Yh, Zm") a minutos
+        // Función para convertir string de tiempo (formato "Xd, Yh, Zm" o "X.Yh") a minutos
         function parseTimeToMinutes(timeString) {
             try {
                 let totalMinutes = 0;
                 
-                // Capturar días, horas y minutos con expresiones regulares
+                // Capturar días, horas (con decimales), minutos y segundos con expresiones regulares
                 const daysMatch = timeString.match(/(\d+)d/);
-                const hoursMatch = timeString.match(/(\d+)h/);
+                const hoursMatch = timeString.match(/([\d.]+)h/); // Cambiado para soportar decimales
                 const minutesMatch = timeString.match(/(\d+)m/);
                 const secondsMatch = timeString.match(/(\d+)s/);
                 
                 if (daysMatch) totalMinutes += parseInt(daysMatch[1]) * 24 * 60;
-                if (hoursMatch) totalMinutes += parseInt(hoursMatch[1]) * 60;
+                if (hoursMatch) totalMinutes += parseFloat(hoursMatch[1]) * 60; // Cambiado a parseFloat
                 if (minutesMatch) totalMinutes += parseInt(minutesMatch[1]);
                 if (secondsMatch) totalMinutes += Math.round(parseInt(secondsMatch[1]) / 60);
                 
-                return totalMinutes;
+                return Math.round(totalMinutes);
             } catch (e) {
                 console.error("Error parsing time string:", timeString, e);
                 return 0;
@@ -41182,11 +41228,23 @@
             if (totalMinutes < 1) return "< 1m";
             
             const days = Math.floor(totalMinutes / (24 * 60));
-            const hours = Math.floor((totalMinutes % (24 * 60)) / 60);
-            const minutes = totalMinutes % 60;
+            const remainingAfterDays = totalMinutes % (24 * 60);
+            const hours = Math.floor(remainingAfterDays / 60);
+            const minutes = remainingAfterDays % 60;
             
             const parts = [];
             if (days > 0) parts.push(`${days}d`);
+            
+            // Para tiempo de auditoría (valores en horas), mostrar con decimales si es apropiado
+            if (days === 0 && hours > 0 && minutes > 0) {
+                const totalHours = remainingAfterDays / 60;
+                // Si es menos de 24 horas y tiene componente fraccional significativo, mostrar como decimal
+                if (totalHours < 10) {
+                    parts.push(`${totalHours.toFixed(1)}h`);
+                    return parts.join(", ");
+                }
+            }
+            
             if (hours > 0) parts.push(`${hours}h`);
             if (minutes > 0) parts.push(`${minutes}m`);
             
