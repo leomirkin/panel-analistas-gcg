@@ -363,15 +363,6 @@
         "whatsapp": "5493492256877"
     },
     {
-        "name": "ROMINA MONTES DE OCA",
-        "schedule": "09:00-18:00",
-        "clients": [
-            "YPF - PERMANENTES (53)"
-        ],
-        "extension": "163",
-        "whatsapp": "5492915344145"
-    },
-    {
         "name": "ALEJANDRO BRYS",
         "schedule": "06:00-14:00",
         "clients": [
@@ -525,7 +516,7 @@
             "clients": [
                 "YPF - PERMANENTES"
             ],
-            "extension": "--",
+            "extension": "163",
             "whatsapp": "5491150603407"
         },
         {
@@ -536,5 +527,14 @@
                 ],
                 "extension": "--",
                 "whatsapp": "54934150091127"
+        },
+        {
+                "name": "ESTEFANIA AVILA",
+                "schedule": "09:00-18:00",
+                "clients": [
+                    "SEGUROS"
+                ],
+                "extension": "--",
+                "whatsapp": "---"
         }
 ]
