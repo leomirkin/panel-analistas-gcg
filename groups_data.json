@@ -9,7 +9,7 @@
     "members": [
       {
         "name": "ZULAY TOSCANO",
-        "schedule": "07:00-13:00",
+        "schedule": "07:00-16:00",
         "extension": "143"
       },
       {
@@ -21,11 +21,6 @@
         "name": "ESTEFANIA AVILA",
         "schedule": "09:00-18:00",
         "extension": "144"
-      },
-      {
-        "name": "LILIA BAJU",
-        "schedule": "09:00-18:00",
-        "extension": "114"
       }
       
     ]
@@ -165,13 +160,13 @@
       },
       {
         "name": "ZULAY TOSCANO (CORREOS ARCOR)",
-        "schedule": "07:00-08:00",
+        "schedule": "07:00-16:00",
         "extension": "143"
       },
       {
-        "name": "MICAELA MIRANDA (BACKUP DE 06 A 09 H)",
-        "schedule": "06:00-09:00",
-        "extension": "138"
+        "name": "EUGENIA TOSCANO (TICKETS)",
+        "schedule": "13:00-21:00",
+        "extension": "133"
       }
     ]
   },
@@ -186,11 +181,6 @@
         "name": "OCTAVIO ROLDAN (COCA - COMPRAS)",
         "schedule": "09:00-18:00",
         "extension": "126"
-      },
-      {
-        "name": "LILIA BAJU (COCA - LOGÍSTICA)",
-        "schedule": "09:00-18:00",
-        "extension": "114"
       },
       {
         "name": "MARIANA PERALES (ARCOR)",
