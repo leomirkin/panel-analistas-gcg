@@ -700,14 +700,13 @@
 </head>
 <body>
     <div class="three-state-switch-container">
-        <div class="switch-track" data-state="1">
+        <div class="switch-track" data-state="2">
             <div class="switch-labels">
-                <div class="switch-label">P</div>
                 <div class="switch-label">G</div>
                 <div class="switch-label">D</div>
             </div>
             <div class="switch-knob">
-                <div class="switch-icon">P</div>
+                <div class="switch-icon">G</div>
             </div>
         </div>
     </div>
@@ -716,11 +715,7 @@
         <input type="text" id="searchInput" placeholder="Buscar por analista o cliente...">
     </div>
     
-    <div id="analystView">
-        <div class="analyst-grid" id="analystContainer">
-            <!-- Las tarjetas de analistas se generarán aquí -->
-        </div>
-    </div>
+    <!-- Vista de analistas eliminada -->
 
     <div id="groupView" style="display: none;">
         <div class="groups-container">
@@ -776,11 +771,7 @@
             }
         }
 
-        // Cargar los datos cuando se inicia la página
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM Cargado, iniciando carga de datos...');
-            loadAnalystsData();
-        });
+        // Carga automática de analistas deshabilitada
 
         // Función para procesar datos del Excel
         function processExcelData(rawData) {
@@ -896,8 +887,7 @@
             });
         }
 
-        // Actualizar el estado cada minuto
-        setInterval(generateAnalystCards, 60000);
+        // Actualización periódica de analistas deshabilitada
 
         function isAnalystActive(schedule) {
             const now = new Date();
@@ -1054,7 +1044,7 @@
         // Manejar el cambio de vista con el switch de tres estados
         document.addEventListener('DOMContentLoaded', function() {
             const switchTrack = document.querySelector('.switch-track');
-            const phoneView = document.getElementById('analystView');
+            // Vista de analistas eliminada
             const groupView = document.getElementById('groupView');
             const dashboardView = document.getElementById('dashboardView');
             const switchKnob = document.querySelector('.switch-knob');
@@ -1063,31 +1053,12 @@
             // Inicializar la vista según el estado del switch
             updateView();
             
-            // Manejar clics en el switch
+            // Manejar clics en el switch (solo Grupos y Dashboard)
             switchTrack.addEventListener('click', function() {
                 const currentState = parseInt(switchTrack.getAttribute('data-state'));
-                let newState;
-
-                if (!dashboardFeatureActive) {
-                    // Dashboard disabled: Toggle between state 1 (Phone) and state 2 (Group)
-                    newState = currentState === 1 ? 2 : 1;
-                    if (newState === 1) {
-                        switchIcon.textContent = 'P';
-                    } else { // newState === 2
-                        switchIcon.textContent = 'G';
-                    }
-                } else {
-                    // Dashboard enabled: Original three-state toggle
-                    newState = currentState < 3 ? currentState + 1 : 1;
-                    if (newState === 1) {
-                        switchIcon.textContent = 'P';
-                    } else if (newState === 2) {
-                        switchIcon.textContent = 'G';
-                    } else { // newState === 3
-                        switchIcon.textContent = 'D';
-                    }
-                }
+                const newState = currentState === 2 ? 3 : 2;
                 switchTrack.setAttribute('data-state', newState);
+                switchIcon.textContent = newState === 2 ? 'G' : 'D';
                 updateView();
             });
             
@@ -1102,10 +1073,8 @@
                     switchTrack.setAttribute('data-state', '1');
                 }
                 
-                // Update icon based on the current state (P, G, or D if active)
-                if (state === 1) {
-                    switchIcon.textContent = 'P';
-                } else if (state === 2) {
+                // Update icon based on the current state (G o D)
+                if (state === 2) {
                     switchIcon.textContent = 'G';
                 } else if (state === 3 && dashboardFeatureActive) {
                     switchIcon.textContent = 'D';
@@ -1113,15 +1082,10 @@
                 // If state is 3 and dashboard is not active, icon remains P or G from previous valid state
                 // or is set to P by the safeguard above.
 
-                phoneView.style.display = 'none';
                 groupView.style.display = 'none';
                 dashboardView.style.display = 'none';
                 
-                if (state === 1) {
-                    phoneView.style.display = 'block';
-                    searchContainer.style.display = 'block';
-                    currentView = 'phone';
-                } else if (state === 2) {
+                if (state === 2) {
                     groupView.style.display = 'block';
                     searchContainer.style.display = 'none';
                     currentView = 'group';
