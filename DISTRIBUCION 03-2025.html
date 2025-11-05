@@ -556,6 +556,8 @@
             align-items: center;
             color: #777;
             font-size: 12px;
+            font-weight: 600;
+            transition: color 0.2s ease;
         }
 
         .switch-knob {
@@ -571,31 +573,19 @@
             z-index: 2;
         }
 
-        /* Estado del knob */
-        .switch-track[data-state="1"] .switch-knob {
+        /* Estados del knob para 2 (G) y 3 (D) */
+        .switch-track[data-state="2"] .switch-knob { /* Grupos (izquierda) */
             left: 2px;
         }
-
-        .switch-track[data-state="2"] .switch-knob {
-            left: 25px; /* (width - knob width) / 2 + left margin */
-        }
-
-        .switch-track[data-state="3"] .switch-knob {
+        .switch-track[data-state="3"] .switch-knob { /* Dashboard (derecha) */
             left: calc(100% - 26px);
         }
 
-        /* Colores del knob según estado */
-        .switch-track[data-state="1"] .switch-knob {
-            background-color: #2196F3; /* Azul para teléfono */
-        }
-
-        .switch-track[data-state="2"] .switch-knob {
-            background-color: #4CAF50; /* Verde para grupo */
-        }
-
-        .switch-track[data-state="3"] .switch-knob {
-            background-color: #FF9800; /* Naranja para dashboard */
-        }
+        /* Colores del knob y etiquetas según estado */
+        .switch-track[data-state="2"] .switch-knob { background-color: #4CAF50; }
+        .switch-track[data-state="3"] .switch-knob { background-color: #FF9800; }
+        .switch-track[data-state="2"] .switch-label:nth-child(1) { color: #2e7d32; font-weight: 800; }
+        .switch-track[data-state="3"] .switch-label:nth-child(2) { color: #ef6c00; font-weight: 800; }
 
         /* Íconos dentro del knob */
         .switch-icon {
