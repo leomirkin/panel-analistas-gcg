@@ -48,14 +48,38 @@
             position: relative;
             border: 2px solid transparent;
             transition: all 0.4s ease;
+            animation: borderColorChange 3s ease-in-out infinite;
         }
 
-        /* Lamparita roja */
         .group-card-red {
-            border-color: rgba(220, 53, 69, 0.3);
+            animation-delay: 0s;
         }
 
-        .group-card-red::before {
+        .group-card-green {
+            animation-delay: 1s;
+        }
+
+        .group-card-yellow {
+            animation-delay: 2s;
+        }
+
+        @keyframes borderColorChange {
+            0% {
+                border-color: rgba(220, 53, 69, 0.3);
+            }
+            33.33% {
+                border-color: rgba(40, 167, 69, 0.3);
+            }
+            66.66% {
+                border-color: rgba(255, 193, 7, 0.3);
+            }
+            100% {
+                border-color: rgba(220, 53, 69, 0.3);
+            }
+        }
+
+        /* Todas las lamparitas cambian entre los tres colores */
+        .group-card::before {
             content: '';
             position: absolute;
             top: -2px;
@@ -63,80 +87,61 @@
             right: -2px;
             bottom: -2px;
             border-radius: 12px;
-            background: #dc3545;
             z-index: -1;
-            animation: lightRed 1s ease-in-out infinite;
+            animation: christmasLight 3s ease-in-out infinite;
             opacity: 0;
         }
 
-        @keyframes lightRed {
-            0%, 100% {
+        /* Primera lamparita - empieza con rojo */
+        .group-card-red::before {
+            animation-delay: 0s;
+        }
+
+        /* Segunda lamparita - empieza con verde */
+        .group-card-green::before {
+            animation-delay: 1s;
+        }
+
+        /* Tercera lamparita - empieza con amarillo */
+        .group-card-yellow::before {
+            animation-delay: 2s;
+        }
+
+        @keyframes christmasLight {
+            0% {
+                background: #dc3545;
                 opacity: 0;
                 box-shadow: 0 0 0px rgba(220, 53, 69, 0);
             }
-            50% {
+            16.66% {
+                background: #dc3545;
                 opacity: 0.5;
                 box-shadow: 0 0 15px rgba(220, 53, 69, 0.7), 0 0 25px rgba(220, 53, 69, 0.4);
             }
-        }
-
-        /* Lamparita verde */
-        .group-card-green {
-            border-color: rgba(40, 167, 69, 0.3);
-        }
-
-        .group-card-green::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 12px;
-            background: #28a745;
-            z-index: -1;
-            animation: lightGreen 1s ease-in-out infinite 0.33s;
-            opacity: 0;
-        }
-
-        @keyframes lightGreen {
-            0%, 100% {
-                opacity: 0;
-                box-shadow: 0 0 0px rgba(40, 167, 69, 0);
-            }
-            50% {
+            33.33% {
+                background: #28a745;
                 opacity: 0.5;
                 box-shadow: 0 0 15px rgba(40, 167, 69, 0.7), 0 0 25px rgba(40, 167, 69, 0.4);
             }
-        }
-
-        /* Lamparita amarilla */
-        .group-card-yellow {
-            border-color: rgba(255, 193, 7, 0.3);
-        }
-
-        .group-card-yellow::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 12px;
-            background: #ffc107;
-            z-index: -1;
-            animation: lightYellow 1s ease-in-out infinite 0.66s;
-            opacity: 0;
-        }
-
-        @keyframes lightYellow {
-            0%, 100% {
-                opacity: 0;
-                box-shadow: 0 0 0px rgba(255, 193, 7, 0);
-            }
             50% {
+                background: #ffc107;
                 opacity: 0.5;
                 box-shadow: 0 0 15px rgba(255, 193, 7, 0.7), 0 0 25px rgba(255, 193, 7, 0.4);
+            }
+            66.66% {
+                background: #28a745;
+                opacity: 0.5;
+                box-shadow: 0 0 15px rgba(40, 167, 69, 0.7), 0 0 25px rgba(40, 167, 69, 0.4);
+            }
+            83.33% {
+                background: #dc3545;
+                opacity: 0.5;
+                box-shadow: 0 0 15px rgba(220, 53, 69, 0.7), 0 0 25px rgba(220, 53, 69, 0.4);
+            }
+            100% {
+                background: #dc3545;
+                opacity: 0;
+                box-shadow: 0 0 0px rgba(220, 53, 69, 0);
             }
         }
 
@@ -153,19 +158,36 @@
             overflow: hidden;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
             transition: background-color 0.4s ease;
+            animation: headerColorChange 3s ease-in-out infinite;
         }
 
         .group-card-red .group-header {
-            background: #dc3545;
+            animation-delay: 0s;
         }
 
         .group-card-green .group-header {
-            background: #28a745;
+            animation-delay: 1s;
         }
 
         .group-card-yellow .group-header {
-            background: #ffc107;
-            color: #333;
+            animation-delay: 2s;
+        }
+
+        @keyframes headerColorChange {
+            0% {
+                background: #dc3545;
+            }
+            33.33% {
+                background: #28a745;
+            }
+            66.66% {
+                background: #ffc107;
+                color: #333;
+            }
+            100% {
+                background: #dc3545;
+                color: white;
+            }
         }
 
         .supervisor-card {
