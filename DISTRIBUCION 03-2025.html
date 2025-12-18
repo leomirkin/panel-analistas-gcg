@@ -46,60 +46,102 @@
             box-shadow: var(--card-shadow);
             overflow: hidden;
             position: relative;
-            border: 1px solid transparent;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
         }
 
-        .group-card::before {
+        /* Lamparita roja */
+        .group-card-red {
+            border-color: rgba(220, 53, 69, 0.3);
+        }
+
+        .group-card-red::before {
             content: '';
             position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
             border-radius: 12px;
-            background: linear-gradient(45deg, #ff6b6b, #51cf66, #ffd43b, #ff6b6b);
-            background-size: 400% 400%;
+            background: #dc3545;
             z-index: -1;
-            animation: christmasBorder 5s ease infinite;
-            opacity: 0.15;
+            animation: lightRed 2s ease-in-out infinite;
+            opacity: 0;
         }
 
-        .group-card::after {
-            content: '✨';
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            font-size: 0.9em;
-            animation: twinkle 3s ease-in-out infinite;
-            z-index: 1;
-            opacity: 0.4;
-        }
-
-        @keyframes christmasBorder {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes twinkle {
+        @keyframes lightRed {
             0%, 100% {
-                opacity: 0.2;
-                transform: scale(0.95);
+                opacity: 0;
+                box-shadow: 0 0 0px rgba(220, 53, 69, 0);
             }
             50% {
-                opacity: 0.5;
-                transform: scale(1.05);
+                opacity: 0.4;
+                box-shadow: 0 0 15px rgba(220, 53, 69, 0.6), 0 0 25px rgba(220, 53, 69, 0.3);
+            }
+        }
+
+        /* Lamparita verde */
+        .group-card-green {
+            border-color: rgba(40, 167, 69, 0.3);
+        }
+
+        .group-card-green::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 12px;
+            background: #28a745;
+            z-index: -1;
+            animation: lightGreen 2s ease-in-out infinite 0.7s;
+            opacity: 0;
+        }
+
+        @keyframes lightGreen {
+            0%, 100% {
+                opacity: 0;
+                box-shadow: 0 0 0px rgba(40, 167, 69, 0);
+            }
+            50% {
+                opacity: 0.4;
+                box-shadow: 0 0 15px rgba(40, 167, 69, 0.6), 0 0 25px rgba(40, 167, 69, 0.3);
+            }
+        }
+
+        /* Lamparita amarilla */
+        .group-card-yellow {
+            border-color: rgba(255, 193, 7, 0.3);
+        }
+
+        .group-card-yellow::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 12px;
+            background: #ffc107;
+            z-index: -1;
+            animation: lightYellow 2s ease-in-out infinite 1.4s;
+            opacity: 0;
+        }
+
+        @keyframes lightYellow {
+            0%, 100% {
+                opacity: 0;
+                box-shadow: 0 0 0px rgba(255, 193, 7, 0);
+            }
+            50% {
+                opacity: 0.4;
+                box-shadow: 0 0 15px rgba(255, 193, 7, 0.6), 0 0 25px rgba(255, 193, 7, 0.3);
             }
         }
 
         .group-header {
-            background: linear-gradient(135deg, #c41e3a 0%, #228b22 50%, #ffd700 100%);
+            background: var(--primary-color);
             color: white;
             padding: 10px 15px;
             margin: -15px -15px 15px -15px;
@@ -110,30 +152,24 @@
             position: relative;
             overflow: hidden;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.4s ease;
         }
 
-        .group-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-            animation: shimmer 4s infinite;
+        .group-card-red .group-header {
+            background: #dc3545;
         }
 
-        @keyframes shimmer {
-            0% {
-                left: -100%;
-            }
-            100% {
-                left: 100%;
-            }
+        .group-card-green .group-header {
+            background: #28a745;
+        }
+
+        .group-card-yellow .group-header {
+            background: #ffc107;
+            color: #333;
         }
 
         .supervisor-card {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            background: #34495e;
             padding: 12px 15px;
             border-radius: 8px;
             margin-bottom: 15px;
@@ -141,7 +177,6 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 2px solid rgba(255, 215, 0, 0.4);
         }
 
         .supervisor-name {
@@ -1226,10 +1261,13 @@
             const container = document.querySelector('.groups-container');
             container.innerHTML = ''; // Limpiar el contenedor
 
+            const colors = ['red', 'green', 'yellow'];
+
             // Crear una tarjeta para cada grupo
-            groupsData.forEach(group => {
+            groupsData.forEach((group, index) => {
                 const groupCard = document.createElement('div');
-                groupCard.className = 'group-card';
+                const colorClass = colors[index % colors.length];
+                groupCard.className = `group-card group-card-${colorClass}`;
 
                 // Encabezado del grupo
                 const header = document.createElement('div');
