@@ -45,127 +45,6 @@
             padding: 15px;
             box-shadow: var(--card-shadow);
             overflow: hidden;
-            position: relative;
-            border: 2px solid transparent;
-            transition: all 0.4s ease;
-            animation: borderColorChange 4.5s steps(1, end) infinite;
-        }
-
-        .group-card-red {
-            animation-delay: 0s;
-        }
-
-        .group-card-green {
-            animation-delay: 1.5s;
-        }
-
-        .group-card-yellow {
-            animation-delay: 3s;
-        }
-
-        @keyframes borderColorChange {
-            0%, 19.99% {
-                border-color: rgba(220, 53, 69, 0.3);
-            }
-            20%, 39.99% {
-                border-color: rgba(40, 167, 69, 0.3);
-            }
-            40%, 59.99% {
-                border-color: rgba(255, 193, 7, 0.3);
-            }
-            60%, 79.99% {
-                border-color: rgba(40, 167, 69, 0.3);
-            }
-            80%, 100% {
-                border-color: rgba(220, 53, 69, 0.3);
-            }
-        }
-
-        /* Todas las lamparitas cambian entre los tres colores */
-        .group-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border-radius: 12px;
-            z-index: -1;
-            animation: christmasLight 4.5s steps(1, end) infinite;
-            opacity: 0;
-        }
-
-        /* Primera lamparita - empieza con rojo */
-        .group-card-red::before {
-            animation-delay: 0s;
-        }
-
-        /* Segunda lamparita - empieza con verde */
-        .group-card-green::before {
-            animation-delay: 1.5s;
-        }
-
-        /* Tercera lamparita - empieza con amarillo */
-        .group-card-yellow::before {
-            animation-delay: 3s;
-        }
-
-        @keyframes christmasLight {
-            0% {
-                background: #dc3545;
-                opacity: 0;
-                box-shadow: 0 0 0px rgba(220, 53, 69, 0);
-            }
-            10% {
-                background: #dc3545;
-                opacity: 0.5;
-                box-shadow: 0 0 15px rgba(220, 53, 69, 0.7), 0 0 25px rgba(220, 53, 69, 0.4);
-            }
-            20% {
-                background: #dc3545;
-                opacity: 0;
-                box-shadow: 0 0 0px rgba(220, 53, 69, 0);
-            }
-            30% {
-                background: #28a745;
-                opacity: 0.5;
-                box-shadow: 0 0 15px rgba(40, 167, 69, 0.7), 0 0 25px rgba(40, 167, 69, 0.4);
-            }
-            40% {
-                background: #28a745;
-                opacity: 0;
-                box-shadow: 0 0 0px rgba(40, 167, 69, 0);
-            }
-            50% {
-                background: #ffc107;
-                opacity: 0.5;
-                box-shadow: 0 0 15px rgba(255, 193, 7, 0.7), 0 0 25px rgba(255, 193, 7, 0.4);
-            }
-            60% {
-                background: #ffc107;
-                opacity: 0;
-                box-shadow: 0 0 0px rgba(255, 193, 7, 0);
-            }
-            70% {
-                background: #28a745;
-                opacity: 0.5;
-                box-shadow: 0 0 15px rgba(40, 167, 69, 0.7), 0 0 25px rgba(40, 167, 69, 0.4);
-            }
-            80% {
-                background: #28a745;
-                opacity: 0;
-                box-shadow: 0 0 0px rgba(40, 167, 69, 0);
-            }
-            90% {
-                background: #dc3545;
-                opacity: 0.5;
-                box-shadow: 0 0 15px rgba(220, 53, 69, 0.7), 0 0 25px rgba(220, 53, 69, 0.4);
-            }
-            100% {
-                background: #dc3545;
-                opacity: 0;
-                box-shadow: 0 0 0px rgba(220, 53, 69, 0);
-            }
         }
 
         .group-header {
@@ -177,46 +56,6 @@
             font-weight: 600;
             text-align: center;
             font-size: 1.2em;
-            position: relative;
-            overflow: hidden;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.4s ease;
-            animation: headerColorChange 4.5s steps(1, end) infinite;
-        }
-
-        .group-card-red .group-header {
-            animation-delay: 0s;
-        }
-
-        .group-card-green .group-header {
-            animation-delay: 1.5s;
-        }
-
-        .group-card-yellow .group-header {
-            animation-delay: 3s;
-        }
-
-        @keyframes headerColorChange {
-            0%, 19.99% {
-                background: #dc3545;
-                color: white;
-            }
-            20%, 39.99% {
-                background: #28a745;
-                color: white;
-            }
-            40%, 59.99% {
-                background: #ffc107;
-                color: #333;
-            }
-            60%, 79.99% {
-                background: #28a745;
-                color: white;
-            }
-            80%, 100% {
-                background: #dc3545;
-                color: white;
-            }
         }
 
         .supervisor-card {
@@ -1312,13 +1151,10 @@
             const container = document.querySelector('.groups-container');
             container.innerHTML = ''; // Limpiar el contenedor
 
-            const colors = ['red', 'green', 'yellow'];
-
             // Crear una tarjeta para cada grupo
-            groupsData.forEach((group, index) => {
+            groupsData.forEach(group => {
                 const groupCard = document.createElement('div');
-                const colorClass = colors[index % colors.length];
-                groupCard.className = `group-card group-card-${colorClass}`;
+                groupCard.className = 'group-card';
 
                 // Encabezado del grupo
                 const header = document.createElement('div');
