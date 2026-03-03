@@ -49,11 +49,6 @@
         "extension": "130"
       },
       {
-        "name": "RODRIGO ZAVALEY",
-        "schedule": "13:00-21:00",
-        "extension": "169"
-      },
-      {
         "name": "ROCIO PAGÉS",
         "schedule": "09:00-18:00",
         "extension": "122"
@@ -186,6 +181,11 @@
         "name": "MARIANA PERALES (ARCOR)",
         "schedule": "06:00-15:00",
         "extension": "101"
+      },
+      {
+        "name": "RODRIGO ZAVALEY",
+        "schedule": "13:00-21:00",
+        "extension": "169"
       }]
   },
   {
