@@ -2,15 +2,15 @@
   {
     "group_name": "Seguros (COLA 851)",
     "supervisor": {
-      "name": "MICAELA MIRANDA",
-      "schedule": "06:00-15:00",
-      "extension": "138"
+      "name": "ZULAY TOSCANO",
+      "schedule": "07:00-16:00",
+      "extension": "143"
     },
     "members": [
       {
-        "name": "ZULAY TOSCANO",
-        "schedule": "07:00-16:00",
-        "extension": "143"
+        "name": "MARIA JOSE UZCATEGUI",
+        "schedule": "09:00-18:00",
+        "extension": "147"
       },
       {
         "name": "GRISELDA QUIROGA",
@@ -132,6 +132,11 @@
         "name": "LUCIANA GEREZ",
         "schedule": "06:00-14:00",
         "extension": "140"
+      },
+      {
+        "name": "SABRINA TORRES",
+        "schedule": "09:00-18:00",
+        "extension": "267"
       }
     ]
   },
