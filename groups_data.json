@@ -52,6 +52,11 @@
         "name": "ROCIO PAGÉS",
         "schedule": "09:00-18:00",
         "extension": "122"
+      },
+      {
+        "name": "JONATHAN VAZQUEZ",
+        "schedule": "FREELANCE",
+        "extension": ""
       }
     ]
   },
@@ -80,7 +85,7 @@
     "members": [
       {
         "name": "EUGENIA TOSCANO",
-        "schedule": "13:00-21:00",
+        "schedule": "06:00-14:30",
         "extension": "133"
       }
     ]
@@ -129,14 +134,14 @@
         "extension": "119"
       },
       {
-        "name": "LUCIANA GEREZ",
-        "schedule": "06:00-14:00",
-        "extension": "140"
-      },
-      {
         "name": "SABRINA TORRES",
         "schedule": "09:00-18:00",
         "extension": "267"
+      },
+      {
+        "name": "FLORENCIA BERMUDEZ",
+        "schedule": "13:00-21:00",
+        "extension": ""
       }
     ]
   },
@@ -167,6 +172,16 @@
         "name": "EUGENIA TOSCANO (TICKETS)",
         "schedule": "13:00-21:00",
         "extension": "133"
+      },
+      {
+        "name": "CINDY RIVADENEIRA",
+        "schedule": "09:00-18:00",
+        "extension": "112"
+      },
+      {
+        "name": "LUCIANA GEREZ",
+        "schedule": "06:00-14:00",
+        "extension": "140"
       }
     ]
   },
@@ -191,6 +206,11 @@
         "name": "RODRIGO ZAVALEY",
         "schedule": "13:00-21:00",
         "extension": "169"
+      },
+      {
+        "name": "ROCIO BARRIONUEVO",
+        "schedule": "09:00-18:00",
+        "extension": "165"
       }]
   },
   {
@@ -226,6 +246,11 @@
         "name": "ZULAY TOSCANO (SCRAP SERVICES)",
         "schedule": "13:00-14:00",
         "extension": "143"
+      },
+      {
+        "name": "STEFANIA WERLEN (NARANJA)",
+        "schedule": "06:00-15:00",
+        "extension": "166"
       }
     ]
   },
@@ -288,6 +313,11 @@
         "name": "AGUSTINA ZOCCHI",
         "schedule": "09:00-18:00",
         "extension": ""
+      },
+      {
+        "name": "VICTORIA DENOT",
+        "schedule": "09:00-18:00",
+        "extension": ""
       }
     ]
   },
@@ -342,11 +372,6 @@
     
     "members": [
       {
-        "name": "VICTORIA DENOT",
-        "schedule": "09:00-18:00",
-        "extension": ""
-      },
-      {
         "name": "MARIANA LEDESMA",
         "schedule": "06:00-14:00",
         "extension": ""
@@ -359,6 +384,11 @@
       {
         "name": "MILAGROS SCOPEL",
         "schedule": "06:00-14:00",
+        "extension": ""
+      },
+      {
+        "name": "CRISTIAN GONZALEZ",
+        "schedule": "13:00-21:00",
         "extension": ""
       }
     ]
