@@ -571,40 +571,40 @@
         /* --- Selector de vista Grupos/Reporte --- */
         .three-state-switch-container {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 14px;
+            right: 14px;
             z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 8px;
         }
 
         .switch-track {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 5px;
+            gap: 4px;
+            width: 228px;
+            padding: 4px;
             background: rgba(255, 255, 255, 0.95);
             border: 1px solid rgba(25, 35, 58, 0.12);
             border-radius: 999px;
-            box-shadow: 0 8px 24px rgba(20, 35, 70, 0.12);
+            box-shadow: 0 8px 20px rgba(20, 35, 70, 0.12);
             backdrop-filter: blur(8px);
         }
 
         .switch-option {
+            flex: 1;
             border: none;
             background: transparent;
             color: #65728a;
             border-radius: 999px;
-            padding: 8px 14px;
+            padding: 9px 10px;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s ease;
+            white-space: nowrap;
         }
 
         .switch-option:hover {
@@ -617,17 +617,19 @@
             color: #35567d;
             box-shadow: inset 0 0 0 1px rgba(95, 137, 201, 0.34);
         }
-
-        .switch-view-hint {
-            font-size: 0.76rem;
-            font-weight: 700;
-            color: #4e6c9d;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(25, 35, 58, 0.1);
-            border-radius: 999px;
-            padding: 4px 10px;
-        }
         /* --- Fin selector de vista --- */
+
+        @media (max-width: 680px) {
+            .three-state-switch-container {
+                left: 12px;
+                right: 12px;
+                top: 10px;
+            }
+
+            .switch-track {
+                width: 100%;
+            }
+        }
 
         #dashboardView {
             padding: 20px;
@@ -724,7 +726,6 @@
             <button class="switch-option active" data-view="group" type="button">👥 Grupos</button>
             <button class="switch-option" data-view="dashboard" type="button">📊 Reporte</button>
         </div>
-        <div class="switch-view-hint" id="switchViewHint">Vista actual: Grupos</div>
     </div>
 
     <div class="search-container" id="searchContainer">
@@ -1059,9 +1060,7 @@
 
         // Manejar el cambio de vista con selector de dos estados
         document.addEventListener('DOMContentLoaded', function() {
-            const switchTrack = document.querySelector('.switch-track');
             const switchOptions = document.querySelectorAll('.switch-option');
-            const switchViewHint = document.getElementById('switchViewHint');
             // Vista de analistas eliminada
             const groupView = document.getElementById('groupView');
             const dashboardView = document.getElementById('dashboardView');
@@ -1069,19 +1068,15 @@
             // Inicializar la vista según el estado del switch
             updateView('group');
             
-            switchTrack.addEventListener('click', function(event) {
-                const option = event.target.closest('.switch-option');
-                if (!option) {
-                    return;
-                }
-
-                const view = option.dataset.view;
-                if (view === 'dashboard' && !dashboardFeatureActive) {
-                    updateView('group');
-                    return;
-                }
-
-                updateView(view);
+            switchOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const view = option.dataset.view;
+                    if (view === 'dashboard' && !dashboardFeatureActive) {
+                        updateView('group');
+                        return;
+                    }
+                    updateView(view);
+                });
             });
             
             function updateView(view) {
@@ -1102,7 +1097,6 @@
                     groupView.style.display = 'block';
                     searchContainer.style.display = 'none';
                     currentView = 'group';
-                    switchViewHint.textContent = 'Vista actual: Grupos';
                     if (document.querySelector('.groups-container').children.length === 0) {
                         loadGroupsData();
                     }
@@ -1119,7 +1113,6 @@
                     dashboardView.style.display = 'block';
                     searchContainer.style.display = 'none';
                     currentView = 'dashboard';
-                    switchViewHint.textContent = 'Vista actual: Reporte';
                 }
             }
         });
