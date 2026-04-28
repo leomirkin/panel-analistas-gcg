@@ -1,4 +1,19 @@
 [[redirects]]
+  from = "/DISTRIBUCION 03-2025.html"
+  to = "/distribucion-03-2025.html"
+  status = 301
+
+[[redirects]]
+  from = "/DISTRIBUCION%2003-2025.html"
+  to = "/distribucion-03-2025.html"
+  status = 301
+
+[[redirects]]
+  from = "/distribucion%2003-2025"
+  to = "/distribucion-03-2025.html"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

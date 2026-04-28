@@ -14,7 +14,7 @@ Panel interactivo para visualizar y gestionar la distribución de analistas y su
 
 ## Uso
 
-1. Abre el archivo `DISTRIBUCION 03-2025.html` en un servidor web
+1. Abre el archivo `distribucion-03-2025.html` en un servidor web
 2. Los datos de los analistas se cargan automáticamente desde `analysts_data.json`
 3. Usa el campo de búsqueda para filtrar por analista o cliente
 4. Haz doble clic en una tarjeta para marcar/desmarcar ausencia
@@ -28,4 +28,4 @@ Para ejecutar el proyecto localmente:
 python -m http.server 8000
 ```
 
-Luego abre `http://localhost:8000/DISTRIBUCION%2003-2025.html` en tu navegador. 
+Luego abre `http://localhost:8000/distribucion-03-2025.html` en tu navegador.
