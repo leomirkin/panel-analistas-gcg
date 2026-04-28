@@ -568,82 +568,66 @@
             }
         }
 
-        /* --- Estilos para el Switch de Tres Estados --- */
+        /* --- Selector de vista Grupos/Reporte --- */
         .three-state-switch-container {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
         }
 
         .switch-track {
-            position: relative;
-            width: 74px;
-            height: 28px;
-            background-color: #e0e0e0;
-            border-radius: 14px;
-            cursor: pointer;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
             display: flex;
-        }
-
-        .switch-labels {
-            position: absolute;
-            display: flex;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* Importante: permite que los clics pasen a través */
-        }
-
-        .switch-label {
-            flex: 1;
-            display: flex;
-            justify-content: center;
             align-items: center;
-            color: #777;
-            font-size: 12px;
-            font-weight: 600;
-            transition: color 0.2s ease;
+            gap: 6px;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(25, 35, 58, 0.12);
+            border-radius: 999px;
+            box-shadow: 0 8px 24px rgba(20, 35, 70, 0.12);
+            backdrop-filter: blur(8px);
         }
 
-        .switch-knob {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 24px;
-            height: 24px;
-            background-color: #2196F3;
-            border-radius: 50%;
-            transition: left 0.2s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-            z-index: 2;
+        .switch-option {
+            border: none;
+            background: transparent;
+            color: #65728a;
+            border-radius: 999px;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        /* Estados del knob para 2 (G) y 3 (D) */
-        .switch-track[data-state="2"] .switch-knob { /* Grupos (izquierda) */
-            left: 2px;
-        }
-        .switch-track[data-state="3"] .switch-knob { /* Dashboard (derecha) */
-            left: calc(100% - 26px);
+        .switch-option:hover {
+            background: rgba(142, 190, 255, 0.14);
+            color: #4d6da1;
         }
 
-        /* Colores del knob y etiquetas según estado */
-        .switch-track[data-state="2"] .switch-knob { background-color: #4CAF50; }
-        .switch-track[data-state="3"] .switch-knob { background-color: #FF9800; }
-        .switch-track[data-state="2"] .switch-label:nth-child(1) { color: #2e7d32; font-weight: 800; }
-        .switch-track[data-state="3"] .switch-label:nth-child(2) { color: #ef6c00; font-weight: 800; }
-
-        /* Íconos dentro del knob */
-        .switch-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 14px;
-            line-height: 1;
+        .switch-option.active {
+            background: rgba(142, 190, 255, 0.24);
+            color: #35567d;
+            box-shadow: inset 0 0 0 1px rgba(95, 137, 201, 0.34);
         }
-        /* --- Fin Estilos Switch --- */
+
+        .switch-view-hint {
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: #4e6c9d;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(25, 35, 58, 0.1);
+            border-radius: 999px;
+            padding: 4px 10px;
+        }
+        /* --- Fin selector de vista --- */
 
         #dashboardView {
             padding: 20px;
@@ -735,16 +719,12 @@
     </style>
 </head>
 <body>
-    <div class="three-state-switch-container">
-        <div class="switch-track" data-state="2">
-            <div class="switch-labels">
-                <div class="switch-label">G</div>
-                <div class="switch-label">D</div>
-            </div>
-            <div class="switch-knob">
-                <div class="switch-icon">G</div>
-            </div>
+    <div class="three-state-switch-container" aria-label="Cambiar vista">
+        <div class="switch-track">
+            <button class="switch-option active" data-view="group" type="button">👥 Grupos</button>
+            <button class="switch-option" data-view="dashboard" type="button">📊 Reporte</button>
         </div>
+        <div class="switch-view-hint" id="switchViewHint">Vista actual: Grupos</div>
     </div>
 
     <div class="search-container" id="searchContainer">
@@ -775,7 +755,7 @@
         let analysts = [];
         let processedAnalysts = [];
         const absentAnalysts = new Set();
-        let currentView = 'phone'; // Nueva variable para rastrear la vista actual
+        let currentView = 'group'; // Nueva variable para rastrear la vista actual
         const dashboardFeatureActive = true; // Flag to control dashboard availability
 
         // Función para verificar si una posición está visible en el viewport
@@ -1077,59 +1057,56 @@
             }
         });
 
-        // Manejar el cambio de vista con el switch de tres estados
+        // Manejar el cambio de vista con selector de dos estados
         document.addEventListener('DOMContentLoaded', function() {
             const switchTrack = document.querySelector('.switch-track');
+            const switchOptions = document.querySelectorAll('.switch-option');
+            const switchViewHint = document.getElementById('switchViewHint');
             // Vista de analistas eliminada
             const groupView = document.getElementById('groupView');
             const dashboardView = document.getElementById('dashboardView');
-            const switchKnob = document.querySelector('.switch-knob');
-            const switchIcon = document.querySelector('.switch-icon');
             
             // Inicializar la vista según el estado del switch
-            updateView();
+            updateView('group');
             
-            // Manejar clics en el switch (solo Grupos y Dashboard)
-            switchTrack.addEventListener('click', function() {
-                const currentState = parseInt(switchTrack.getAttribute('data-state'));
-                const newState = currentState === 2 ? 3 : 2;
-                switchTrack.setAttribute('data-state', newState);
-                switchIcon.textContent = newState === 2 ? 'G' : 'D';
-                updateView();
+            switchTrack.addEventListener('click', function(event) {
+                const option = event.target.closest('.switch-option');
+                if (!option) {
+                    return;
+                }
+
+                const view = option.dataset.view;
+                if (view === 'dashboard' && !dashboardFeatureActive) {
+                    updateView('group');
+                    return;
+                }
+
+                updateView(view);
             });
             
-            function updateView() {
-                let state = parseInt(switchTrack.getAttribute('data-state'));
+            function updateView(view) {
                 const searchContainer = document.getElementById('searchContainer');
 
-                // If dashboard feature is disabled, and state somehow became 3, reset to 1 (Phone view)
-                // The click handler should prevent this, but this is a safeguard.
-                if (!dashboardFeatureActive && state === 3) {
-                    state = 1;
-                    switchTrack.setAttribute('data-state', '1');
+                if (!dashboardFeatureActive && view === 'dashboard') {
+                    view = 'group';
                 }
-                
-                // Update icon based on the current state (G o D)
-                if (state === 2) {
-                    switchIcon.textContent = 'G';
-                } else if (state === 3 && dashboardFeatureActive) {
-                    switchIcon.textContent = 'D';
-                }
-                // If state is 3 and dashboard is not active, icon remains P or G from previous valid state
-                // or is set to P by the safeguard above.
+
+                switchOptions.forEach(option => {
+                    option.classList.toggle('active', option.dataset.view === view);
+                });
 
                 groupView.style.display = 'none';
                 dashboardView.style.display = 'none';
-                
-                if (state === 2) {
+
+                if (view === 'group') {
                     groupView.style.display = 'block';
                     searchContainer.style.display = 'none';
                     currentView = 'group';
+                    switchViewHint.textContent = 'Vista actual: Grupos';
                     if (document.querySelector('.groups-container').children.length === 0) {
                         loadGroupsData();
                     }
-                } else if (state === 3 && dashboardFeatureActive) {
-                    // Only show dashboard if state is 3 AND feature is active
+                } else if (view === 'dashboard' && dashboardFeatureActive) {
                     if (dashboardView.children.length === 0) {
                         const iframe = document.createElement('iframe');
                         iframe.src = 'dashboard_final.html';
@@ -1142,6 +1119,7 @@
                     dashboardView.style.display = 'block';
                     searchContainer.style.display = 'none';
                     currentView = 'dashboard';
+                    switchViewHint.textContent = 'Vista actual: Reporte';
                 }
             }
         });
