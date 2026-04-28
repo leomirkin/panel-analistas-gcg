@@ -1,16 +1,36 @@
 [[redirects]]
+  from = "/operativo"
+  to = "/operativo.html"
+  status = 200
+
+[[redirects]]
+  from = "/operativo.html"
+  to = "/operativo"
+  status = 301
+
+[[redirects]]
   from = "/DISTRIBUCION 03-2025.html"
-  to = "/distribucion-03-2025.html"
+  to = "/operativo"
   status = 301
 
 [[redirects]]
   from = "/DISTRIBUCION%2003-2025.html"
-  to = "/distribucion-03-2025.html"
+  to = "/operativo"
   status = 301
 
 [[redirects]]
   from = "/distribucion%2003-2025"
-  to = "/distribucion-03-2025.html"
+  to = "/operativo"
+  status = 301
+
+[[redirects]]
+  from = "/distribucion-03-2025.html"
+  to = "/operativo"
+  status = 301
+
+[[redirects]]
+  from = "/distribucion-03-2025"
+  to = "/operativo"
   status = 301
 
 [[redirects]]
